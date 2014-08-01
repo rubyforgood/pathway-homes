@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+if ! which psql >/dev/null 2>&1; then
+  echo "PostgreSQL is required. Please use Homebrew or <http://postgresapp.com/>."
+  exit 1
+fi
+
 # Bundler
 bundle install
 
@@ -8,3 +13,6 @@ bundle install
 if ! git remote | grep heroku >/dev/null; then
   git remote add heroku git@heroku.com:pathway-homes.git
 fi
+
+# Create all the databases
+bin/rake db:create:all
