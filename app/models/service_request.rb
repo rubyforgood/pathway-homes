@@ -5,7 +5,6 @@ class ServiceRequest < ActiveRecord::Base
   has_many :notes
 
   validates_associated :request_type
-  validates_associated :creator
 
   before_create :set_creator
 
