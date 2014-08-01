@@ -39,8 +39,10 @@ class ServiceRequest < ActiveRecord::Base
   def status=(value)
     write_attribute(:status, value)
 
-    if self.status == :closed
+    if self.status == :closed &&
       write_attribute(:closed_at, Time.now)
+    elsif self.closed_at
+      self.closed_at = nil
     end
   end
 
