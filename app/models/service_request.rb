@@ -26,7 +26,8 @@ class ServiceRequest < ActiveRecord::Base
 
   def assigned_worker=(assignee)
     if assignee.is_a?(User) && assignee.maintenance?
-      self.assigned_worker = assignee
+      write_attribute(:assigned_worker, assignee)
+      write_attribute(:assigned_at, Time.now)
     else
       fail "Cannot assign service requests to non-maintenance users!"
     end
