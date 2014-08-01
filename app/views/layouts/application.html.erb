@@ -36,7 +36,7 @@
   </div>
 
   <div class="container" ng-controller="MainCtlr">
-    <div class="alert alert-danger" role="alert" ng-show="alertMessage">{{alertMessage}}</div>
+    <div class="alert" ng-class="notice.type" role="alert" ng-show="notice.message">{{notice.message}}</div>
     <%= yield %>
   </div>
 </body>
