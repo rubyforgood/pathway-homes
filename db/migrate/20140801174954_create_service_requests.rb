@@ -6,11 +6,11 @@ class CreateServiceRequests < ActiveRecord::Migration
       t.string :client_phone
       t.string :client_email
       t.string :apt_number
-      t.int :status
+      t.integer :status
       t.text :work_desc
       t.text :special_instructions
       t.string :pet
-      t.bool :alarm
+      t.boolean :alarm
       t.string :community_street_address
       t.string :community_zip_code
       t.datetime :assigned_at
