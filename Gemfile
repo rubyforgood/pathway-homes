@@ -14,6 +14,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'spring', group: :development
 
+gem 'rails_12factor', '~> 0.0.2'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
 end
