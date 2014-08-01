@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20140801192712) do
     t.integer  "status"
     t.text     "work_desc"
     t.text     "special_instructions"
-    t.string   "pet"
     t.boolean  "alarm"
     t.string   "community_street_address"
     t.string   "community_zip_code"
@@ -51,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140801192712) do
     t.datetime "closed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "pet"
   end
 
   create_table "users", force: true do |t|
@@ -68,7 +68,10 @@ ActiveRecord::Schema.define(version: 20140801192712) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.string   "role"
+=======
+>>>>>>> 64f4a90b2443e59b8033360c5591111d4c79c3a7
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
