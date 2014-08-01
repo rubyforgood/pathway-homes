@@ -3,7 +3,7 @@
 [Pathway Homes](http://www.pathwayhomes.org/) provides housing and other
 services to adults with serious mental illness.
 
-This application, developed at [Ruby for Good](http://rubyforgood.com/) helps
+This application, developed at [Ruby for Good](http://rubyforgood.com/), helps
 Pathway Homes manage maintenance requests for the properties they oversee.
 
 ## Development
