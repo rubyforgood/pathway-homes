@@ -16,3 +16,6 @@ fi
 
 # Create all the databases
 bin/rake db:create:all
+
+# Seed
+bin/rake db:seed

@@ -21,6 +21,9 @@ Start the server and load up <http://localhost:3000>:
 script/server
 ```
 
+In development, a default user is created with email <admin@example.com> and
+password `password`.
+
 ### Deployment
 
 Production is hosted at <https://pathway-homes.herokuapp.com>. To deploy,
