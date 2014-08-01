@@ -1,5 +1,6 @@
 class ServiceRequest < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :creator, class_name: "User", inverse_of: :created
+  belongs_to :assigned_worker, class_name: "User", inverse_of: :assigned_requests
   belongs_to :request_type
   has_many :notes
 
@@ -14,19 +15,24 @@ class ServiceRequest < ActiveRecord::Base
   validates :apt_number, presence: true
   validates :status, presence: true
   validates :work_desc, presence: true
-
   validates :alarm, presence: true
   validates :community_street_address, presence: true
   validates :community_zip_code, presence: true
+  validates :pet, presence: true
+  validates :authorized_to_enter, presence: true
 
 
-  def assign_to_worker
+  def assign_to_worker(worker)
+    #validate worker is user type and set association (maybe just set name or id?)
     return false
   end
 
   def close_service_request
+
     return false
   end
+
+
 
 
 end
