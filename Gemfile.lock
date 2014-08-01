@@ -29,9 +29,11 @@ GEM
       tzinfo (~> 1.1)
     angularjs-rails (1.2.20)
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.7)
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     builder (3.2.2)
+    cancan (1.6.10)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -39,6 +41,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.1)
+    devise (3.2.4)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
@@ -58,6 +66,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.4.0)
     multi_json (1.10.1)
+    orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.5)
     rack (1.5.2)
@@ -139,14 +148,21 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    warden (1.2.3)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   angularjs-rails
+<<<<<<< HEAD
+  cancan
+=======
   bootstrap-sass (~> 3.2.0)
+>>>>>>> d07551853bfe92efbe12812ac7b7a96182df87c4
   coffee-rails (~> 4.0.0)
+  devise
   jbuilder (~> 2.0)
   jquery-rails
   pg
