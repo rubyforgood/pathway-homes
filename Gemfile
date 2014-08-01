@@ -27,3 +27,7 @@ group :production do
   gem 'rails_12factor', '~> 0.0.2'
   gem 'unicorn', '~> 4.8.3'
 end
+
+group :test do
+  gem 'shoulda-matchers', '~> 2.6.2'
+end
