@@ -6,7 +6,6 @@ class ServiceRequest < ActiveRecord::Base
 
   validates_associated :request_type
 
-  before_save :set_creator
   before_save :update_closed_at
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
@@ -36,11 +35,6 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   private
-
-  def set_creator
-    # TODO: current_user is not accessible in this context -alindeman
-    #self.creator = current_user
-  end
 
   def status_already_closed?
     self.closed_at != nil
