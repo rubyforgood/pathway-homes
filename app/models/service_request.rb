@@ -5,6 +5,7 @@ class ServiceRequest < ActiveRecord::Base
   has_many :notes
 
   validates_associated :request_type
+  before_create :set_creator
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
 
@@ -15,7 +16,6 @@ class ServiceRequest < ActiveRecord::Base
   validates :apt_number, presence: true
   validates :status, presence: true
   validates :work_desc, presence: true
-
   validates :alarm, inclusion: { in: [true, false] }
   validates :community_street_address, presence: true
   validates :community_zip_code, presence: true
@@ -23,14 +23,16 @@ class ServiceRequest < ActiveRecord::Base
   validates :authorized_to_enter, presence: true
 
 
-  def assign_to_worker(worker)
-    #validate worker is user type and set association (maybe just set name or id?)
-    return false
+  def assigned_worker=(assignee)
+    if assignee.is_a?(User) && assignee.maintenance?
+      self.assigned_worker = assignee
+    else
+      fail "Invalid assignment!"
+    end
   end
 
-  def close_service_request
-
-    return false
+  def set_creator
+    self.creator = current_user
   end
 
 end
