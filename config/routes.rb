@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'service_requests#new'
 
-  resources :service_requests, only: [:new, :index]
+  resources :service_requests, only: [:new, :index, :show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
