@@ -9,13 +9,14 @@ class ServiceRequest < ActiveRecord::Base
   enum status: [ :open, :assigned, :in_progress, :closed ]
 
   validates :community_name, presence: true
-  validates :client_name, presence: true
-  validates :client_phone, presence: true
-  validates :client_email, presence: true
+  #validates :client_name, presence: true
+  #validates :client_phone, presence: true
+  #validates :client_email, presence: true
   validates :apt_number, presence: true
   validates :status, presence: true
   validates :work_desc, presence: true
-  validates :alarm, presence: true
+
+  validates :alarm, inclusion: { in: [true, false] }
   validates :community_street_address, presence: true
   validates :community_zip_code, presence: true
   validates :pet, presence: true
@@ -31,8 +32,5 @@ class ServiceRequest < ActiveRecord::Base
 
     return false
   end
-
-
-
 
 end
