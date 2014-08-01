@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+# Bundler
+bundle install
+
+# Heroku configuration
+if ! git remote | grep heroku >/dev/null; then
+  git remote add heroku git@heroku.com:pathway-homes.git
+fi
