@@ -2,17 +2,17 @@
 	<div ng-controller="ServiceRequestsCtlr">
 		<h1>Service Request Form</h1>
 
-		<h2>Title of Request</h2>
-		<h3>Date Submitted</h3>
+		<h2 ng-model="request.type">Type of Request:  </h2>
+		<h3>Date Submitted: {{request.created_at}} </h3>
 
-		<h3>Name/Community Name</h3>
-		<h3>Apt/Building Number </h3>
+		<h3 ng-model="request.communityName">Name/Community Name: </h3>
+		<h3 ng-model="request.apartment">Apt/Building Number:  </h3>
 
-		<h3>STATUS</h3>
+		<h3>STATUS: {{request.status}}</h3>
 		<section id="requestDescription">  </section>
 
-		<%= link_to "Edit" %><br/>
-		<%= link_to "Submit" %>
+		<%= link_to "Edit", edit_service_request_path, class: "btn btn-default" %>
+		<%= link_to "Submit", class: "btn btn-default" %>
 
 	</div>
 </div>
