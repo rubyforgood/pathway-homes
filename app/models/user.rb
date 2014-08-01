@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable,
+  validates_presence_of :role
+
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :registerable,
     :validatable
 end

@@ -8,6 +8,8 @@
   <%= javascript_include_tag 'services/service_request' %>
   <%= javascript_include_tag 'controllers/main' %>
   <%= javascript_include_tag 'controllers/service_requests' %>
+  <%= javascript_include_tag 'controllers/index.js' %>
+  <%= javascript_include_tag 'controllers/service_requests.js' %>
   <%= csrf_meta_tags %>
 </head>
 
@@ -25,9 +27,9 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li><%= link_to "Create New Request", new_service_request_path %></li>
+          <li><%= link_to "View Requests", service_requests_path %></a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
