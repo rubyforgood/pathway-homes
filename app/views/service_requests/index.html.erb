@@ -8,7 +8,7 @@
       <th>Status</th>
       <th>Staff Assigned</th>
       <th>Description</th>
-      <th>More Details</th>
+      <th>Full Details</th>
     </tr>
   </thead>
   <tbody>
@@ -18,7 +18,7 @@
 <td>{{request.status}}</td>
 <td>{{request.staff_assigned}}</td>
 <td>{{request.work_desc}}</td>
-<td><%= link_to "Details", "/" %></td>
+<td><a href="service_requests/{{request.id}}">View</a></td>
 <!--<td>
 {{request.client_name}}
 {{request.community_name}}  
