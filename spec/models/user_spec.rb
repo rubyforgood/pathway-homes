@@ -6,6 +6,8 @@ RSpec.describe User, :type => :model do
   describe 'password expiration' do
     it 'by default, password is expired' do
       user = create(:user, :admin)
+      user.password_updated_at = Time.at(0)
+
       expect(user.password_expired?).to be_truthy
     end
 
