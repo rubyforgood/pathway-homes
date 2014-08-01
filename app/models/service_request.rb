@@ -15,10 +15,11 @@ class ServiceRequest < ActiveRecord::Base
   validates :status, presence: true
   validates :work_desc, presence: true
 
-  validates :alarm, presence: true
+  validates :alarm, inclusion: { in: [true, false] }
   validates :community_street_address, presence: true
   validates :community_zip_code, presence: true
 
+  before_validation :set_status_to_open, :on => :create
 
   def assign_to_worker
     return false
@@ -28,5 +29,8 @@ class ServiceRequest < ActiveRecord::Base
     return false
   end
 
-
+  private
+  def set_status_to_open
+    self.status = "open"
+  end
 end
