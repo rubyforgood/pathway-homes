@@ -21,7 +21,7 @@ class ServiceRequest < ActiveRecord::Base
   validates :alarm, inclusion: { in: [true, false] }
   validates :community_street_address, presence: true
   validates :community_zip_code, presence: true
-  validates :pet, presence: true
+  validates :pet, inclusion: { in: [true, false] }
   validates :authorized_to_enter, presence: true
 
   def assigned_worker=(assignee)
@@ -38,7 +38,8 @@ class ServiceRequest < ActiveRecord::Base
   private
 
   def set_creator
-    self.creator = current_user
+    # TODO: current_user is not accessible in this context -alindeman
+    #self.creator = current_user
   end
 
   def status_already_closed?
