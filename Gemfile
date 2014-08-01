@@ -25,6 +25,7 @@ gem 'angularjs-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'pry', '~> 0.10.0'
 end
 
 group :production do

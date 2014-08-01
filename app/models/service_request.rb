@@ -15,10 +15,9 @@ class ServiceRequest < ActiveRecord::Base
   validates :status, presence: true
   validates :work_desc, presence: true
 
-  validates :alarm, presence: true
+  validates :alarm, inclusion: { in: [true, false] }
   validates :community_street_address, presence: true
   validates :community_zip_code, presence: true
-
 
   def assign_to_worker
     return false
@@ -27,6 +26,4 @@ class ServiceRequest < ActiveRecord::Base
   def close_service_request
     return false
   end
-
-
 end

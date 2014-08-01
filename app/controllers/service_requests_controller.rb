@@ -3,5 +3,9 @@ class ServiceRequestsController < ApplicationController
   end
 
   def show 
-  end	
+  end
+
+  def index
+  end
+  	
 end
