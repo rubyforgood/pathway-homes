@@ -9,7 +9,7 @@ class Ability
          can :manage, :all
          can :assign_worker
        elsif user.maintenance?
-         can [:update, :read], Service_Request
+         can [:update, :read], ServiceRequest
        else
          can :read, :all
        end
