@@ -17,5 +17,16 @@ describe ServiceRequestsController, :type => :controller do
 
       expect(response.status).to eq(201)
     end
+
+    it "responds with errors for invalid or missing parameters" do
+      post :create, service_request: {
+        :community_name => "",
+      }, format: "json"
+
+      expect(response.status).to eq(422)
+
+      json = JSON.parse(response.body)
+      expect(json["community_name"]).to include("can't be blank")
+    end
   end
 end

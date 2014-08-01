@@ -8,8 +8,10 @@ class ServiceRequestsController < ApplicationController
   def create
     @service_request = ServiceRequest.new(service_request_params)
     respond_to do |format|
-      if @service_request.save!
+      if @service_request.save
         format.json { render action: "show", status: :created }
+      else
+        format.json { render json: @service_request.errors, status: :unprocessable_entity }
       end
     end
   end
