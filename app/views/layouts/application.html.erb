@@ -5,13 +5,16 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'pathway_homes' %>
-  <%= javascript_include_tag 'controllers/service_requests.js' %>
+  <%= javascript_include_tag 'services/service_request' %>
+  <%= javascript_include_tag 'controllers/main' %>
+  <%= javascript_include_tag 'controllers/service_requests' %>
   <%= javascript_include_tag 'controllers/index.js' %>
+  <%= javascript_include_tag 'controllers/service_requests.js' %>
   <%= csrf_meta_tags %>
 </head>
 
 <body ng-app="pathwayHomes">
-  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar navbar-inverse" role="navigation">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,11 +31,32 @@
           <li><%= link_to "Create New Request", new_service_request_path %></li>
           <li><%= link_to "View Requests", service_requests_path %></a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          
+              <% if user_signed_in? %>
+              <li><a href="#">Logged in as <strong><%= current_user.name %></strong></a></li>
+              <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Login", new_user_session_path %></li>
+              <% end %>
+          </li>
+        </ul>
       </div><!--/.nav-collapse -->
     </div>
   </div>
 
-  <div class="container">
+  <div class="container" ng-controller="MainCtlr">
+    <div class="alert" ng-class="notice.type" role="alert" ng-show="notice.message">{{notice.message}}</div>
+
+    <%- if alert.present? %>
+      <div class="alert alert-danger"><%= alert %></div>
+    <%- end %>
+
+    <%- if notice.present? %>
+      <div class="alert alert-info"><%= notice %></div>
+    <%- end %>
+
     <%= yield %>
   </div>
 </body>
