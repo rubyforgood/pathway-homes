@@ -10,6 +10,7 @@ class Ability
          can :assign_worker
        elsif user.maintenance?
          can [:update, :read], Service_Request
+	 can [:create, :read], Note
        else
          can :read, :all
        end
