@@ -37,6 +37,15 @@
 
   <div class="container" ng-controller="MainCtlr">
     <div class="alert alert-danger" role="alert" ng-show="alertMessage">{{alertMessage}}</div>
+
+    <%- if alert.present? %>
+      <div class="alert alert-danger"><%= alert %></div>
+    <%- end %>
+
+    <%- if notice.present? %>
+      <div class="alert alert-info"><%= notice %></div>
+    <%- end %>
+
     <%= yield %>
   </div>
 </body>
