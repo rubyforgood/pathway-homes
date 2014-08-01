@@ -1,22 +1,18 @@
-<div>
-	<h1>Service Request Form</h1>
+<div ng-app="pathwayHomes">
+	<div ng-controller="ServiceRequestsCtlr">
+		<h1>Service Request Form</h1>
 
-	<h2>Title of Request</h2>
-	<h3>Date Submitted</h3>
+		<h2>Title of Request</h2>
+		<h3>Date Submitted</h3>
 
-	<h3>Name/Community Name</h3>
-	<h3>Contact Information</h3>
-	<p>
-		<address>Address</address>
-		<p>Primary phone</p>
-		<p>Email</p>
-	</p>
+		<h3>Name/Community Name</h3>
+		<h3>Apt/Building Number </h3>
 
-	<h3>STATUS</h3>
-	<section id="requestDescription">  </section>
+		<h3>STATUS</h3>
+		<section id="requestDescription">  </section>
 
-	<%= link_to styleButtons("glyphicon-pencil", "Edit").html_safe, edit_service_request_path(series), class: "btn btn-primary btn-sm" %>
+		<%= link_to "Edit" %><br/>
+		<%= link_to "Submit" %>
 
-	<div class="submitButtom"><a href="#">SUBMIT</a></div>
-
+	</div>
 </div>
