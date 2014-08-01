@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe ServiceRequestsController, :type => :controller do
+  before { sign_in create(:user, :admin) }
+
   describe "POST #create" do
     it "accepts valid JSON for a service request, returning 201 Created" do
       post :create, service_request: {
@@ -13,6 +15,8 @@ describe ServiceRequestsController, :type => :controller do
         :apt_number               => "100",
         :work_desc                => "Description",
         :alarm                    => false,
+        :pet                      => true,
+        :authorized_to_enter      => true,
       }, format: "json"
 
       expect(response.status).to eq(201)

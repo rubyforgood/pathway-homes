@@ -2,11 +2,6 @@ class ServiceRequestsController < ApplicationController
 
   def index
     @service_requests = ServiceRequest.all
-    
-    respond_to do |format|
-      format.html
-      format.csv { render text: @service_requests.to_csv }
-    end
   end
 
   def new
@@ -17,6 +12,8 @@ class ServiceRequestsController < ApplicationController
 
   def create
     @service_request = ServiceRequest.new(service_request_params)
+    @service_request.creator = current_user
+
     respond_to do |format|
       if @service_request.save
         format.json { render action: "show", status: :created }
@@ -27,10 +24,13 @@ class ServiceRequestsController < ApplicationController
   end
 
   def show
+    @service_request = ServiceRequest.find(params[:id])
   end 
   
   def export
+    service_requests = ServiceRequest.include(:notes, :request_type).all
     
+    send_data(service_requests.to_json, :type => 'text/csv', :filename => 'service_requests.csv')
   end
 
   private
@@ -38,7 +38,7 @@ class ServiceRequestsController < ApplicationController
     params.require(:service_request).permit(
       :community_name, :client_name, :client_phone, :client_email, :apt_number,
       :work_desc, :special_instructions, :alarm, :community_street_address,
-      :community_zip_code, :pet
+      :community_zip_code, :pet, :authorized_to_enter
     )
   end
 end
