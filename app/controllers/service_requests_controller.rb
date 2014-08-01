@@ -11,6 +11,8 @@ class ServiceRequestsController < ApplicationController
 
   def create
     @service_request = ServiceRequest.new(service_request_params)
+    @service_request.creator = current_user
+
     respond_to do |format|
       if @service_request.save
         format.json { render action: "show", status: :created }
