@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe RequestType, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should validate_presence_of(:category)}
+  it { should validate_presence_of(:request)}
+  it { should validate_uniqueness_of(:request).scoped_to(:category) }
 end

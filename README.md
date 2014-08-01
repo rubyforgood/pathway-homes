@@ -1,9 +1,9 @@
-# pathway-homes
+# pathway-homes [![Build Status](https://travis-ci.org/alindeman/pathway-homes.svg?branch=master)](https://travis-ci.org/alindeman/pathway-homes)  [![Stories in Ready](https://badge.waffle.io/alindeman/pathway-homes.svg?label=ready&title=Ready)](http://waffle.io/alindeman/pathway-homes)
 
 [Pathway Homes](http://www.pathwayhomes.org/) provides housing and other
 services to adults with serious mental illness.
 
-This application, developed at [Ruby for Good](http://rubyforgood.com/) helps
+This application, developed at [Ruby for Good](http://rubyforgood.com/), helps
 Pathway Homes manage maintenance requests for the properties they oversee.
 
 ## Development
