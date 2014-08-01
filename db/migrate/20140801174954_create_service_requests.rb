@@ -13,6 +13,8 @@ class CreateServiceRequests < ActiveRecord::Migration
       t.bool :alarm
       t.string :community_street_address
       t.string :community_zip_code
+      t.datetime :assigned_at
+      t.datetime :closed_at
 
       t.timestamps
     end
