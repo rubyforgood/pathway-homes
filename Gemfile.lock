@@ -158,11 +158,8 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
-<<<<<<< HEAD
-  cancan
-=======
   bootstrap-sass (~> 3.2.0)
->>>>>>> d07551853bfe92efbe12812ac7b7a96182df87c4
+  cancan
   coffee-rails (~> 4.0.0)
   devise
   jbuilder (~> 2.0)
