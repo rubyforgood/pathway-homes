@@ -1,3 +1,4 @@
+ruby '2.1.2'
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.4'
@@ -13,6 +14,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'spring', group: :development
 
+gem 'angularjs-rails'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+end
+
+group :production do
+  gem 'rails_12factor', '~> 0.0.2'
+  gem 'unicorn', '~> 4.8.3'
 end
