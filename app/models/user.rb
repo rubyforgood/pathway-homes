@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   private
   def set_password_as_expired
-    self.password_updated_at = Time.at(0)
+    self.password_updated_at = Time.at(0) unless password_updated_at.present?
   end
 
   def touch_password_updated_at
