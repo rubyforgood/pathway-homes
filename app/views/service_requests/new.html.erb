@@ -1,11 +1,111 @@
 <div ng-controller="ServiceRequestsCtlr">
   <h1>Service Request Form</h1>
-  <form>
-    <label>Community Name</label>
-    <input type="text" ng-model="communityName"></input>
-    <label>Name</label>
-    <input type="text" ng-model="name"></input>
-    <label>Email</label>
-    <input type="text" ng-model="email"></input>
+  <form novalidate class="form-horizontal" role="form">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Community Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" ng-model="request.communityName"></input>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" ng-model="client.name"></input>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Email Address</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" ng-model="client.email"></input>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Primary Phone</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" ng-model="client.phone"></input>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Street Address</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" ng-model="request.address"></input>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Apartment Number</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" ng-model="request.apartment"></input>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Request Type</label>
+      <div class="col-sm-10">
+        <select class="form-control" ng-model="request.type">
+          <option ng-repeat="type in request_types">{{type}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Authorized to enter at any time?</label>
+      <div class="col-sm-10">
+        <label class="radio-inline">
+          <input type="radio" value="true" ng-model="request.hasAuthorizedEntrance" />Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" value="false" ng-model="request.hasAuthorizedEntrance" />No
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Pet?</label>
+      <div class="col-sm-10">
+        <label class="radio-inline">
+          <input type="radio" value="true" ng-model="request.hasPet" />Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" value="false" ng-model="request.hasPet" />No
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Alarm?</label>
+      <div class="col-sm-10">
+        <label class="radio-inline">
+          <input type="radio" value="true" ng-model="request.hasPet" />Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" value="false" ng-model="request.hasPet" />No
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Description of Work</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" ng-model="request.description"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Special Instructions</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" ng-model="request.instructions"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default" ng-click="submit()">Submit</button>
+      </div>
+    </div>
   </form>
 </div>
