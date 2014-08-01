@@ -5,7 +5,6 @@ class ServiceRequest < ActiveRecord::Base
   has_many :notes
 
   validates_associated :request_type
-  validates_associated :creator
 
   before_create :set_creator
 
@@ -29,12 +28,22 @@ class ServiceRequest < ActiveRecord::Base
     if assignee.is_a?(User) && assignee.maintenance?
       self.assigned_worker = assignee
     else
-      fail "Invalid assignment!"
+      fail "Cannot assign service requests to non-maintenance users!"
     end
   end
 
   def set_creator
     self.creator = current_user
+  end
+
+  def status=(value)
+    write_attribute(:status, value)
+
+    if self.status == :closed &&
+      write_attribute(:closed_at, Time.now)
+    elsif self.closed_at
+      self.closed_at = nil
+    end
   end
 
 end
