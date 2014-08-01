@@ -9,6 +9,12 @@ from the Terminal:
 script/bootstrap
 ```
 
+Start the server and load up <http://localhost:3000>:
+
+```
+script/server
+```
+
 ### Deployment
 
 Production is hosted at <https://pathway-homes.herokuapp.com>. To deploy,
