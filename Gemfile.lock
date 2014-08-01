@@ -30,6 +30,8 @@ GEM
     angularjs-rails (1.2.20)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
+    bootstrap-sass (3.2.0.1)
+      sass (~> 3.2)
     builder (3.2.2)
     cancan (1.6.10)
     coffee-rails (4.0.1)
@@ -154,7 +156,11 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
+<<<<<<< HEAD
   cancan
+=======
+  bootstrap-sass (~> 3.2.0)
+>>>>>>> d07551853bfe92efbe12812ac7b7a96182df87c4
   coffee-rails (~> 4.0.0)
   devise
   jbuilder (~> 2.0)
@@ -162,6 +168,7 @@ DEPENDENCIES
   pg
   rails (= 4.1.4)
   rails_12factor (~> 0.0.2)
+  rake (~> 10.3.2)
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
