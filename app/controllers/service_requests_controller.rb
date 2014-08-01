@@ -1,4 +1,8 @@
 class ServiceRequestsController < ApplicationController
+  def index
+    @service_requests = ServiceRequest.all
+  end
+
   def new
   end
 
@@ -17,7 +21,8 @@ class ServiceRequestsController < ApplicationController
   end
 
   def show
-  end 
+    @service_request = ServiceRequest.find(params[:id])
+  end
 
   private
   def service_request_params

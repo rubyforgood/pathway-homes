@@ -5,9 +5,9 @@ class ServiceRequest < ActiveRecord::Base
   has_many :notes
 
   validates_associated :request_type
-  validates_associated :creator
 
-  before_create :set_creator
+  before_save :set_creator
+  before_save :update_closed_at
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
 
@@ -24,17 +24,33 @@ class ServiceRequest < ActiveRecord::Base
   validates :pet, presence: true
   validates :authorized_to_enter, presence: true
 
-
   def assigned_worker=(assignee)
-    if assignee.is_a?(User) && assignee.maintenance?
-      self.assigned_worker = assignee
+    if assignee && assignee.is_a?(User) && assignee.maintenance?
+      write_attribute(:assigned_worker, assignee)
+      write_attribute(:assigned_at, Time.now)
+    elsif !assignee
+      write_attribute(:assigned_at, Time.now) if self.assigned_at
     else
-      fail "Invalid assignment!"
+      fail "Cannot assign service requests to non-maintenance users!"
     end
   end
 
+  private
+
   def set_creator
     self.creator = current_user
+  end
+
+  def status_already_closed?
+    self.closed_at != nil
+  end
+
+  def update_closed_at
+    if self.status == :closed && !status_already_closed?
+      write_attribute(:closed_at, Time.now)
+    elsif self.status != :closed && status_already_closed?
+      write_attribute(:closed_at, nil)
+    end
   end
 
 end

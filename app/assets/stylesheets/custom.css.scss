@@ -9,10 +9,6 @@ html {
   overflow-y: scroll;
 }
 
-body {
-  padding-top: 60px;
-}
-
 section {
   overflow: auto;
 }
@@ -43,6 +39,10 @@ textarea {
 
 .navbar-inverse .navbar-brand {
   color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li {
+  color:#fff;
 }
 
 .form-signin {
