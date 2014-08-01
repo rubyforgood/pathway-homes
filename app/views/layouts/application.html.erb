@@ -5,7 +5,9 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'pathway_homes' %>
-  <%= javascript_include_tag 'controllers/service_requests.js' %>
+  <%= javascript_include_tag 'services/service_request' %>
+  <%= javascript_include_tag 'controllers/main' %>
+  <%= javascript_include_tag 'controllers/service_requests' %>
   <%= csrf_meta_tags %>
 </head>
 
@@ -31,7 +33,8 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container" ng-controller="MainCtlr">
+    <div class="alert alert-danger" role="alert" ng-show="alertMessage">{{alertMessage}}</div>
     <%= yield %>
   </div>
 </body>
