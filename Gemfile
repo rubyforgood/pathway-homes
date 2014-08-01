@@ -17,6 +17,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'spring', group: :development
 
+gem 'devise'
+gem 'cancan'
+
 gem 'angularjs-rails'
 
 group :development, :test do
@@ -26,4 +29,8 @@ end
 group :production do
   gem 'rails_12factor', '~> 0.0.2'
   gem 'unicorn', '~> 4.8.3'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 2.6.2'
 end
