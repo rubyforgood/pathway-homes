@@ -4,42 +4,49 @@
     <div class="form-group">
       <label class="col-sm-2 control-label">Community Name</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="request.communityName"></input>
+        <input class="form-control" type="text" ng-model="request.community_name"></input>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Name</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="client.name"></input>
+        <input class="form-control" type="text" ng-model="request.client_name"></input>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Email Address</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="client.email"></input>
+        <input class="form-control" type="text" ng-model="request.client_email"></input>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Primary Phone</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="client.phone"></input>
+        <input class="form-control" type="text" ng-model="request.client_phone"></input>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Street Address</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="request.address"></input>
+        <input class="form-control" type="text" ng-model="request.community_street_address"></input>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Apartment Number</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="request.apartment"></input>
+        <input class="form-control" type="text" ng-model="request.apt_number"></input>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Zip Code</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" ng-model="request.community_zip_code"></input>
       </div>
     </div>
 
@@ -53,25 +60,13 @@
     </div>
 
     <div class="form-group">
-      <label class="col-sm-2 control-label">Authorized to enter at any time?</label>
-      <div class="col-sm-10">
-        <label class="radio-inline">
-          <input type="radio" value="true" ng-model="request.hasAuthorizedEntrance" />Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" value="false" ng-model="request.hasAuthorizedEntrance" />No
-        </label>
-      </div>
-    </div>
-
-    <div class="form-group">
       <label class="col-sm-2 control-label">Pet?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <input type="radio" value="true" ng-model="request.hasPet" />Yes
+          <input type="radio" value="true" ng-model="request.pet" />Yes
         </label>
         <label class="radio-inline">
-          <input type="radio" value="false" ng-model="request.hasPet" />No
+          <input type="radio" value="false" ng-model="request.pet" />No
         </label>
       </div>
     </div>
@@ -80,10 +75,10 @@
       <label class="col-sm-2 control-label">Alarm?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <input type="radio" value="true" ng-model="request.hasPet" />Yes
+          <input type="radio" value="true" ng-model="request.alarm" />Yes
         </label>
         <label class="radio-inline">
-          <input type="radio" value="false" ng-model="request.hasPet" />No
+          <input type="radio" value="false" ng-model="request.alarm" />No
         </label>
       </div>
     </div>
@@ -91,20 +86,20 @@
     <div class="form-group">
       <label class="col-sm-2 control-label">Description of Work</label>
       <div class="col-sm-10">
-        <textarea class="form-control" ng-model="request.description"></textarea>
+        <textarea class="form-control" ng-model="request.work_desc"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Special Instructions</label>
       <div class="col-sm-10">
-        <textarea class="form-control" ng-model="request.instructions"></textarea>
+        <textarea class="form-control" ng-model="request.special_instructions"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default" ng-click="submit()">Submit</button>
+        <button type="submit" ng-click="save()" class="btn btn-default">Submit</button>
       </div>
     </div>
   </form>
