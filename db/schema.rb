@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140801230404) do
+ActiveRecord::Schema.define(version: 20140802154720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,11 +50,11 @@ ActiveRecord::Schema.define(version: 20140801230404) do
     t.boolean  "authorized_to_enter"
     t.integer  "status",                   default: 0, null: false
     t.integer  "creator_id"
-    t.integer  "assigned_worker_id"
+    t.integer  "assignee_id"
     t.integer  "request_type_id"
   end
 
-  add_index "service_requests", ["assigned_worker_id"], name: "index_service_requests_on_assigned_worker_id", using: :btree
+  add_index "service_requests", ["assignee_id"], name: "index_service_requests_on_assignee_id", using: :btree
   add_index "service_requests", ["creator_id"], name: "index_service_requests_on_creator_id", using: :btree
   add_index "service_requests", ["request_type_id"], name: "index_service_requests_on_request_type_id", using: :btree
 

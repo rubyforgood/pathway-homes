@@ -2,9 +2,10 @@
 <html>
 <head>
   <title>PathwayHomes</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'pathway_homes' %>
+  <%= javascript_include_tag 'filters' %>
   <%= javascript_include_tag 'services/service_request' %>
   <%= javascript_include_tag 'controllers/main' %>
   <%= javascript_include_tag 'controllers/service_requests' %>
@@ -47,15 +48,7 @@
   </div>
 
   <div class="container" ng-controller="MainCtlr">
-    <div class="alert" ng-class="notice.type" role="alert" ng-show="notice.message">{{notice.message}}</div>
-
-    <%- if alert.present? %>
-      <div class="alert alert-danger"><%= alert %></div>
-    <%- end %>
-
-    <%- if notice.present? %>
-      <div class="alert alert-info"><%= notice %></div>
-    <%- end %>
+    <div class="col-sm-8 alert" data-alert="<%= alert %>" ng-class="notice.type" role="alert" ng-show="notice.message">{{notice.message}}</div>
 
     <%= yield %>
   </div>
