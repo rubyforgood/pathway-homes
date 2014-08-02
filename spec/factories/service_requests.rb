@@ -10,4 +10,12 @@ FactoryGirl.define do
     pet { false }
     authorized_to_enter { true }
   end
+
+  trait :open do
+    status { "open" }
+  end
+
+  trait :in_progress do
+    status { "in_progress" }
+  end
 end

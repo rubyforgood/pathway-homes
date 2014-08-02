@@ -8,4 +8,8 @@ FactoryGirl.define do
   trait :admin do
     role "admin"
   end
+
+  trait :maintenance do
+    role "maintenance"
+  end
 end
