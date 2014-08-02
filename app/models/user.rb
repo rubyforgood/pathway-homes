@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   def touch_password_updated_at
     self.password_updated_at = Time.now
   end
+  
+  def active_for_authentication?
+    super && !disabled
+  end
 end
