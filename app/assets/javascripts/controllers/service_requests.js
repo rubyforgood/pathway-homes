@@ -1,11 +1,15 @@
-pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "ServiceRequest", "RequestType", function($scope, $routeParams, ServiceRequest, RequestType) {
+pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "ServiceRequest", "RequestType", "User", function($scope, $routeParams, ServiceRequest, RequestType, User) {
   //$scope.params = $routeParams;
   $scope.request = {};
   $scope.creator = {};
   $scope.request_types = [];
 
   RequestType.all().success(function(data) { 
-    $scope.request_types = data 
+    $scope.request_types = data;
+  });
+
+  User.get($scope.creator.id).success(function(data) {
+    $scope.creator = data;
   });
 
   $scope.isValid = function(name) {

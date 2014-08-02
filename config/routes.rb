@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'pages/contact'
 
   devise_for :users
-  resources :users
+  resources :users, except: :show
+  get 'user', to: 'users#show'
   
   get 'admin/create_user' => 'users#new'
 
