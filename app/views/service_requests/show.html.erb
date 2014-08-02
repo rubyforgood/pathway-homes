@@ -3,13 +3,17 @@
 
 	<h2><%= @service_request.request_type %></h2>
 	<h3>ID#: <%= @service_request.id %></h3>
-	<h3><%= @service_request.created_at %></h3>
+	<h3><%= @service_request.created_at.strftime("%B %e, %Y <br/> %R").html_safe %></h3>
 
 	<h3><%= @service_request.community_name %></h3>
-	<h3>Apt/Building Number: {{request.apt_number}}</h3>
+	<h3>Apt/Building Number: <%= @service_request.apt_number %></h3>
+
 
 	<section id="requestDescription">
-		<p><%= @service_request.work_desc %></p>
+		<h4>Request Description</h4>
+			<p><%= @service_request.work_desc %></p>
+		<h4>Special Instructions:</h4>
+			<p><%= @service_request.special_instructions %></p>
 	</section>
 
 <!-- 	<h3>ID#: {{request.id}} </h3>
