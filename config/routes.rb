@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users,  :controllers => { registrations: "users/registrations" }
   devise_scope :user do
-    get '/users/add_user' => 'devise/registrations#new'
+    get '/users/add_user' => 'users/registrations#new'
   end
   
   resources :service_requests do
