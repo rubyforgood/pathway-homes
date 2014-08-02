@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :assigned_requests, class_name: "ServiceRequest", inverse_of: :assignee
   has_many :created, class_name: "ServiceRequest", inverse_of: :creator
 
+  scope :admin, -> { where(role: "admin") }
+
   devise :database_authenticatable, :recoverable, :rememberable, :trackable,
     :validatable
 
