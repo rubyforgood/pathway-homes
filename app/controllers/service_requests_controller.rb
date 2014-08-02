@@ -12,6 +12,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def edit
+    @service_request = ServiceRequest.find_by_id(params[:id])
   end
 
   def create

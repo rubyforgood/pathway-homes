@@ -3,6 +3,7 @@ pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "Servi
   $scope.request = {};
   $scope.creator = {};
   $scope.request_types = [];
+  $scope.request.id = $('form').data('id');
 
   RequestType.all().success(function(data) { 
     $scope.request_types = data;
@@ -10,6 +11,10 @@ pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "Servi
 
   User.get($scope.creator.id).success(function(data) {
     $scope.creator = data;
+  });
+
+  ServiceRequest.get($scope.request.id).success(function(data) {
+    $scope.request = data;
   });
 
   $scope.isValid = function(name) {

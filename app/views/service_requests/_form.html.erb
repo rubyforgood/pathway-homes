@@ -3,6 +3,7 @@
   <%= form_for(@service_request, html: {method: "post", 
                                         name: "form",
                                         class: "form form-horizontal", 
+                                        'data-id' => @service_request.id,
                                         role: "form"}) do |f| %>
     <div class="form-group">
       <label class="col-sm-2 control-label">Name</label>
