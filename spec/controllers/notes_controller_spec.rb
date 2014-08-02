@@ -15,7 +15,7 @@ describe NotesController, :type => :controller do
       expect(response.status).to eq(201)
       json = JSON.parse(response.body)
       expect(json["note"]).to eq("Replaced a seal on the toilet's tank")
-      expect(json["user_id"]).to eq(current_user.id)
+      expect(json["user"]["id"]).to eq(current_user.id)
       expect(json["service_request_id"]).to eq(service_request.id)
     end
   end
