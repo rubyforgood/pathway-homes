@@ -20,7 +20,7 @@ class ServiceRequestsController < ApplicationController
 
     respond_to do |format|
       if @service_request.save
-        flash[:alert] = "Request ##{@service_request.id} was created!"
+        flash[:notice] = "Request ##{@service_request.id} was created!"
         format.html { redirect_to @service_request }
       else
         flash[:alert] = @service_request.errors.full_messages.join('. ')
