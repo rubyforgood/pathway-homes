@@ -1,16 +1,15 @@
-pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "ServiceRequest", function($scope, ServiceRequest) {
+pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "ServiceRequest", function($scope, $routeParams, ServiceRequest) {
+  $scope.params = $routeParams;
   $scope.request = {};
   $scope.request_types = ["test"];
 
   $scope.save = function() {
     ServiceRequest.post($scope.request).
       success(function(data) {
-      $scope.alert("Saved!", "success");
-      console.log(data);
+      $scope.alert("Record saved!", "success");
     }).
       error(function(data) {
       $scope.alert("Unable to save", "danger");
-      console.log(data);
     });
   };
 }]);
