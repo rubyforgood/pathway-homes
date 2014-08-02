@@ -26,6 +26,17 @@ class ServiceRequestsController < ApplicationController
     @service_request = ServiceRequest.find(params[:id])
   end
 
+  def update
+    @service_request = ServiceRequest.find(params[:id])
+    respond_to do |format|
+      if @service_request.update(service_request_params)
+        format.json { render action: "show" }
+      else
+        format.json { render json: @service_request.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
   def service_request_params
     params.require(:service_request).permit(
