@@ -1,0 +1,10 @@
+Service Requests Submitted Since: <%= @last_digest_time.to_s(:email_digest) %>
+
+<%- @service_requests.each do |service_request| %>
+<%= service_request.community_name %>
+  Submitted By: <%= service_request.creator_name %>
+  Request Type: <%= service_request.full_request_type %>
+  Description:  <%= service_request.work_desc %>
+  More Details: <%= service_request_url(service_request) %>
+
+<%- end %>
