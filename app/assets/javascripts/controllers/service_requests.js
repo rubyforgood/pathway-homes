@@ -1,19 +1,28 @@
-pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$http", "ServiceRequest", function($scope, $http, ServiceRequest) {
+pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "ServiceRequest", "RequestType", function($scope, $routeParams, ServiceRequest, RequestType) {
+  //$scope.params = $routeParams;
   $scope.request = {};
-  $http.get('/request_types.json').success(function(data) {
-    $scope.request_types = data;
-    console.log(data);
-  });
+  $scope.creator = {};
+  $scope.request_types = [];
 
-  $scope.save = function() {
-    ServiceRequest.post($scope.request).
-      success(function(data) {
-      $scope.alert("Saved!", "success");
-      console.log(data);
-    }).
-      error(function(data) {
-      $scope.alert("Unable to save", "danger");
-      console.log(data);
-    });
+  RequestType.all().success(function(data) { 
+    $scope.request_types = data 
+  });
+  
+  $scope.save = function($event) {
+    if ($scope.form.$invalid) {
+      $scope.form.$setDirty();
+      $event.preventDefault();
+    } else {
+    }
+
+      
+
+    //ServiceRequest.post($scope.request).
+    //  success(function(data) {
+    //  $scope.alert("Record saved!", "success");
+    //}).
+    //  error(function(data) {
+    //  $scope.alert("Unable to save", "danger");
+    //});
   };
 }]);
