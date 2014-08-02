@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :assigned_requests, class_name: "ServiceRequest", inverse_of: :assignee
   has_many :created, class_name: "ServiceRequest", inverse_of: :creator
 
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :registerable,
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable,
     :validatable
 
   # Upon creation, users must immediately reset their passwords when first
