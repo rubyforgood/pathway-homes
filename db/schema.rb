@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140802193243) do
+ActiveRecord::Schema.define(version: 20140802204745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "email_digest_deliveries", force: true do |t|
+    t.datetime "delivered_at", null: false
+  end
+
+  add_index "email_digest_deliveries", ["delivered_at"], name: "index_email_digest_deliveries_on_delivered_at", using: :btree
 
   create_table "notes", force: true do |t|
     t.text     "note"

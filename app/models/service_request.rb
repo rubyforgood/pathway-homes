@@ -4,8 +4,6 @@ class ServiceRequest < ActiveRecord::Base
   belongs_to :request_type
   has_many :notes
 
-  validates_associated :request_type
-
   before_save :update_status
   before_save :set_assigned_at
   before_save :set_closed_at
@@ -20,7 +18,7 @@ class ServiceRequest < ActiveRecord::Base
   validates :community_street_address, presence: true
   validates :community_zip_code, presence: true
   validates :pet, inclusion: { in: [true, false] }
-  validates :authorized_to_enter, presence: true
+  validates :authorized_to_enter, inclusion: { in: [true, false] }
   validates :creator, presence: true
   validates :request_type, presence: true
 
@@ -46,6 +44,14 @@ class ServiceRequest < ActiveRecord::Base
 
   def assignee_name
     assignee ? assignee.name : ''
+  end
+
+  def creator_name
+    creator && creator.name
+  end
+
+  def full_request_type
+    request_type && request_type.full
   end
 
   private
