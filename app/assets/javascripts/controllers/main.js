@@ -1,9 +1,11 @@
-pathwayHomes.controller("MainCtlr", ["$scope", "$timeout", function($scope, $timeout) {
+pathwayHomes.controller("MainCtlr", ["$scope", "$timeout", "$route", "$routeParams", "$location", function($scope, $timeout, $route, $routeParams, $location) {
+  //$scope.$route = $route;
+  //$scope.$location = $location;
+  //$scope.$routeParams = $routeParams;
   $scope.notice = {promise: null, type: "alert-info", message: ""};
 
   $scope.alert = function(message, type) {
     $scope.notice.type = "alert-" + type;
-    console.log($scope.notice.type);
     $scope.notice.message = message;
   };
 
@@ -12,5 +14,10 @@ pathwayHomes.controller("MainCtlr", ["$scope", "$timeout", function($scope, $tim
     $scope.notice.promise = $timeout(function() { $scope.notice.message = ""; }, 5000);
   });
 
-  $scope.notice.message = $('.alert').data('alert');
+  if ($('.alert').data('alert')) {
+    alert = $('.alert').data('alert');
+    $scope.notice.message = alert;
+    $scope.notice.type = "alert-danger";
+    $('.alert').data('alert', '');
+  }
 }]);

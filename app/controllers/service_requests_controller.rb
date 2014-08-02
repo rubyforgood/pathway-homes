@@ -1,4 +1,6 @@
 class ServiceRequestsController < ApplicationController
+  rescue_from ActionController::ParameterMissing, with: :handle_missing_parms
+
   before_filter :authenticate_user!
 
   def index
@@ -6,6 +8,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def new
+    @service_request = ServiceRequest.new
   end
 
   def edit
@@ -17,9 +20,11 @@ class ServiceRequestsController < ApplicationController
 
     respond_to do |format|
       if @service_request.save
-        format.json { render action: "show", status: :created }
+        flash[:alert] = "Request ##{@service_request.id} was created!"
+        format.html { render action: "index", status: :created }
       else
-        format.json { render json: @service_request.errors, status: :unprocessable_entity }
+        flash[:alert] = @service_request.errors.full_messages.join('. ')
+        format.html { render action: "new", status: :unprocessable_entity }
       end
     end
   end
@@ -36,7 +41,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def show
-    @service_request = ServiceRequest.find(params[:id])
+    @service_request = ServiceRequest.includes(:creator).find(params[:id])
   end
 
 
@@ -46,13 +51,18 @@ class ServiceRequestsController < ApplicationController
     send_data(service_requests.to_csv, :type => 'text/csv', :filename => 'service_requests.csv')
   end
 
-
   private
+
+  def handle_missing_parms(exception)
+    flash[:alert] = exception.message
+    redirect_to new_service_request_path
+  end
+
   def service_request_params
     params.require(:service_request).permit(
       :community_name, :apt_number, :work_desc, :special_instructions, :alarm,
       :community_street_address, :community_zip_code, :pet,
-      :authorized_to_enter, :request_type_id
+      :authorized_to_enter, :request_type_id, creator_attributes: [:name, :email, :phone]
     )
   end
 end
