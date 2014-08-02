@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :request_types, only: [:index]
+
   resources :service_requests do
     resources :notes
     get 'export', on: :collection
