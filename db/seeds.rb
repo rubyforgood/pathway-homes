@@ -113,8 +113,9 @@ RequestType.create([{category: 'Appliance Repair', request: 'Misc.'},
                     {category: 'Window', request: 'Screen Issue'}])
 
 if Rails.env.development?
-  user = User.create(role: "admin", email: "admin@example.com", password: "password", password_confirmation: "password")
-
+  user = User.create(name: "administrator", role: "admin", email: "admin@example.com", password: "password", password_confirmation: "password")
+  normalUser = User.create(name: "Jane Plain", role: "staff", email: "staff@example.com", password: "password", password_confirmation: "password" )
+  maintenanceUser = User.create(name: "Jessie Handyman", role: "maintenance", email: "jh@example.com", password: "password", password_confirmation: "password")
 
   begin
     
@@ -154,6 +155,48 @@ if Rails.env.development?
      creator_id:                user.id,
      request_type_id:           RequestType.first.id
   )
+
+  # Normal staff request
+  ServiceRequest.create(
+     id:                        3,
+     community_name:            'Fairway House',
+     apt_number:                '2',
+     status:                    'open',
+     work_desc:                 'We have many needs. Many indeed.',
+     alarm:                     false,
+     community_street_address:  '112 Washington Ave',
+     community_zip_code:        '20850',
+     assigned_at:               '2014-07-01 16:25:37 -0400',
+     closed_at:                 '2014-07-01 16:25:37 -0400',
+     created_at:                '2014-07-01',
+     updated_at:                '2014-07-11 16:25:37 -0400',
+     pet:                       true,
+     authorized_to_enter:       true,
+     creator_id:                normalUser.id,
+     assignee_id:               maintenanceUser.id,
+     request_type_id:           RequestType.first.id
+  )
+
+  ServiceRequest.create(
+     id:                        4,
+     community_name:            'Monroe Suites',
+     apt_number:                '233',
+     status:                    'open',
+     work_desc:                 'There was a big flood and a lot of the property was damaged',
+     alarm:                     false,
+     community_street_address:  '112 Monroe St.',
+     community_zip_code:        '20850',
+     assigned_at:               '2014-08-02 16:25:37 -0400',
+     closed_at:                 '2014-08-02 16:25:37 -0400',
+     created_at:                '2014-08-02',
+     updated_at:                '2014-08-02 16:25:37 -0400',
+     pet:                       true,
+     authorized_to_enter:       true,
+     creator_id:                normalUser.id,
+     request_type_id:           RequestType.first.id
+  )
+
+  # Maintenance
   rescue PG::UniqueViolation
     # it's fine
   end

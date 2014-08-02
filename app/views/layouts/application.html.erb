@@ -5,7 +5,6 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'pathway_homes' %>
-  <%= javascript_include_tag 'filters' %>
   <%= javascript_include_tag 'services/service_request' %>
   <%= javascript_include_tag 'controllers/main' %>
   <%= javascript_include_tag 'controllers/service_requests' %>
@@ -36,7 +35,7 @@
           
               <% if user_signed_in? %>
               <li><a href="#">Logged in as <strong><%= current_user.name %></strong></a></li>
-              <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+              <li><%= link_to 'Edit profile', edit_user_path(current_user.id) %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
               <% else %>
                 <li><%= link_to "Login", new_user_session_path %></li>
