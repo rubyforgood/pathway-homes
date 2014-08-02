@@ -4,8 +4,6 @@ class ServiceRequest < ActiveRecord::Base
   belongs_to :request_type
   has_many :notes
 
-  validates_associated :request_type
-
   before_save :update_status
   before_save :set_assigned_at
   before_save :set_closed_at
@@ -46,6 +44,14 @@ class ServiceRequest < ActiveRecord::Base
 
   def assignee_name
     assignee ? assignee.name : ''
+  end
+
+  def creator_name
+    creator && creator.name
+  end
+
+  def full_request_type
+    request_type && request_type.full
   end
 
   private
