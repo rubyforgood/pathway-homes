@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140802151701) do
+ActiveRecord::Schema.define(version: 20140802154720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,23 +50,23 @@ ActiveRecord::Schema.define(version: 20140802151701) do
     t.boolean  "authorized_to_enter"
     t.integer  "status",                   default: 0, null: false
     t.integer  "creator_id"
-    t.integer  "assigned_worker_id"
+    t.integer  "assignee_id"
     t.integer  "request_type_id"
   end
 
-  add_index "service_requests", ["assigned_worker_id"], name: "index_service_requests_on_assigned_worker_id", using: :btree
+  add_index "service_requests", ["assignee_id"], name: "index_service_requests_on_assignee_id", using: :btree
   add_index "service_requests", ["creator_id"], name: "index_service_requests_on_creator_id", using: :btree
   add_index "service_requests", ["request_type_id"], name: "index_service_requests_on_request_type_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "phone"
-    t.string   "email",                  default: "",                    null: false
-    t.string   "encrypted_password",     default: "",                    null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,                     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20140802151701) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role"
-    t.datetime "password_updated_at",    default: '1900-01-01 00:00:00', null: false
+    t.datetime "password_updated_at",                 null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
