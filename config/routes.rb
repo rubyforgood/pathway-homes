@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'pages/index'
+
+  get 'pages/about'
+
+  get 'pages/contact'
+
   devise_for :users
 
   resources :service_requests do
@@ -6,5 +12,5 @@ Rails.application.routes.draw do
     get 'export', on: :collection
   end
 
-  root to: 'service_requests#new'
+  root to: 'pages#index'
 end
