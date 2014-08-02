@@ -1,6 +1,7 @@
-pathwayHomes.controller('IndexController', function ($scope, $http) {
-  $http.get('service_requests/index.json').success(function(data) {
+pathwayHomes.controller('IndexController', ['$scope', '$http', function ($scope, $http) {
+  $http.get('service_requests.json').success(function(data) {
     $scope.requests = data;
+    console.log(data);
   });
 
 // pathwayHomes.controller('IndexController',['$scope', function($scope) {
@@ -45,4 +46,4 @@ pathwayHomes.controller('IndexController', function ($scope, $http) {
 //     pet: false,
 //     assigned_worker: "Joe"
 //   }];
-// }]);
+}]);
