@@ -8,7 +8,7 @@ class EmailDigestDelivery < ActiveRecord::Base
 
     if (last_digest_time + DELIVERY_FREQUENCY) <= now
       recipients       = User.admin.map(&:email)
-      service_requests = ServiceRequest.where(created_at: last_digest_time...now)
+      service_requests = ServiceRequest.where(created_at: last_digest_time...now).order_by(:created_at)
 
       EmailDigest.digest(
         recipients: recipients,
