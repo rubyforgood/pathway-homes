@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'pages/contact'
 
   devise_for :users
+  resources :users
 
   resources :service_requests do
     resources :notes
