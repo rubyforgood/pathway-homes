@@ -17,7 +17,6 @@ pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "Servi
       $scope.alert("Please complete the form first", "danger");
       $event.preventDefault();
     } 
-      
 
     //ServiceRequest.post($scope.request).
     //  success(function(data) {

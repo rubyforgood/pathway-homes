@@ -78,11 +78,11 @@
       <label class="col-sm-2 control-label">Authorized to enter at any time?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <%= f.radio_button('authorized_to_enter', true, 
+          <%= f.radio_button('authorized_to_enter', true, required: true,
                              'ng-model' => 'request.authorized_to_enter') %> Yes
         </label>
         <label class="radio-inline">
-          <%= f.radio_button('authorized_to_enter', false, 
+          <%= f.radio_button('authorized_to_enter', false, required: true,
                              'ng-model' => 'request.authorized_to_enter') %> No
         </label>
       </div>
@@ -92,10 +92,10 @@
       <label class="col-sm-2 control-label">Pet?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <%= f.radio_button('pet', true, 'ng-model' => 'request.pet') %> Yes
+          <%= f.radio_button('pet', true, required: true, 'ng-model' => 'request.pet') %> Yes
         </label>
         <label class="radio-inline">
-          <%= f.radio_button('pet', false, 'ng-model' => 'request.pet') %> No
+          <%= f.radio_button('pet', false, required: true, 'ng-model' => 'request.pet') %> No
         </label>
       </div>
     </div>
@@ -104,10 +104,10 @@
       <label class="col-sm-2 control-label">Alarm?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <%= f.radio_button('alarm', true, 'ng-model' => 'request.alarm') %> Yes
+          <%= f.radio_button('alarm', true, required: true, 'ng-model' => 'request.alarm') %> Yes
         </label>
         <label class="radio-inline">
-          <%= f.radio_button('alarm', false, 'ng-model' => 'request.alarm') %> No
+          <%= f.radio_button('alarm', false, required: true, 'ng-model' => 'request.alarm') %> No
         </label>
       </div>
     </div>
