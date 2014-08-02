@@ -47,7 +47,7 @@
   </div>
 
   <div class="container" ng-controller="MainCtlr">
-    <div class="alert" ng-class="notice.type" role="alert" ng-show="notice.message">{{notice.message}}</div>
+    <div class="col-sm-8 alert" ng-class="notice.type" role="alert" ng-show="notice.message">{{notice.message}}</div>
 
     <%- if alert.present? %>
       <div class="alert alert-danger"><%= alert %></div>

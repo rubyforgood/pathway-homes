@@ -58,3 +58,8 @@ textarea {
     padding: 10px;
     font-size: 16px;
 }
+
+.alert {
+  position: fixed;
+  z-index: 10000;
+}
