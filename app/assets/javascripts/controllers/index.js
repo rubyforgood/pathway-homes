@@ -3,6 +3,4 @@ pathwayHomes.controller('IndexController', ['$scope', '$http', function ($scope,
     $scope.requests = data;
     console.log(data);
   });
-
-angular.module('pathwayHomes', ['ngRoute','IndexController','serviceReqestsFilters']);
 }]);

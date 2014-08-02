@@ -6,8 +6,12 @@
       <div class="item active">
         <div class="container">
           <div class="jumbotron">
-            <p><%= image_tag("color_logo.png", width: '150px', height: '150px', style: 'float: left; padding: 0px 20px 0px 0px;') %>Pathway Homes provides housing and other services to adults with serious mental illness. This application, developed at Ruby for Good, helps Pathway Homes manage maintenance requests for the properties they oversee.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+            <p><%= image_tag("color_logo.png", width: '150px', height: '150px', style: 'float: left; padding: 0px 20px 0px 0px;') %>Pathway Homes provides housing and support services for adults with severe and persistent mental illness. This application, developed at <a href="http://rubyforgood.com/">Ruby for Good</a>, helps Pathway Homes manage maintenance requests for the properties they oversee.</p>
+            <% if user_signed_in? %>
+             <p>&nbsp;</p>
+            <% else %>
+              <p align="center"><%= link_to "Login", new_user_session_path, class: "btn btn-lg btn-primary" %></p>
+            <% end %>
           </div>
         </div>
       </div>
@@ -24,14 +28,14 @@
         <div class="col-lg-4">
           <%= link_to image_tag("service_icon.png", class: "img-square", width: '140px', height: '140px'),  new_service_request_path %>
           <h2>Need Service?</h2>
-          <p>Something not working right in your apartment? Open a request and a staff member will be in contact shortly</p>
+          <p>Does one of our properties need attention? Open a request and we'll get someone right on it</p>
           <p><%= link_to "Create New Request", new_service_request_path, class: "btn btn-default" %></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <%= link_to image_tag("review_request.png", class: "img-square", width: '140px', height: '140px'), service_requests_path %>
           <h2>Review Requests</h2>
-          <p>Review open requests and see what needs attention.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p>Review your open requests and see what others are reporting in.</p>
+          <p><%= link_to "View Requests", service_requests_path, class: "btn btn-default" %></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
