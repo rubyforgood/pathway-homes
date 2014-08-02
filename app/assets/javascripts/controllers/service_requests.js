@@ -1,6 +1,9 @@
-pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "ServiceRequest", function($scope, ServiceRequest) {
+pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$http", "ServiceRequest", function($scope, $http, ServiceRequest) {
   $scope.request = {};
-  $scope.request_types = ["test"];
+  $http.get('/request_types.json').success(function(data) {
+    $scope.request_types = data;
+    console.log(data);
+  });
 
   $scope.save = function() {
     ServiceRequest.post($scope.request).

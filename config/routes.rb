@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   
   get 'admin/create_user' => 'users#new'
 
+  resources :request_types, only: [:index]
+
   resources :service_requests do
     resources :notes
     get 'export', on: :collection
