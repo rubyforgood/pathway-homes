@@ -7,14 +7,16 @@ pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "Servi
   RequestType.all().success(function(data) { 
     $scope.request_types = data 
   });
+
+  $scope.isValid = function(name) {
+    return $scope.form['service_request[' + name + ']'].$valid
+  };
   
   $scope.save = function($event) {
     if ($scope.form.$invalid) {
-      $scope.form.$setDirty();
+      $scope.alert("Please complete the form first", "danger");
       $event.preventDefault();
-    } else {
-    }
-
+    } 
       
 
     //ServiceRequest.post($scope.request).
