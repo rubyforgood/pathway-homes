@@ -24,10 +24,6 @@ class ServiceRequestsController < ApplicationController
     end
   end
 
-  def show
-    @service_request = ServiceRequest.find(params[:id])
-  end
-
   def update
     @service_request = ServiceRequest.find(params[:id])
     respond_to do |format|
@@ -39,12 +35,24 @@ class ServiceRequestsController < ApplicationController
     end
   end
 
+  def show
+    @service_request = ServiceRequest.find(params[:id])
+  end
+
+
+  def export
+    service_requests = ServiceRequest.includes(:notes, :request_type).all
+
+    send_data(service_requests.to_csv, :type => 'text/csv', :filename => 'service_requests.csv')
+  end
+
+
   private
   def service_request_params
     params.require(:service_request).permit(
       :community_name, :apt_number, :work_desc, :special_instructions, :alarm,
       :community_street_address, :community_zip_code, :pet,
-      :authorized_to_enter
+      :authorized_to_enter, :request_type_id
     )
   end
 end

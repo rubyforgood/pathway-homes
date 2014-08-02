@@ -113,26 +113,47 @@ RequestType.create([{category: 'Appliance Repair', request: 'Misc.'},
                     {category: 'Window', request: 'Screen Issue'}])
 
 if Rails.env.development?
-  User.create(role: "admin", email: "admin@example.com", password: "password", password_confirmation: "password")
+  user = User.create(name: "administrator", role: "admin", email: "admin@example.com", password: "password", password_confirmation: "password")
+
 
   begin
-    ServiceRequest.create!(
-       id:                        1,
-       community_name:            'Americana Centre',
-       apt_number:                '301',
-       status:                    'open',
-       work_desc:                 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae aperiam quam, distinctio culpa tempora ab, iure laborum ea, iste doloremque itaque veniam, veritatis excepturi inventore quo debitis quaerat a ipsum.',
-       special_instructions:      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, illo vero, molestias consequatur maiores laudantium repellat quia odit cumque beatae reprehenderit, nulla quos alias itaque deleniti soluta. Rerum, voluptate, totam.',
-       alarm:                     true,
-       community_street_address:  '112 Monroe St.',
-       community_zip_code:        '20850',
-       assigned_at:               '2014-08-01 16:25:37 -0400',
-       closed_at:                 '2014-08-01 16:25:37 -0400',
-       created_at:                '2014-08-01',
-       updated_at:                '2014-08-01 16:25:37 -0400',
-       pet:                       false,
-       authorized_to_enter:       true,
-    )
+    
+  ServiceRequest.create(
+     id:                        1,
+     community_name:            'Americana Centre',
+     apt_number:                '301',
+     status:                    'open',
+     work_desc:                 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae aperiam quam, distinctio culpa tempora ab, iure laborum ea, iste doloremque itaque veniam, veritatis excepturi inventore quo debitis quaerat a ipsum.',
+     special_instructions:      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, illo vero, molestias consequatur maiores laudantium repellat quia odit cumque beatae reprehenderit, nulla quos alias itaque deleniti soluta. Rerum, voluptate, totam.',
+     alarm:                     true,
+     community_street_address:  '112 Monroe St.',
+     community_zip_code:        '20850',
+     assigned_at:               '2014-08-01 16:25:37 -0400',
+     created_at:                '2014-08-01',
+     pet:                       false,
+     authorized_to_enter:       true,
+     creator_id:                user.id,
+     request_type_id:           RequestType.first.id
+  )
+
+  ServiceRequest.create(
+     id:                        2,
+     community_name:            'Americana Centre',
+     apt_number:                '302',
+     status:                    'closed',
+     work_desc:                 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae aperiam quam, distinctio culpa tempora ab, iure laborum ea, iste doloremque itaque veniam, veritatis excepturi inventore quo debitis quaerat a ipsum.',
+     alarm:                     true,
+     community_street_address:  '112 Monroe St.',
+     community_zip_code:        '20850',
+     assigned_at:               '2014-08-01 16:25:37 -0400',
+     closed_at:                 '2014-08-01 16:25:37 -0400',
+     created_at:                '2014-08-01',
+     updated_at:                '2014-08-01 16:25:37 -0400',
+     pet:                       false,
+     authorized_to_enter:       true,
+     creator_id:                user.id,
+     request_type_id:           RequestType.first.id
+  )
   rescue PG::UniqueViolation
     # it's fine
   end
