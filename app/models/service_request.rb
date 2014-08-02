@@ -21,47 +21,6 @@ class ServiceRequest < ActiveRecord::Base
   validates :community_zip_code, presence: true
   validates :pet, inclusion: { in: [true, false] }
   validates :authorized_to_enter, presence: true
-  validates :creator, presence: true
-  validates :request_type, presence: true
-
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << ['Request ID', 'Community Name', 'Community Street Address',
-              'Community Zipcode', 'Apartment Number', 'Work Description',
-              'Special Instructions', 'Alarm', 'Pets', 'Authorized to Enter',
-              'Date Created', 'Date Assigned', 'Date Last Updated',
-              'Date Closed', 'Status', 'Request Type', 'Request Created By',
-              'Maintenance Preformed By', 'Notes']
-      all.each do |request|
-        csv << [request.id, request.community_name,
-                request.community_street_address, request.community_zip_code,
-                request.apt_number, request.work_desc, request.special_instructions,
-                request.alarm, request.pet, request.authorized_to_enter,
-                request.created_at, request.assigned_at, request.closed_at,
-                request.closed_at, request.status, request.request_type.full,
-                request.creator.name, request.assigned_worker_name, '']
-      end
-    end
-  end
-
-  def assign_to_worker
-    return false
-  end
-
-  def assigned_worker=(assignee)
-    if assignee && assignee.is_a?(User) && assignee.maintenance?
-      write_attribute(:assigned_worker, assignee)
-      write_attribute(:assigned_at, Time.now)
-    elsif !assignee
-      write_attribute(:assigned_at, Time.now) if self.assigned_at
-    else
-      fail "Cannot assign service requests to non-maintenance users!"
-    end
-  end
-
-  def assigned_worker_name
-    assigned_worker ? assigned_worker.name : ''
-  end
 
   private
 
@@ -78,13 +37,10 @@ class ServiceRequest < ActiveRecord::Base
       self.assigned_at = Time.now
     end
   end
-<<<<<<< HEAD
-=======
 
   def update_status
     if assignee_id_changed? && open?
       self.status = "assigned"
     end
   end
->>>>>>> 72267ddb3f15146a2c486050cc6a53fbcec8b90b
 end
