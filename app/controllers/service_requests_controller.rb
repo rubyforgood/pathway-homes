@@ -1,8 +1,6 @@
 class ServiceRequestsController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :handle_missing_parms
 
-  before_filter :authenticate_user!
-
   def index
     @service_requests = ServiceRequest.all
   end
