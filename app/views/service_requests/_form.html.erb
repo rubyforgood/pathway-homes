@@ -1,60 +1,75 @@
 <div ng-controller="ServiceRequestsCtlr">
   <h1>Service Request Form</h1>
-  <form novalidate class="form-horizontal" role="form">
+  <%= form_for(@service_request, html: {method: "post", 
+                                        name: "form",
+                                        class: "form form-horizontal", 
+                                        role: "form"}) do |f| %>
     <div class="form-group">
       <label class="col-sm-2 control-label">Name</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="request.client_name"></input>
+        <input type="text" disabled class="form-control", ng-model="creator.name"></input>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Email Address</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="request.client_email"></input>
+        <input type="text" disabled class="form-control", ng-model="creator.email"></input>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Primary Phone</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="request.client_phone"></input>
+        <input type="text" disabled class="form-control", ng-model="creator.phone"></input>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Community Name</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="request.community_name"></input>
+        <%= f.text_field :community_name, 
+          class: 'form-control', 
+          required: true,
+          'ng-model' => 'request.community_name' %>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Street Address</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="request.community_street_address"></input>
+        <%= f.text_field :community_street_address, 
+          class: 'form-control', 
+          required: true,
+          'ng-model' => 'request.community_street_address' %>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Apartment Number</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="request.apt_number"></input>
+        <%= f.text_field :apt_number, class: 'form-control', required: true, 
+          'ng-model' => 'request.apt_number' %>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Zip Code</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" ng-model="request.community_zip_code"></input>
+        <%= f.text_field :community_zip_code, 
+          class: 'form-control', 
+          required: true,
+          'ng-model' => 'request.community_zip_code' %>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Request Type</label>
       <div class="col-sm-10">
-        <select class="form-control" ng-model="request.type">
-          <option ng-repeat="type in request_types">{{type}}</option>
+        <select name="service_request[request_type_id]" required
+          class="form-control" 
+          ng-model="request.type" 
+          ng-options="type.id as type.request group by type.category for type in request_types">
         </select>
       </div>
     </div>
@@ -63,10 +78,12 @@
       <label class="col-sm-2 control-label">Authorized to enter at any time?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <input type="radio" value="true" ng-model="request.authorized_to_enter" />Yes
+          <%= f.radio_button('authorized_to_enter', true, 
+                             'ng-model' => 'request.authorized_to_enter') %> Yes
         </label>
         <label class="radio-inline">
-          <input type="radio" value="false" ng-model="request.authorized_to_enter" />No
+          <%= f.radio_button('authorized_to_enter', false, 
+                             'ng-model' => 'request.authorized_to_enter') %> No
         </label>
       </div>
     </div>
@@ -75,10 +92,10 @@
       <label class="col-sm-2 control-label">Pet?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <input type="radio" value="true" ng-model="request.pet" />Yes
+          <%= f.radio_button('pet', true, 'ng-model' => 'request.pet') %> Yes
         </label>
         <label class="radio-inline">
-          <input type="radio" value="false" ng-model="request.pet" />No
+          <%= f.radio_button('pet', false, 'ng-model' => 'request.pet') %> No
         </label>
       </div>
     </div>
@@ -87,10 +104,10 @@
       <label class="col-sm-2 control-label">Alarm?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <input type="radio" value="true" ng-model="request.alarm" />Yes
+          <%= f.radio_button('alarm', true, 'ng-model' => 'request.alarm') %> Yes
         </label>
         <label class="radio-inline">
-          <input type="radio" value="false" ng-model="request.alarm" />No
+          <%= f.radio_button('alarm', false, 'ng-model' => 'request.alarm') %> No
         </label>
       </div>
     </div>
@@ -98,21 +115,25 @@
     <div class="form-group">
       <label class="col-sm-2 control-label">Description of Work</label>
       <div class="col-sm-10">
-        <textarea class="form-control" ng-model="request.work_desc"></textarea>
+        <%= f.text_area :work_desc, class: 'form-control', required: true,
+          'ng-model' => 'request.work_desc' %>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Special Instructions</label>
       <div class="col-sm-10">
-        <textarea class="form-control" ng-model="request.special_instructions"></textarea>
+        <%= f.text_area :special_instructions, class: 'form-control', 
+          required: true,
+          'ng-model' => 'request.special_instructions' %>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" ng-click="save()" class="btn btn-default">Submit</button>
+        <%= f.submit 'Submit', class: 'btn btn-default',
+          'ng-click' => 'save($event)' %>
       </div>
     </div>
-  </form>
+  <% end %>
 </div>

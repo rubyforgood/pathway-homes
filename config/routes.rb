@@ -12,5 +12,7 @@ Rails.application.routes.draw do
     get 'export', on: :collection
   end
 
+  resources :request_types, only: [:index]
+
   root to: 'pages#index'
 end
