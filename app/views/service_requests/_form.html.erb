@@ -54,7 +54,7 @@
       <label class="col-sm-2 control-label">Request Type</label>
       <div class="col-sm-10">
         <select class="form-control" ng-model="request.type">
-          <option ng-repeat="type in request_types">{{type}}</option>
+          <option ng-repeat="type in request_types" value="{{type.id}}">{{type.category}}::{{type.request}}</option>
         </select>
       </div>
     </div>

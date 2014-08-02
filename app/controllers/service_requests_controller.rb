@@ -14,6 +14,7 @@ class ServiceRequestsController < ApplicationController
   def create
     @service_request = ServiceRequest.new(service_request_params)
     @service_request.creator = current_user
+    @service_request.request_type = RequestType.find(params[:type])
 
     respond_to do |format|
       if @service_request.save
