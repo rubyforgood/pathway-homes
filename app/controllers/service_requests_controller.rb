@@ -1,4 +1,6 @@
 class ServiceRequestsController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     @service_requests = ServiceRequest.all
   end
