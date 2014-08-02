@@ -1,9 +1,9 @@
 <div ng-controller="ShowController" data-id="<%= @service_request.id %>">
 	<h1>Service Request Form</h1>
  	<h3>Request ID: {{service_request.id}} </h3>
-	<h3>Date Submitted: {{service_request.created_at}}</h3>
+	<h3>Date Submitted: {{service_request.created_at | date : 'mediumDate'}}</h3>
 
-	<h3>Name/Community Name: {{service_request.communityName }}</h3>
+	<h3>Name/Community Name: {{service_request.communityName}}</h3>
 	<h3>Apt/Building Number: {{service_request.apt}}</h3>
 
 	<h3>STATUS: {{service_request.status}}</h3>
