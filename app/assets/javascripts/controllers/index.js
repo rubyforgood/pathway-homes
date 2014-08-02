@@ -3,7 +3,6 @@ pathwayHomes.controller('IndexController', ['$scope', '$http', function ($scope,
     $scope.requests = data;
     console.log(data);
   });
-
 // pathwayHomes.controller('IndexController',['$scope', function($scope) {
 //   $scope.requests = [
 //   {
