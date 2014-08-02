@@ -10,4 +10,8 @@ FactoryGirl.define do
     pet { false }
     authorized_to_enter { true }
   end
+
+  trait :open do
+    status { "open" }
+  end
 end

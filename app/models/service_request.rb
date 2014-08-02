@@ -7,6 +7,8 @@ class ServiceRequest < ActiveRecord::Base
   validates_associated :request_type
 
   before_save :update_closed_at
+  before_save :set_assigned_at, if: :assignee_id_changed?
+  before_save :update_status
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
 
@@ -19,17 +21,6 @@ class ServiceRequest < ActiveRecord::Base
   validates :community_zip_code, presence: true
   validates :pet, inclusion: { in: [true, false] }
   validates :authorized_to_enter, presence: true
-
-  def assigned_worker=(assignee)
-    if assignee && assignee.is_a?(User) && assignee.maintenance?
-      write_attribute(:assigned_worker, assignee)
-      write_attribute(:assigned_at, Time.now)
-    elsif !assignee
-      write_attribute(:assigned_at, Time.now) if self.assigned_at
-    else
-      fail "Cannot assign service requests to non-maintenance users!"
-    end
-  end
 
   private
 
@@ -45,4 +36,13 @@ class ServiceRequest < ActiveRecord::Base
     end
   end
 
+  def set_assigned_at
+    self.assigned_at ||= Time.now
+  end
+
+  def update_status
+    if assignee_id_changed? && open?
+      self.status = "assigned"
+    end
+  end
 end
