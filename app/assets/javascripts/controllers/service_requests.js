@@ -15,6 +15,10 @@ pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "Servi
 
   ServiceRequest.get($scope.request.id).success(function(data) {
     $scope.request = data;
+    $scope.request.type = $scope.request.request_type_id;
+    $scope.request.authorized_to_enter = $scope.request.authorized_to_enter.toString();
+    $scope.request.pet = $scope.request.pet.toString();
+    $scope.request.alarm = $scope.request.alarm.toString();
   });
 
   $scope.isValid = function(name) {

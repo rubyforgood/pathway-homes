@@ -1,7 +1,6 @@
 <div ng-controller="ServiceRequestsCtlr">
   <h1>Service Request Form</h1>
-  <%= form_for(@service_request, html: {method: "post", 
-                                        name: "form",
+  <%= form_for(@service_request, html: {name: "form",
                                         class: "form form-horizontal", 
                                         'data-id' => @service_request.id,
                                         role: "form"}) do |f| %>
