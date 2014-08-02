@@ -63,3 +63,12 @@ textarea {
   position: fixed;
   z-index: 10000;
 }
+
+.requests-list {
+  list-style: none;
+  margin: 20px 0;
+}
+
+.requests-heading {
+  font-weight: 700;
+}

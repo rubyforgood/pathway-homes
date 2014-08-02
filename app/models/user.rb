@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :assigned_requests, class_name: "ServiceRequest", inverse_of: :assignee
   has_many :created, class_name: "ServiceRequest", inverse_of: :creator
 
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :registerable,
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable,
     :validatable
 
   # Upon creation, users must immediately reset their passwords when first
@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     (password_updated_at + PASSWORD_EXPIRATION_TIME).past?
   end
 
+  def active_for_authentication?
+    super && !disabled
+  end
+
   private
   def set_password_as_expired
     self.password_updated_at = Time.at(0) unless password_updated_at.present?
@@ -26,4 +30,6 @@ class User < ActiveRecord::Base
   def touch_password_updated_at
     self.password_updated_at = Time.now
   end
+  
+
 end
