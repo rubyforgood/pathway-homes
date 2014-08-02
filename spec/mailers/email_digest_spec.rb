@@ -8,12 +8,11 @@ RSpec.describe EmailDigest, :type => :mailer do
     ]
 
     email = EmailDigest.digest(
-      recipients:        ["admin@example.com"],
       last_digest_time:  Time.utc(2014, 1, 1, 12, 23),
       service_requests:  requests
     )
 
-    expect(email.bcc).to match_array(["admin@example.com"])
+    expect(email.to).to match_array(["maintenance-digest@pathwayhomes.org"])
     expect(email.body.to_s).to include "2014-01-01 12:23"
     expect(email.body.to_s).to include "Community 1"
     expect(email.body.to_s).to include "Community 2"
