@@ -36,7 +36,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def show
-    @service_request = ServiceRequest.find(params[:id])
+    @service_request = ServiceRequest.includes(:creator).find(params[:id])
   end
 
 
