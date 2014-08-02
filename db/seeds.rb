@@ -173,6 +173,7 @@ if Rails.env.development?
      pet:                       true,
      authorized_to_enter:       true,
      creator_id:                normalUser.id,
+     assignee_id:               maintenanceUser.id,
      request_type_id:           RequestType.first.id
   )
 
