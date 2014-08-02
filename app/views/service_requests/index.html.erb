@@ -1,23 +1,48 @@
-<div ng-controller="IndexController">
+<div ng-controller="IndexController">  
+
 <h1>Service Requests</h1>
-<input type="text" id="query" ng-model="query"/>
-  <div>
+<h2>Your Requests</h2>
+<input type="text" id="query" ng-model="yourQuery" placeholder="Search"/>
+  <div class="current-user-table">
     <ul class="requests-list">
       <li class="requests-heading">
-        <div class="col-md-2">Request ID</div>
+        <div class="col-md-2">ID #</div>
         <div class="col-md-3">Created</div>
+        <div class="col-md-3">Created By</div>
         <div class="col-md-2">Status</div>
-        <div class="col-md-3">Staff Assigned</div>
         <div class="col-md-2">Full Details</div>
       </li>  
-      <li ng-repeat="request in requests | filter:query" class="list-item">
+      <li ng-repeat="request in requests | filter:yourQuery" class="list-item">
         <div class="col-md-2">{{request.id}}</div>
-        <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
+        <div class="col-md-3">{{request.created_at | date: 'mediumDate'}}</div>
+        <div class="col-md-3">{{request.creator_name}}</div>
         <div class="col-md-2">{{request.status}}</div>
-        <div class="col-md-3">{{request.assigned_worker}}</div>
         <div class="col-md-2"><a href="/service_requests/{{request.id}}">View</a></div>
         <div class="col-md-12">{{request.work_desc}}</div>
       </li>
     </ul>
   </div>
+
+<h2>Additional Requests</h2>
+<input type="text" id="query" ng-model="otherQuery" placeholder="Search"/>
+  <div class="all-users-table">
+    <ul class="requests-list">
+      <li class="requests-heading">
+        <div class="col-md-2">ID #</div>
+        <div class="col-md-3">Created</div>
+        <div class="col-md-3">Created By</div>
+        <div class="col-md-2">Status</div>
+        <div class="col-md-2">Full Details</div>
+      </li>  
+      <li ng-repeat="request in requests | filter:otherQuery",  class="list-item">
+        <div class="col-md-2">{{request.id}}</div>
+        <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
+        <div class="col-md-3">{{request.creator_name}}</div>
+        <div class="col-md-2">{{request.status}}</div>
+        <div class="col-md-2"><a href="/service_requests/{{request.id}}">View</a></div>
+        <div class="col-md-12">{{request.work_desc}}</div>
+      </li>
+    </ul>
+  </div>
+
 </div>
