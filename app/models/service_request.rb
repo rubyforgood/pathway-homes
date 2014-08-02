@@ -1,12 +1,14 @@
 class ServiceRequest < ActiveRecord::Base
   belongs_to :creator, class_name: "User", inverse_of: :created
-  belongs_to :assigned_worker, class_name: "User", inverse_of: :assigned_requests
+  belongs_to :assignee, class_name: "User", inverse_of: :assigned_requests
   belongs_to :request_type
   has_many :notes
 
   validates_associated :request_type
 
-  before_save :update_closed_at
+  before_save :update_status
+  before_save :set_assigned_at
+  before_save :set_closed_at
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
 
@@ -63,15 +65,26 @@ class ServiceRequest < ActiveRecord::Base
 
   private
 
-  def status_already_closed?
-    self.closed_at != nil
-  end
-
-  def update_closed_at
-    if self.status == :closed && !status_already_closed?
-      write_attribute(:closed_at, Time.now)
-    elsif self.status != :closed && status_already_closed?
-      write_attribute(:closed_at, nil)
+  def set_closed_at
+    if status_changed? && closed?
+      self.closed_at = Time.now
+    elsif status_changed? && !closed?
+      self.closed_at = nil
     end
   end
+
+  def set_assigned_at
+    if assignee_id_changed? && assigned?
+      self.assigned_at = Time.now
+    end
+  end
+<<<<<<< HEAD
+=======
+
+  def update_status
+    if assignee_id_changed? && open?
+      self.status = "assigned"
+    end
+  end
+>>>>>>> 72267ddb3f15146a2c486050cc6a53fbcec8b90b
 end
