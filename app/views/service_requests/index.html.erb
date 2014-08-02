@@ -1,40 +1,42 @@
 <div ng-controller="IndexController">
 <h1>Service Requests</h1>
-<table class="table table-striped table-responsive">
+<table class="table table-striped table-responsive service-requests-index">
   <thead>
     <tr>
-      <th>Request ID</th>
-      <th>Created</th>
-      <th>Status</th>
-      <th>Staff Assigned</th>
-      <th>Full Details</th>
+      <th class="request-id-th" >Request ID</th>
+      <th class="created-th" >Created</th>
+      <th class="status-th" >Status</th>
+      <th class="staff-assigned-th" >Staff Assigned</th>
+      <th class="details-th" >Details</th>
+      <th>View</th>
     </tr>
   </thead>
   <tbody>
-  <tr ng-repeat="request in requests">
-<td>{{request.id}}</td>
-<td>{{request.created_at | date : 'mediumDate' }}</td>
-<td>{{request.status}}</td>
-<td>{{request.assigned_worker}}</td>
-<td><a href="/service_requests/{{request.id}}">View</a></td>
-<!--<td>
-{{request.client_name}}
-{{request.community_name}}  
-{{request.client_phone}}
-{{request.client_email}}
-{{request.apt_number}}
-{{request.work_desc}}
-{{request.special_instructions}}
-{{request.alarm}}
-{{request.community_street_address}}
-{{request.community_zip_code}}
-{{request.assigned_at}}
-{{request.closed_at}}
-{{request.updated_at}}
-{{request.pet}}
-</td>-->
-</tr>
-<tr ng-repeat="request in requests"><td colspan="5">{{request.work_desc}}</td></tr>
-</tbody>
+    <tr ng-repeat="request in requests">
+      <td>{{request.id}}</td>
+      <td>{{request.created_at | date : 'mediumDate' }}</td>
+      <td>{{request.status}}</td>
+      <td>{{request.assignee.name}}</td>
+      <td>{{request.work_desc}}</td>
+      <td><a href="/service_requests/{{request.id}}">View</a></td>
+      <!-- tr ng-repeat="request in requests"><td colspan="5">{{request.work_desc}}</td></tr>
+      <td>
+      {{request.client_name}}
+      {{request.community_name}}  
+      {{request.client_phone}}
+      {{request.client_email}}
+      {{request.apt_number}}
+      {{request.work_desc}}
+      {{request.special_instructions}}
+      {{request.alarm}}
+      {{request.community_street_address}}
+      {{request.community_zip_code}}
+      {{request.assigned_at}}
+      {{request.closed_at}}
+      {{request.updated_at}}
+      {{request.pet}}
+      </td>-->
+    </tr>
+  </tbody>
 </table>
 </div>
