@@ -25,12 +25,12 @@ class ServiceRequestsController < ApplicationController
 
   def show
     @service_request = ServiceRequest.find(params[:id])
-  end 
-  
+  end
+
   def export
-    service_requests = ServiceRequest.include(:notes, :request_type).all
-    
-    send_data(service_requests.to_json, :type => 'text/csv', :filename => 'service_requests.csv')
+    service_requests = ServiceRequest.includes(:notes, :request_type).all
+
+    send_data(service_requests.to_csv, :type => 'text/csv', :filename => 'service_requests.csv')
   end
 
   private

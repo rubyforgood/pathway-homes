@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_scope :user do
-    get '/users/add_user' => 'devise/registrations#new'
+
+  resources :service_requests do
+    get 'export', on: :collection
   end
   
-  resources :service_requests
   root to: 'service_requests#new'
 end
