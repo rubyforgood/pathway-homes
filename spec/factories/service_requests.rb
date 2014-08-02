@@ -9,6 +9,8 @@ FactoryGirl.define do
     community_zip_code { "20001" }
     pet { false }
     authorized_to_enter { true }
+    request_type
+    association :creator, factory: [:user, :admin]
   end
 
   trait :open do
