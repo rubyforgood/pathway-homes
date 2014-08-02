@@ -21,10 +21,10 @@ class ServiceRequestsController < ApplicationController
     respond_to do |format|
       if @service_request.save
         flash[:alert] = "Request ##{@service_request.id} was created!"
-        format.html { render action: "index", status: :created }
+        format.html { redirect_to @service_request }
       else
         flash[:alert] = @service_request.errors.full_messages.join('. ')
-        format.html { render action: "new", status: :unprocessable_entity }
+        format.html { render action: "new" }
       end
     end
   end
