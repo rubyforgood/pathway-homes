@@ -44,21 +44,6 @@ class ServiceRequest < ActiveRecord::Base
     end
   end
 
-  def assign_to_worker
-    return false
-  end
-
-  def assigned_worker=(assignee)
-    if assignee && assignee.is_a?(User) && assignee.maintenance?
-      write_attribute(:assigned_worker, assignee)
-      write_attribute(:assigned_at, Time.now)
-    elsif !assignee
-      write_attribute(:assigned_at, Time.now) if self.assigned_at
-    else
-      fail "Cannot assign service requests to non-maintenance users!"
-    end
-  end
-
   def assigned_worker_name
     assigned_worker ? assigned_worker.name : ''
   end
@@ -78,13 +63,10 @@ class ServiceRequest < ActiveRecord::Base
       self.assigned_at = Time.now
     end
   end
-<<<<<<< HEAD
-=======
 
   def update_status
     if assignee_id_changed? && open?
       self.status = "assigned"
     end
   end
->>>>>>> 72267ddb3f15146a2c486050cc6a53fbcec8b90b
 end
