@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get 'pages/contact'
 
   devise_for :users
+  
+  resources :users
+  get 'admin/create_user' => 'users#new'
 
   resources :service_requests do
     resources :notes
