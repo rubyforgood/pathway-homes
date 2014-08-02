@@ -1,18 +1,16 @@
 <div ng-controller="ShowController" data-id="<%= @service_request.id %>">
-	<h1>Service Request Form</h1>
- 	<h3>Request ID: {{service_request.id}} </h3>
+	<h1>Service Request #{{service_request.id}}</h1>
 	<h3>Date Submitted: {{service_request.created_at | date : 'mediumDate'}}</h3>
 
-	<h3>Name/Community Name: {{service_request.communityName}}</h3>
-	<h3>Apt/Building Number: {{service_request.apt}}</h3>
+	<h3>Name/Community Name: {{service_request.community_name}}</h3>
+	<h3>Apt/Building Number: {{service_request.apt_number}}</h3>
 
-	<h3>STATUS: {{service_request.status}}</h3>
+	<h3>Status: {{service_request.status}}</h3>
 	<section id="requestDescription">
-		<p>{{service_request.description}}</p>
-		<p>{{service_request.instructions}}</p>
+		<p>{{service_request.work_desc}}</p>
+		<p>{{service_request.special_instructions}}</p>
 	  </section>
 
 	<%= link_to "Edit", edit_service_request_path, class: "btn btn-default" %>
-	<%= link_to "Submit", class: "btn btn-default" %>
 
 </div>
