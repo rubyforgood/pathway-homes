@@ -19,7 +19,6 @@ class EmailDigestDelivery < ActiveRecord::Base
       service_requests = ServiceRequest.where(created_at: last_digest_time...now).order(:created_at)
 
       EmailDigest.digest(
-        recipients: recipients,
         last_digest_time: last_digest_time,
         service_requests: service_requests,
       ).deliver
