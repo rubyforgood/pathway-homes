@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     (password_updated_at + PASSWORD_EXPIRATION_TIME).past?
   end
 
+  def active_for_authentication?
+    super && !disabled
+  end
+
   private
   def set_password_as_expired
     self.password_updated_at = Time.at(0) unless password_updated_at.present?
@@ -27,7 +31,5 @@ class User < ActiveRecord::Base
     self.password_updated_at = Time.now
   end
   
-  def active_for_authentication?
-    super && !disabled
-  end
+
 end
