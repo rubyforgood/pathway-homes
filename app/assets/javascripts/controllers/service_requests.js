@@ -1,5 +1,5 @@
 pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "ServiceRequest", function($scope, $routeParams, ServiceRequest) {
-  $scope.params = $routeParams;
+  //$scope.params = $routeParams;
   $scope.request = {};
   $scope.request_types = ["test"];
 

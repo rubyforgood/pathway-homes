@@ -1,7 +1,7 @@
 pathwayHomes.controller("MainCtlr", ["$scope", "$timeout", "$route", "$routeParams", "$location", function($scope, $timeout, $route, $routeParams, $location) {
-  $scope.$route = $route;
-  $scope.$location = $location;
-  $scope.$routeParams = $routeParams;
+  //$scope.$route = $route;
+  //$scope.$location = $location;
+  //$scope.$routeParams = $routeParams;
   $scope.notice = {promise: null, type: "alert-info", message: ""};
 
   $scope.alert = function(message, type) {
