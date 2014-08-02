@@ -14,4 +14,8 @@ FactoryGirl.define do
   trait :open do
     status { "open" }
   end
+
+  trait :in_progress do
+    status { "in_progress" }
+  end
 end
