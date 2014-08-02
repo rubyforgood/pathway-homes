@@ -8,6 +8,7 @@
       <th>Status</th>
       <th>Staff Assigned</th>
       <th>Full Details</th>
+      <th>Pet</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,7 @@
 <td>{{request.status}}</td>
 <td>{{request.assigned_worker}}</td>
 <td><a href="/service_requests/{{request.id}}">View</a></td>
+<td>{{request.pet | checkmark}}</td>
 <!--<td>
 {{request.client_name}}
 {{request.community_name}}  
@@ -34,7 +36,7 @@
 {{request.pet}}
 </td>-->
 </tr>
-<tr ng-repeat="request in requests"><td colspan="5">{{request.work_desc}}</td></tr>
+<tr ng-repeat="request in requests"><td colspan="6">{{request.work_desc}}</td></tr>
 </tbody>
 </table>
 </div>
