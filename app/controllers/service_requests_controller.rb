@@ -44,7 +44,10 @@ class ServiceRequestsController < ApplicationController
 
 
   def export
-    service_requests = ServiceRequest.includes(:notes, :request_type).all
+    start_date = params[:start_date] || Date.new(2013)
+    end_date = params[:end_date] || Date.today.in_time_zone.end_of_day
+
+    service_requests = ServiceRequest.includes(:notes, :request_type).where(created_at: start_date..end_date)
 
     send_data(service_requests.to_csv, :type => 'text/csv', :filename => 'service_requests.csv')
   end
