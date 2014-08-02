@@ -10,11 +10,9 @@ pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "Servi
   
   $scope.save = function($event) {
     if ($scope.form.$invalid) {
-      $scope.form.$setDirty();
+      $scope.alert("Please complete the form first", "danger");
       $event.preventDefault();
-    } else {
-    }
-
+    } 
       
 
     //ServiceRequest.post($scope.request).
