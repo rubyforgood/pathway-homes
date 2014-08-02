@@ -113,7 +113,7 @@ RequestType.create([{category: 'Appliance Repair', request: 'Misc.'},
                     {category: 'Window', request: 'Screen Issue'}])
 
 if Rails.env.development?
-  user = User.create(role: "admin", email: "admin@example.com", password: "password", password_confirmation: "password")
+  user = User.create(name: "administrator", role: "admin", email: "admin@example.com", password: "password", password_confirmation: "password")
 
 
   begin

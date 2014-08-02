@@ -6,6 +6,7 @@ describe ServiceRequestsController, :type => :controller do
 
   describe "POST #create" do
     it "accepts valid JSON for a service request, returning 201 Created" do
+      request_type = create(:request_type)
       post :create, service_request: {
         :community_name           => "Paragon Homes",
         :community_street_address => "1234 Paragon Street",
@@ -15,6 +16,7 @@ describe ServiceRequestsController, :type => :controller do
         :alarm                    => false,
         :pet                      => true,
         :authorized_to_enter      => true,
+        :request_type_id          => request_type.id,
       }, format: "json"
 
       expect(response.status).to eq(201)
