@@ -1,6 +1,6 @@
 class ServiceRequest < ActiveRecord::Base
   belongs_to :creator, class_name: "User", inverse_of: :created
-  belongs_to :assigned_worker, class_name: "User", inverse_of: :assigned_requests
+  belongs_to :assignee, class_name: "User", inverse_of: :assigned_requests
   belongs_to :request_type
   has_many :notes
 
