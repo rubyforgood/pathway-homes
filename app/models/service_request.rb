@@ -6,8 +6,8 @@ class ServiceRequest < ActiveRecord::Base
 
   validates_associated :request_type
 
-  before_save :set_assigned_at, if: :assignee_id_changed?
   before_save :update_status
+  before_save :set_assigned_at
   before_save :set_closed_at
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
@@ -33,7 +33,9 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   def set_assigned_at
-    self.assigned_at ||= Time.now
+    if assignee_id_changed? && assigned?
+      self.assigned_at = Time.now
+    end
   end
 
   def update_status
