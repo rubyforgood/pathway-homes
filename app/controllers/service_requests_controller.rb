@@ -70,7 +70,7 @@ class ServiceRequestsController < ApplicationController
       :community_name, :apt_number, :work_desc, :special_instructions, :alarm,
       :community_street_address, :community_zip_code, :pet,
       :authorized_to_enter, :request_type_id, :maintenance_provider,
-      creator_attributes: [:name, :email, :phone]
+      :status, :closed_on,
     )
   end
 
