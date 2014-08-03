@@ -2,7 +2,7 @@
   <h1>Service Request Form</h1>
   <%= form_for(@service_request, html: {name: "form",
                                         method: @service_request.id ? 'put' : 'post',
-                                        class: "form form-horizontal", 
+                                        class: "form form-horizontal",
                                         'data-id' => @service_request.id,
                                         role: "form"}) do |f| %>
     <div class="form-group">
@@ -29,8 +29,8 @@
     <div class="form-group" ng-class="{'has-error': !isValid('community_name'), 'has-success': isValid('community_name')}">
       <label class="col-sm-2 control-label">Community Name</label>
       <div class="col-sm-10">
-        <%= f.text_field :community_name, 
-          class: 'form-control', 
+        <%= f.text_field :community_name,
+          class: 'form-control',
           required: true,
           'ng-model' => 'request.community_name' %>
       </div>
@@ -39,8 +39,8 @@
     <div class="form-group" ng-class="{'has-error': !isValid('community_street_address'), 'has-success': isValid('community_street_address')}">
       <label class="col-sm-2 control-label">Street Address</label>
       <div class="col-sm-10">
-        <%= f.text_field :community_street_address, 
-          class: 'form-control', 
+        <%= f.text_field :community_street_address,
+          class: 'form-control',
           required: true,
           'ng-model' => 'request.community_street_address' %>
       </div>
@@ -49,7 +49,7 @@
     <div class="form-group" ng-class="{'has-error': !isValid('apt_number'), 'has-success': isValid('apt_number')}">
       <label class="col-sm-2 control-label">Apartment Number</label>
       <div class="col-sm-10">
-        <%= f.text_field :apt_number, class: 'form-control', required: true, 
+        <%= f.text_field :apt_number, class: 'form-control', required: true,
           'ng-model' => 'request.apt_number' %>
       </div>
     </div>
@@ -57,8 +57,8 @@
     <div class="form-group" ng-class="{'has-error': !isValid('community_zip_code'), 'has-success': isValid('community_zip_code')}">
       <label class="col-sm-2 control-label">Zip Code</label>
       <div class="col-sm-10">
-        <%= f.text_field :community_zip_code, 
-          class: 'form-control', 
+        <%= f.text_field :community_zip_code,
+          class: 'form-control',
           required: true,
           'ng-model' => 'request.community_zip_code' %>
       </div>
@@ -68,8 +68,8 @@
       <label class="col-sm-2 control-label">Request Type</label>
       <div class="col-sm-10">
         <select name="service_request[request_type_id]" required
-          class="form-control" 
-          ng-model="request.type" 
+          class="form-control"
+          ng-model="request.type"
           ng-options="type.request group by type.category for type in request_types track by type.id">
         </select>
       </div>
@@ -124,8 +124,7 @@
     <div class="form-group" ng-class="{'has-error': !isValid('special_instructions'), 'has-success': isValid('special_instructions')}">
       <label class="col-sm-2 control-label">Special Instructions</label>
       <div class="col-sm-10">
-        <%= f.text_area :special_instructions, class: 'form-control', 
-          required: true,
+        <%= f.text_area :special_instructions, class: 'form-control',
           'ng-model' => 'request.special_instructions' %>
       </div>
     </div>
