@@ -5,9 +5,9 @@
 		<div class="panel panel-info">
 			<div class="panel-heading"><h3 class="panel-title">Requestor</h3></div>
 			<div class="panel-body">
-				<p>Created by {{service_request.creator_name}} at {{service_request.created_at | date : 'mediumDate'}}</p>
-				<p>Email: {{service_request.email}}</p>
-				<p>Status: {{service_request.status}}</p>
+				<p>Created by <strong>{{service_request.creator_name}}</strong> at <strong>{{service_request.created_at | date : 'mediumDate'}}</strong></p>
+				<p><strong>Email:</strong> {{service_request.creator_email}}</strong>
+				<p><strong>Status:</strong> {{service_request.status}}</p>
 			</div>
 		</div>
 	</div>
@@ -16,10 +16,10 @@
 		<div class="panel panel-info">
 			<div class="panel-heading"><h3 class="panel-title">Community Information</h3></div>
 			<div class="panel-body">
-				<p>Name: {{service_request.community_name}}</p>
-				<p>Address: {{service_request.community_street_address}}</p>
-				<p>Apt/Building Number: {{service_request.apt_number}}</p>
-				<p>Zip: {{service_request.community_zip_code}}</p>
+				<p><strong>Name: </strong> {{service_request.community_name}}</p>
+				<p><strong>Address: </strong> {{service_request.community_street_address}}</p>
+				<p><strong>Apt/Building Number: </strong> {{service_request.apt_number}}</p>
+				<p><strong>Zip: </strong> {{service_request.community_zip_code}}</p>
 				<p>
 			</div>
 		</div>
@@ -27,8 +27,12 @@
 
 	<div class="col-sm-4">
 		<div class="panel panel-info">
-			<div class="panel-heading"><h3 class="panel-title">Something</h3></div>
-			<div class="panel-body">Apt/Building Number: {{service_request.apt_number}}</div>
+			<div class="panel-heading"><h3 class="panel-title">Permissions</h3></div>
+			<div class="panel-body">
+				<p><strong>Authorized to enter?</strong> {{service_request.authorized_to_enter}}</p>
+				<p><strong>Pets?</strong> {{service_request.pet}}</p>
+				<p><strong>Alarm?</strong> {{service_request.alarm}}</p>
+			</div>
 		</div>
 	</div>
 
@@ -36,10 +40,10 @@
 		<div class="panel panel-info">
 			<div class="panel-heading"><h3 class="panel-title">Work Description</h3></div>
 			<div class="panel-body">
-				<p>Request Type: {{service_request.full_request_type}}</p>
+				<p><strong>Request Type:</strong> {{service_request.full_request_type}}</p>
 				<section id="requestDescription">
-					<p>Description of Work: {{service_request.work_desc}}</p>
-					<p>Special Instructions: {{service_request.special_instructions}}</p>
+					<p><strong>Description of Work:</strong> {{service_request.work_desc}}</p>
+					<p><strong>Special Instructions:</strong> {{service_request.special_instructions}}</p>
 				 </section>
 			</div>
 		</div>
