@@ -5,6 +5,7 @@ pathwayHomes.controller("UsersCtlr", ["$scope", "User", function($scope, User) {
   if ($scope.user.id) {
     User.get($scope.user.id).success(function(data) {
       $scope.user = data;
+      console.log(data);
     });
   }
 
