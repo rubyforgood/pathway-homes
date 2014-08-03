@@ -8,10 +8,12 @@ pathwayHomes.controller('IndexController', ['$scope', 'ServiceRequest', function
     $scope.requests = data;
   });
 
-  $scope.$watch('creator.id', function() {
-    ServiceRequest.index($scope.creator.id).success(function(data) {
-      $scope.creator_requests = data;
-    });
+  $scope.$watch('creator.id', function(newValue) {
+    if (newValue) {
+      ServiceRequest.index($scope.creator.id).success(function(data) {
+        $scope.creator_requests = data;
+      });
+    }
   });
 
   $scope.pages = function(collection, perPage) {
