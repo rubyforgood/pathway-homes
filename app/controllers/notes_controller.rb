@@ -20,6 +20,6 @@ class NotesController < ApplicationController
 
   private
   def note_params
-    params.require(:note).permit(:note)
+    params.require(:note).permit(:note, :service_request_id)
   end
 end
