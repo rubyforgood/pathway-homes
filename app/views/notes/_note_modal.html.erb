@@ -6,11 +6,29 @@
         <h4 class="modal-title">New Note</h4>
       </div>
       <div class="modal-body">
-        <p>Text box here for new note (maybe insert previous notes above and scroll around)</p>
+        <%= form_for(@note, html: {name: "form",
+                                   class: "form form-horizontal",
+                                   'data-id' => @note.id,
+                                   role: "form"}) do |f| %>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Note</label>
+            <div class="col-sm-10">
+              <%= f.text_field :name,
+                class: 'form-control',
+                required: true,
+                'ng-model' => 'note.note' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <%= f.submit 'Submit', class: 'btn btn-default',
+                'ng-click' => 'save($event)' %>
+            </div>
+          </div>
+        <% end -%>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add note</button>
       </div>
     </div>
   </div>

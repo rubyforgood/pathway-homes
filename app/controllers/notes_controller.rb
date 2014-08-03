@@ -1,11 +1,11 @@
 class NotesController < ApplicationController
   def index
-    @service_request = ServiceRequest.find(params[:service_request_id])
+    @service_request = ServiceRequest.find(note_params[:service_request_id])
     @notes = @service_request.notes
   end
 
   def create
-    @service_request = ServiceRequest.find(params[:service_request_id])
+    @service_request = ServiceRequest.find(note_params[:service_request_id])
     @note = @service_request.notes.build(note_params)
     @note.user = current_user
 
