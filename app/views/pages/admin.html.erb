@@ -13,17 +13,19 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <%= link_to image_tag("VistalCO/Symbol-Add.png", class: "img-square", width: '140px', height: '140px'),  new_user_path %>
-          <h2>Add User</h2>
-          <p>Create new staff member</p>
-          <p><%= link_to "New User", new_user_path, class: "btn btn-default" %></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
           <%= link_to image_tag("Users.png", class: "img-square", width: '140px', height: '140px'), users_path %>
           <h2>Manage Users</h2>
           <p>Edit user profiles, activate or deactive users, or promote users.</p>
           <p><%= link_to "Manage Users", users_path, class: "btn btn-default" %></p>
         </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-4">
+          <%= link_to image_tag("ToolBox.png", class: "img-square", width: '140px', height: '140px'), request_types_path %>
+          <h2>Manage Request Types</h2>
+          <p>Define a new work request type. Manage categories of requests.</p>
+          <p><%= link_to "Request Types", request_types_path, class: "btn btn-default" %></p>
+        </div><!-- /.col-lg-4 -->
+
         <div class="col-lg-4">
           <%= link_to image_tag("VistalCO/Download.png", class: "img-square", width: '140px', height: '140px'), "http://www.pathwayhomes.org/employee-home" %>
           <h2>Export Data</h2>
