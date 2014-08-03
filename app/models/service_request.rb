@@ -3,7 +3,7 @@ class ServiceRequest < ActiveRecord::Base
   belongs_to :request_type
   has_many :notes
 
-  before_save :set_closed_at
+  before_save :set_closed_on
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
   enum maintenance_provider: [ :internal, :external ]
@@ -33,8 +33,8 @@ class ServiceRequest < ActiveRecord::Base
                 request.community_street_address, request.community_zip_code,
                 request.apt_number, request.work_desc, request.special_instructions,
                 request.alarm, request.pet, request.authorized_to_enter,
-                request.created_at, request.closed_at,
-                request.closed_at, request.status, request.request_type.full,
+                request.created_at, request.closed_on,
+                request.closed_on, request.status, request.request_type.full,
                 request.creator.name, request.note_export]
       end
     end
@@ -58,11 +58,11 @@ class ServiceRequest < ActiveRecord::Base
 
   private
 
-  def set_closed_at
+  def set_closed_on
     if status_changed? && closed?
-      self.closed_at = Time.now
+      self.closed_on = Time.now
     elsif status_changed? && !closed?
-      self.closed_at = nil
+      self.closed_on = nil
     end
   end
 end
