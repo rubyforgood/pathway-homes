@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy, :show]
+  skip_before_filter :check_for_expired_password, only: [:edit, :update]
 
   def index
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    authorize! :manage, User
     @users = User.all
   end
 
   def show
-    @user = current_user
   end
 
   def new
@@ -18,10 +18,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    authorize! :create, @user, :message => 'Not authorized as an administrator.'
+    authorize! :create, @user
 
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         flash[:notice] = "Request ##{@user.id} was created!"
@@ -34,11 +33,18 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
-    respond_to do |format|
+    authorize! :update, @user
 
-      if @user.update_attributes(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+    respond_to do |format|
+      if @user.update!(user_params)
+        format.html {
+          if @user == current_user
+            sign_in @user, bypass: true
+            redirect_to '/', notice: 'Your profile was successfully updated.'
+          else
+            redirect_to users_url, notice: 'User was successfully updated.'
+          end
+        }
       else
         format.html { render action: 'edit' }
       end
@@ -46,9 +52,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
-
+    authorize! :destroy, @user
     @user.destroy
+
     respond_to do |format|
       format.html { redirect_to users_url }
     end
@@ -60,9 +66,10 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :name, :password, :role)
+      user_params = params.require(:user).permit(:email, :name, :password, :role)
+      user_params.delete(:password) if user_params[:password].blank?
+      user_params
     end
 end
 

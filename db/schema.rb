@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140803011120) do
+ActiveRecord::Schema.define(version: 20140803013125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140803011120) do
     t.integer  "status",                   default: 0, null: false
     t.integer  "creator_id"
     t.integer  "request_type_id"
+    t.integer  "maintenance_provider"
   end
 
   add_index "service_requests", ["creator_id"], name: "index_service_requests_on_creator_id", using: :btree

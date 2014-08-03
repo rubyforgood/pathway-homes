@@ -34,6 +34,9 @@
         <ul class="nav navbar-nav">
           <li><%= link_to "New Request", new_service_request_path %></li>
           <li><%= link_to "View Requests", service_requests_path %></a></li>
+          <% if user_signed_in? && current_user.admin? %>
+            <li><a href="/pages/admin">Admin</a></li>
+          <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>

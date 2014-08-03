@@ -36,10 +36,10 @@ class ServiceRequestsController < ApplicationController
     respond_to do |format|
       if @service_request.update(service_request_params)
         flash[:alert] = "Request ##{@service_request.id} updated!"
-        format.html { render action: "show" }
+        format.html { redirect_to @service_request }
       else
         flash[:alert] = @service_request.errors.full_messages.join('. ')
-        format.html { render action: "edit", status: :unprocessable_entity }
+        format.html { render action: "edit" }
       end
     end
   end
@@ -70,7 +70,8 @@ class ServiceRequestsController < ApplicationController
     params.require(:service_request).permit(
       :community_name, :apt_number, :work_desc, :special_instructions, :alarm,
       :community_street_address, :community_zip_code, :pet,
-      :authorized_to_enter, :request_type_id, creator_attributes: [:name, :email, :phone]
+      :authorized_to_enter, :request_type_id, :maintenance_provider,
+      creator_attributes: [:name, :email, :phone]
     )
   end
 
