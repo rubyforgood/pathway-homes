@@ -9,7 +9,7 @@ pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "Servi
     $scope.request_types = data;
   });
 
-  User.get($scope.creator.id).success(function(data) {
+  User.get('current').success(function(data) {
     $scope.creator = data;
   });
 
