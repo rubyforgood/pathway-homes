@@ -117,6 +117,8 @@ if Rails.env.development?
   normalUser = User.create(name: "Jane Plain", role: "staff", email: "staff@example.com", password: "password", password_confirmation: "password" )
   maintenanceUser = User.create(name: "Jessie Handyman", role: "maintenance", email: "jh@example.com", password: "password", password_confirmation: "password")
 
+  begin
+
   if ServiceRequest.count.zero?
     ServiceRequest.create(
        community_name:            'Americana Centre',
@@ -172,6 +174,7 @@ if Rails.env.development?
        assignee_id:               maintenanceUser.id,
        request_type_id:           RequestType.first.id
     )
+
 
     ServiceRequest.create(
        community_name:            'Monroe Suites',
