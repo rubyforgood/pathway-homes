@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = current_user
   end
 
   def new
@@ -21,17 +22,13 @@ class UsersController < ApplicationController
 
     @user = User.new(user_params)
 
-#    pepper = nil
-#    cost = 10
-#    encrypted_password = ::BCrypt::Password.create("#{@user.password}#{pepper}", :cost => cost).to_s
- #   @user.password = encrypted_password
-    logger.debug @user.password
-
     respond_to do |format|
       if @user.save
-        format.json { render action: "show", status: :created }
+        flash[:notice] = "Request ##{@user.id} was created!"
+        format.html { redirect_to users_path }
       else
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        flash[:alert] = @user.errors.full_messages.join('. ')
+        format.html { render action: "new" }
       end
     end
   end
