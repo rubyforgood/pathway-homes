@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
+  ROLES = %w(admin staff)
   validates :role,
     presence: true,
-    inclusion: { in: ['admin', 'staff'] }
+    inclusion: { in: ROLES }
 
   has_many :created, class_name: "ServiceRequest", inverse_of: :creator
 
@@ -22,6 +23,14 @@ class User < ActiveRecord::Base
 
   def active_for_authentication?
     super && !disabled
+  end
+
+  def admin?
+    role == "admin"
+  end
+
+  def staff?
+    role == "staff"
   end
 
   private
