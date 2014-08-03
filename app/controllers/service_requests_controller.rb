@@ -10,6 +10,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def edit
+    @service_request = ServiceRequest.find_by_id(params[:id])
   end
 
   def create
@@ -18,6 +19,8 @@ class ServiceRequestsController < ApplicationController
 
     respond_to do |format|
       if @service_request.save
+        ServiceRequestMailer.creator_confirmation(@service_request).deliver
+
         flash[:notice] = "Request ##{@service_request.id} was created!"
         format.html { redirect_to @service_request }
       else
@@ -28,12 +31,15 @@ class ServiceRequestsController < ApplicationController
   end
 
   def update
-    @service_request = ServiceRequest.find(params[:id])
+    @service_request = ServiceRequest.find_by_id(params[:id])
+
     respond_to do |format|
       if @service_request.update(service_request_params)
-        format.json { render action: "show" }
+        flash[:alert] = "Request ##{@service_request.id} updated!"
+        format.html { render action: "show" }
       else
-        format.json { render json: @service_request.errors, status: :unprocessable_entity }
+        flash[:alert] = @service_request.errors.full_messages.join('. ')
+        format.html { render action: "edit", status: :unprocessable_entity }
       end
     end
   end
@@ -66,4 +72,6 @@ class ServiceRequestsController < ApplicationController
       :authorized_to_enter, :request_type_id, creator_attributes: [:name, :email, :phone]
     )
   end
+
+
 end

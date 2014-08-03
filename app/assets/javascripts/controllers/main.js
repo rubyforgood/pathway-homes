@@ -17,7 +17,7 @@ pathwayHomes.controller("MainCtlr", ["$scope", "$timeout", "$route", "$routePara
   if ($('.alert').data('alert')) {
     alert = $('.alert').data('alert');
     $scope.notice.message = alert;
-    $scope.notice.type = "alert-danger";
+    $scope.notice.type = "alert-info";
     $('.alert').data('alert', '');
   }
 }]);

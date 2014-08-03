@@ -69,6 +69,33 @@ textarea {
   margin: 20px 0;
 }
 
-.requests-heading {
+.jumbotron {
+  background-color: #D6E4E8;
+}
+
+.search-input {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  float: right;
+}
+
+.requests-header {
   font-weight: 700;
+  background-color: #d9edf7;
+  color: #31708f;
+  padding: 5px 0;
+}
+
+.requests-body {
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.requests-table {
+  margin-bottom: 40px;
+}
+
+.description {
+  font-size: 13px;
+  margin-top: 5px;
 }
