@@ -14,7 +14,7 @@ class RequestTypesController < ApplicationController
     authorize! :create, @request_type, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @request_type.save
-        flash[:notice] = "Request type ##{@request_type.id} was created!"
+        flash[:alert] = "Request type ##{@request_type.id} was created!"
         format.html { redirect_to request_types_path }
         format.json { head 201 }
       else
@@ -31,7 +31,7 @@ class RequestTypesController < ApplicationController
     respond_to do |format|
 
       if @request_type.update_attributes(request_type_params)
-        format.html { redirect_to @request_type, notice: 'Request Type was successfully updated.' }
+        format.html { redirect_to @request_type, alert: 'Request Type was successfully updated.' }
       else
         format.html { render action: 'edit' }
       end

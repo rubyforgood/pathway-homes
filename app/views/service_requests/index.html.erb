@@ -22,11 +22,11 @@
       <div class="col-md-11 col-md-offset-1 description">{{request.work_desc}}</div>
     </div>
     <ul class="pagination">
-      <li><a ng-click="setCreatorPage(page - 1)" href="#">&laquo;</a></li>
+      <li><a ng-click="setCreatorPage(creatorPage - 1)" href="#">&laquo;</a></li>
       <li ng-class="isCreatorActive($index)" ng-repeat="page in pages(creator_requests, 10)">
         <a ng-click="setCreatorPage($index + 1)" href='#'>{{$index + 1}}</a>
       </li>
-      <li><a ng-click="setCreatorPage(page + 1)" href="#">&raquo;</a></li>
+      <li><a ng-click="setCreatorPage(creatorPage + 1)" href="#">&raquo;</a></li>
     </ul>
   </div>
 

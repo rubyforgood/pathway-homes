@@ -5,7 +5,7 @@ pathwayHomes.controller("MainCtlr", ["$scope", "$timeout", "$route", "$routePara
   $scope.creator = {};
   $scope.notice = {promise: null, type: "alert-info", message: ""};
 
-  User.get().success(function(data) {
+  User.get('current').success(function(data) {
     $scope.creator = data;
   });
 

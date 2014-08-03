@@ -1,19 +1,22 @@
-<div ng-controller="UsersCtlr">
+<div ng-controller="UserIndexController">
   <h1>Users</h1>
+  <p><%= link_to "New User", new_user_path, class: "btn btn-success" %></p>
   <div>
     <ul class="requests-list">
       <li class="requests-heading">
-        <div class="col-md-3">Name</div>
+        <div class="col-md-2">Name</div>
+        <div class="col-md-2">Email</div>
         <div class="col-md-2">Phone</div>
         <div class="col-md-2">Role</div>
-
+        <div class="col-md-3">Actions</div>
       </li>
-      <!--li ng-repeat="request in requests | filter:query" class="list-item" -->
-      <li class="list-item">
-        <div class="col-md-3">{{user.name }}</div>
+      <li ng-repeat="user in users" class="list-item">
+        <div class="col-md-2">{{user.name }}</div>
+        <div class="col-md-2">{{user.email }}</div>
         <div class="col-md-2">{{user.phone }}</div>
-        <div class="col-md-3">{{user.role }}</div>
-      </li>
+        <div class="col-md-2">{{user.role }}</div>
+        <div class="col-md-3"><a href="/users/{{user.id}}">View</a> <a href="/users/{{user.id}}/edit">Edit</a></div>
+        </li>
     </ul>
   </div>
 </div>
