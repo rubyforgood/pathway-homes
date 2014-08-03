@@ -69,7 +69,8 @@ class ServiceRequestsController < ApplicationController
     params.require(:service_request).permit(
       :community_name, :apt_number, :work_desc, :special_instructions, :alarm,
       :community_street_address, :community_zip_code, :pet,
-      :authorized_to_enter, :request_type_id, creator_attributes: [:name, :email, :phone]
+      :authorized_to_enter, :request_type_id, :maintenance_provider,
+      creator_attributes: [:name, :email, :phone]
     )
   end
 
