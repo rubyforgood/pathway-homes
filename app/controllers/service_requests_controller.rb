@@ -65,7 +65,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def service_request_params
-    params.require(:service_request).permit(
+    params.require(:service_request).permit(:status,
       :community_name, :apt_number, :work_desc, :special_instructions, :alarm,
       :community_street_address, :community_zip_code, :pet,
       :authorized_to_enter, :request_type_id, :maintenance_provider,
