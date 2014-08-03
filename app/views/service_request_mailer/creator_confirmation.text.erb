@@ -1,0 +1,5 @@
+Hi <%= @creator.name %>,
+
+Service Request #<%= @service_request.id %> for <%= @service_request.community_name %> has been submitted successfully.
+
+You can track the request's progress at <<%= service_request_url(@service_request) %>>.
