@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
     authorize! :update, @user
   end
 
@@ -35,8 +34,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by_id(params[:id])
-
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @user.update!(user_params)
