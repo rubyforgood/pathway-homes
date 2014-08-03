@@ -1,7 +1,8 @@
 pathwayHomes.service("User", ["$http", function($http) {
   return {
-    get: function() {
-      return $http.get('/user.json');
+    get: function(id) {
+      console.log(id);
+      return $http.get('/users/'+id+'.json');
     },
 
     post: function(data) {

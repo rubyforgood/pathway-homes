@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def create
@@ -34,6 +35,8 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find_by_id(params[:id])
+
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
     respond_to do |format|
 

@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   get 'pages/admin'
 
   devise_for :users
-  resources :users, except: :show
-  get 'user', to: 'users#show'
-  
+  resources :users
+
   get 'admin/create_user' => 'users#new'
 
   resources :request_types, only: [:index]
