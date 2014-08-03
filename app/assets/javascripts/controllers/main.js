@@ -1,8 +1,13 @@
-pathwayHomes.controller("MainCtlr", ["$scope", "$timeout", "$route", "$routeParams", "$location", function($scope, $timeout, $route, $routeParams, $location) {
+pathwayHomes.controller("MainCtlr", ["$scope", "$timeout", "$route", "$routeParams", "$location", "User", function($scope, $timeout, $route, $routeParams, $location, User) {
   //$scope.$route = $route;
   //$scope.$location = $location;
   //$scope.$routeParams = $routeParams;
+  $scope.creator = {};
   $scope.notice = {promise: null, type: "alert-info", message: ""};
+
+  User.get().success(function(data) {
+    $scope.creator = data;
+  });
 
   $scope.alert = function(message, type) {
     $scope.notice.type = "alert-" + type;

@@ -1,16 +1,11 @@
-pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "ServiceRequest", "RequestType", "User", function($scope, $routeParams, ServiceRequest, RequestType, User) {
+pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "ServiceRequest", "RequestType", function($scope, $routeParams, ServiceRequest, RequestType) {
   //$scope.params = $routeParams;
   $scope.request = {};
-  $scope.creator = {};
   $scope.request_types = [];
   $scope.request.id = $('form').data('id');
 
   RequestType.all().success(function(data) { 
     $scope.request_types = data;
-  });
-
-  User.get('current').success(function(data) {
-    $scope.creator = data;
   });
 
   if ($scope.request.id) {

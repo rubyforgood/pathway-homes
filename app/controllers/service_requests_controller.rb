@@ -2,7 +2,10 @@ class ServiceRequestsController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :handle_missing_parms
 
   def index
-    @service_requests = ServiceRequest.all
+    scope = ServiceRequest.includes(:creator)
+    scope = scope.where(creator_id: params[:user_id]) if params[:user_id]
+    scope = scope.paginate(page: params[:page], per_page: params[:per_page] || 50)
+    @service_requests = scope
   end
 
   def new
@@ -21,7 +24,7 @@ class ServiceRequestsController < ApplicationController
       if @service_request.save
         ServiceRequestMailer.creator_confirmation(@service_request).deliver
 
-        flash[:notice] = "Request ##{@service_request.id} was created!"
+        flash[:alert] = "Request ##{@service_request.id} was created!"
         format.html { redirect_to @service_request }
       else
         flash[:alert] = @service_request.errors.full_messages.join('. ')

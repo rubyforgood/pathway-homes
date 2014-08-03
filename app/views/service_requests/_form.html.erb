@@ -67,7 +67,7 @@
     <div class="form-group" ng-class="{'has-error': !isValid('request_type_id'), 'has-success': isValid('request_type_id')}">
       <label class="col-sm-2 control-label">Request Type</label>
       <div class="col-sm-10">
-        <select name="service_request[request_type_id]" required
+        <select chosen name="service_request[request_type_id]" required
           class="form-control"
           ng-model="request.type"
           ng-options="type.request group by type.category for type in request_types track by type.id">
@@ -129,7 +129,7 @@
       </div>
     </div>
 
-<<<<<<< HEAD
+
     <% if current_user.admin? %>
       <div class="form-group" ng-class="{'has-error': !isValid('maintenance_provider'), 'has-success': isValid('maintenance_provider')}">
         <label class="col-sm-2 control-label">Service Provider</label>
@@ -142,8 +142,8 @@
           </label>
         </div>
       </div>
-          <% end %>
-=======
+    <% end %>
+
     <% if user_signed_in? && current_user.admin? %>
     <div class="form-group" ng-class="{'has-error': !isValid('status'), 'has-success': isValid('status')}">
       <label class="col-sm-2 control-label">Status</label>
@@ -165,7 +165,7 @@
           'ng-model' => 'request.closed_on' %>
       </div>
     </div>
->>>>>>> cc5c76f214ec42615a8d7e54b34989bf84dc6c6e
+
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
