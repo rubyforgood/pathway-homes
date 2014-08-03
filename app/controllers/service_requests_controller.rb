@@ -48,7 +48,6 @@ class ServiceRequestsController < ApplicationController
     @service_request = ServiceRequest.includes(:creator).find(params[:id])
   end
 
-
   def export
     start_date = params[:start_date] || Date.new(2013)
     end_date = params[:end_date] || Date.today.in_time_zone.end_of_day

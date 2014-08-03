@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy, :show]
-  skip_before_filter :check_for_expired_password, only: [:edit, :update]
+  skip_before_filter :check_for_expired_password, only: [:show, :edit, :update]
 
   def index
     authorize! :manage, User
@@ -15,10 +15,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize! :update, @user
   end
 
   def create
-    authorize! :create, @user
+    authorize! :create, User
 
     @user = User.new(user_params)
     respond_to do |format|
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
         format.html {
           if @user == current_user
             sign_in @user, bypass: true
-            redirect_to '/', notice: 'Your profile was successfully updated.'
+            redirect_to root_url, notice: 'Your profile was successfully updated.'
           else
             redirect_to users_url, notice: 'User was successfully updated.'
           end
@@ -67,7 +68,10 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      user_params = params.require(:user).permit(:email, :name, :password, :role)
+      allowed_params = [:email, :name, :password]
+      allowed_params << :role if can? :manage, User
+
+      user_params = params.require(:user).permit(*allowed_params)
       user_params.delete(:password) if user_params[:password].blank?
       user_params
     end
