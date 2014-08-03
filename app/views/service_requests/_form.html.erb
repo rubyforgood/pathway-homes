@@ -67,7 +67,7 @@
     <div class="form-group" ng-class="{'has-error': !isValid('request_type_id'), 'has-success': isValid('request_type_id')}">
       <label class="col-sm-2 control-label">Request Type</label>
       <div class="col-sm-10">
-        <select chosen name="service_request[request_type_id]" required
+        <select name="service_request[request_type_id]" required
           class="form-control"
           ng-model="request.type"
           ng-options="type.request group by type.category for type in request_types track by type.id">
