@@ -19,19 +19,6 @@ pathwayHomes.controller("ServiceRequestsCtlr", ["$scope", "$routeParams", "Servi
   }
 
   $scope.isValid = function(name) {
-    if (name === 'closed_on' || name === 'status'){
-      if($scope.form["service_request[status]"].$modelValue == 'closed'){
-        var isValid = $scope.form["service_request[closed_on]"].$modelValue
-        $scope.form.$invalid = !isValid;
-        // $scope.form['service_request[closed_on]'].$valid = isValid;    // doesn't matter but seems it should
-        // $scope.form['service_request[closed_on]'].$invalid = !isValid; //ditto
-      }
-      else {
-        $scope.form.$invalid = false; //hack!  what's better?
-        // $scope.form['service_request[closed_on]'].$valid = true;     // doesn't matter but seems it should
-        // $scope.form['service_request[closed_on]'].$invalid = false;  //ditto
-      }
-    }
     return $scope.form['service_request[' + name + ']'].$valid
   };
   
