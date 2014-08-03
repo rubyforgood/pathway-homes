@@ -18,6 +18,8 @@ class ServiceRequestsController < ApplicationController
 
     respond_to do |format|
       if @service_request.save
+        ServiceRequestMailer.creator_confirmation(@service_request).deliver
+
         flash[:notice] = "Request ##{@service_request.id} was created!"
         format.html { redirect_to @service_request }
       else
