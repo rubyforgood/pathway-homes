@@ -1,11 +1,8 @@
 class ServiceRequest < ActiveRecord::Base
   belongs_to :creator, class_name: "User", inverse_of: :created
-  belongs_to :assignee, class_name: "User", inverse_of: :assigned_requests
   belongs_to :request_type
   has_many :notes
 
-  before_save :update_status
-  before_save :set_assigned_at
   before_save :set_closed_at
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
@@ -27,23 +24,19 @@ class ServiceRequest < ActiveRecord::Base
       csv << ['Request ID', 'Community Name', 'Community Street Address',
               'Community Zipcode', 'Apartment Number', 'Work Description',
               'Special Instructions', 'Alarm', 'Pets', 'Authorized to Enter',
-              'Date Created', 'Date Assigned', 'Date Last Updated',
+              'Date Created', 'Date Last Updated',
               'Date Closed', 'Status', 'Request Type', 'Request Created By',
-              'Maintenance Preformed By', 'Notes']
+              'Notes']
       all.each do |request|
         csv << [request.id, request.community_name,
                 request.community_street_address, request.community_zip_code,
                 request.apt_number, request.work_desc, request.special_instructions,
                 request.alarm, request.pet, request.authorized_to_enter,
-                request.created_at, request.assigned_at, request.closed_at,
+                request.created_at, request.closed_at,
                 request.closed_at, request.status, request.request_type.full,
-                request.creator.name, request.assignee_name, '']
+                request.creator.name, request.note_export]
       end
     end
-  end
-
-  def assignee_name
-    assignee ? assignee.name : ''
   end
 
   def creator_name
@@ -58,6 +51,10 @@ class ServiceRequest < ActiveRecord::Base
     request_type && request_type.full
   end
 
+  def note_export
+    notes.map(&:print).join(" | ")
+  end
+
   private
 
   def set_closed_at
@@ -65,18 +62,6 @@ class ServiceRequest < ActiveRecord::Base
       self.closed_at = Time.now
     elsif status_changed? && !closed?
       self.closed_at = nil
-    end
-  end
-
-  def set_assigned_at
-    if assignee_id_changed? && assigned?
-      self.assigned_at = Time.now
-    end
-  end
-
-  def update_status
-    if assignee_id_changed? && open?
-      self.status = "assigned"
     end
   end
 end
