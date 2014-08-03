@@ -18,4 +18,4 @@ fi
 bin/rake db:create:all
 
 # Seed
-bin/rake db:seed
+bin/rake dev:seed
