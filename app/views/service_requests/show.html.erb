@@ -1,6 +1,6 @@
 <div ng-controller="ShowController" data-id="<%= @service_request.id %>">
 	<h1>Service Request #{{service_request.id}}</h1>
-	
+
 	<div class="col-sm-4">
 		<div class="panel panel-info">
 			<div class="panel-heading"><h3 class="panel-title">Requestor</h3></div>
@@ -45,6 +45,7 @@
 					<p><strong>Description of Work:</strong> {{service_request.work_desc}}</p>
 					<p><strong>Special Instructions:</strong> {{service_request.special_instructions}}</p>
 				 </section>
+				<p><strong>Service Provider:</strong> {{ service_request.maintenance_provider || 'not set'}}</p>
 			</div>
 		</div>
 	</div>
