@@ -1,8 +1,8 @@
 <div ng-controller="ServiceRequestsCtlr">
   <h1>Service Request Form</h1>
-  <%= form_for(@service_request, html: {method: "post", 
+  <%= form_for(@service_request, html: {method: "post",
                                         name: "form",
-                                        class: "form form-horizontal", 
+                                        class: "form form-horizontal",
                                         role: "form"}) do |f| %>
     <div class="form-group">
       <label class="col-sm-2 control-label">Name</label>
@@ -28,8 +28,8 @@
     <div class="form-group" ng-class="{'has-error': !isValid('community_name'), 'has-success': isValid('community_name')}">
       <label class="col-sm-2 control-label">Community Name</label>
       <div class="col-sm-10">
-        <%= f.text_field :community_name, 
-          class: 'form-control', 
+        <%= f.text_field :community_name,
+          class: 'form-control',
           required: true,
           'ng-model' => 'request.community_name' %>
       </div>
@@ -38,8 +38,8 @@
     <div class="form-group" ng-class="{'has-error': !isValid('community_street_address'), 'has-success': isValid('community_street_address')}">
       <label class="col-sm-2 control-label">Street Address</label>
       <div class="col-sm-10">
-        <%= f.text_field :community_street_address, 
-          class: 'form-control', 
+        <%= f.text_field :community_street_address,
+          class: 'form-control',
           required: true,
           'ng-model' => 'request.community_street_address' %>
       </div>
@@ -48,7 +48,7 @@
     <div class="form-group" ng-class="{'has-error': !isValid('apt_number'), 'has-success': isValid('apt_number')}">
       <label class="col-sm-2 control-label">Apartment Number</label>
       <div class="col-sm-10">
-        <%= f.text_field :apt_number, class: 'form-control', required: true, 
+        <%= f.text_field :apt_number, class: 'form-control', required: true,
           'ng-model' => 'request.apt_number' %>
       </div>
     </div>
@@ -56,8 +56,8 @@
     <div class="form-group" ng-class="{'has-error': !isValid('community_zip_code'), 'has-success': isValid('community_zip_code')}">
       <label class="col-sm-2 control-label">Zip Code</label>
       <div class="col-sm-10">
-        <%= f.text_field :community_zip_code, 
-          class: 'form-control', 
+        <%= f.text_field :community_zip_code,
+          class: 'form-control',
           required: true,
           'ng-model' => 'request.community_zip_code' %>
       </div>
@@ -67,8 +67,8 @@
       <label class="col-sm-2 control-label">Request Type</label>
       <div class="col-sm-10">
         <select name="service_request[request_type_id]" required
-          class="form-control" 
-          ng-model="request.type" 
+          class="form-control"
+          ng-model="request.type"
           ng-options="type.id as type.request group by type.category for type in request_types">
         </select>
       </div>
@@ -78,11 +78,11 @@
       <label class="col-sm-2 control-label">Authorized to enter at any time?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <%= f.radio_button('authorized_to_enter', true, 
+          <%= f.radio_button('authorized_to_enter', true, required: true,
                              'ng-model' => 'request.authorized_to_enter') %> Yes
         </label>
         <label class="radio-inline">
-          <%= f.radio_button('authorized_to_enter', false, 
+          <%= f.radio_button('authorized_to_enter', false, required: true,
                              'ng-model' => 'request.authorized_to_enter') %> No
         </label>
       </div>
@@ -92,10 +92,10 @@
       <label class="col-sm-2 control-label">Pet?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <%= f.radio_button('pet', true, 'ng-model' => 'request.pet') %> Yes
+          <%= f.radio_button('pet', true, required: true, 'ng-model' => 'request.pet') %> Yes
         </label>
         <label class="radio-inline">
-          <%= f.radio_button('pet', false, 'ng-model' => 'request.pet') %> No
+          <%= f.radio_button('pet', false, required: true, 'ng-model' => 'request.pet') %> No
         </label>
       </div>
     </div>
@@ -104,10 +104,10 @@
       <label class="col-sm-2 control-label">Alarm?</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <%= f.radio_button('alarm', true, 'ng-model' => 'request.alarm') %> Yes
+          <%= f.radio_button('alarm', true, required: true, 'ng-model' => 'request.alarm') %> Yes
         </label>
         <label class="radio-inline">
-          <%= f.radio_button('alarm', false, 'ng-model' => 'request.alarm') %> No
+          <%= f.radio_button('alarm', false, required: true, 'ng-model' => 'request.alarm') %> No
         </label>
       </div>
     </div>
@@ -123,8 +123,7 @@
     <div class="form-group" ng-class="{'has-error': !isValid('special_instructions'), 'has-success': isValid('special_instructions')}">
       <label class="col-sm-2 control-label">Special Instructions</label>
       <div class="col-sm-10">
-        <%= f.text_area :special_instructions, class: 'form-control', 
-          required: true,
+        <%= f.text_area :special_instructions, class: 'form-control',
           'ng-model' => 'request.special_instructions' %>
       </div>
     </div>
