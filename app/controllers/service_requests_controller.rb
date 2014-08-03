@@ -2,7 +2,10 @@ class ServiceRequestsController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :handle_missing_parms
 
   def index
-    @service_requests = ServiceRequest.all
+    scope = ServiceRequest.includes(:creator)
+    scope = scope.where(creator_id: params[:user_id]) if params[:user_id]
+    scope = scope.paginate(page: params[:page], per_page: params[:per_page] || 50)
+    @service_requests = scope
   end
 
   def new
