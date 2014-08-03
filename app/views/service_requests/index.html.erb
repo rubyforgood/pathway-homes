@@ -23,6 +23,7 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <div class="requests-table">  
     <div class="row">
       <h3 class="col-md-5">Additional Requests</h3>
@@ -46,3 +47,23 @@
       </div>
     </div>  
   </div>
+=======
+<h2>Additional Requests</h2>
+<input type="text" id="query" ng-model="otherQuery" placeholder="Search"/>
+  <div class="row requests-header">
+    <div class="col-md-1">ID #</div>
+    <div class="col-md-2">Created</div>
+    <div class="col-md-2">Creator</div>
+    <div class="col-md-2">Status</div>
+    <div class="col-md-1">Full Details</div>
+  </div>  
+  <div ng-repeat="request in requests | filter:otherQuery",  class="row requests-body">
+    <div class="col-md-1">{{request.id}}</div>
+    <div class="col-md-2">{{request.created_at | date : 'mediumDate'}}</div>
+    <div class="col-md-2">{{request.creator_name}}</div>
+    <div class="col-md-2">{{request.status}}</div>
+    <div class="col-md-1"><a href="/service_requests/{{request.id}}">View</a></div>
+    <div class="col-md-12">{{request.work_desc}}</div>
+  </div>
+</div>
+>>>>>>> 5c9799baad16987aef0dd3cf60464a7ca8330926
