@@ -25,9 +25,61 @@
           <p><%= link_to "Manage Users", users_path, class: "btn btn-default" %></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <%= link_to image_tag("VistalCO/Download.png", class: "img-square", width: '140px', height: '140px'), "http://www.pathwayhomes.org/employee-home" %>
+          <%= image_tag("VistalCO/Download.png", class: "img-square", width: '140px', height: '140px') %>
           <h2>Export Data</h2>
           <p>Export and download your data in CSV format, so you can import it into Access or other tools.</p>
-          <p><a class="btn btn-default" href="http://www.pathwayhomes.org/employee-home" role="button">Employee Page &raquo;</a></p>
+          <a class="btn btn-default" href="/service_requests/export" role="button">Export All Data</a>
+          <p><div id='export_range' class="btn btn-default">Export Date Range</div></p>
         </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
+
+
+<div id="export_modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Export Data</h4>
+      </div>
+      <div clas='container'>
+        <form>
+          <div>
+            <div class='col-md-2 col-md-offset-3'>
+              <label>Start Date</label>
+            </div>
+            <div class='col-md-7'>
+              <input id='start_date' required type='date'>
+            </div>
+          </div>
+          <div class='margin-10'>
+            <div class='col-md-2 col-md-offset-3'>
+              <label>End Date</label>
+            </div>
+            <div class='col-md-7'>
+              <input id='end_date' required type='date'>
+            </div>
+          </div>
+          <div style="margin:10px;text-align:center">
+            <input type='submit' id='export_range_submit' class="btn btn-default" value='Export'>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#export_range').click(function(){
+    $('#export_modal').modal('show');
+  });
+
+  $('#export_range_submit').click(function(){
+    event.prevent_default
+
+    var start_date = $('#start_date').val();
+    var end_date = $('#end_date').val();
+    if( start_date !== '' && end_date !== ''){
+      $('#export_modal').modal('hide');
+      window.location.replace("/service_requests/export?start_date="+start_date+"&end_date="+end_date);
+    }
+  });
+</script>
