@@ -13,7 +13,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        flash[:notice] = "Note was added to request ##{@service_request.id}!"
+        flash[:alert] = "Note was added to request ##{@service_request.id}!"
         format.html { redirect_to @service_request }
       else
         flash[:alert] = @note.errors.full_messages.join('. ')

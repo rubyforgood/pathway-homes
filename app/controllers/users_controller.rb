@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        flash[:notice] = "Request ##{@user.id} was created!"
+        flash[:alert] = "Request ##{@user.id} was created!"
         format.html { redirect_to users_path }
       else
         flash[:alert] = @user.errors.full_messages.join('. ')
@@ -34,16 +34,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize! :update, @user
-
+    authorize! :update, @user, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @user.update!(user_params)
         format.html {
           if @user == current_user
             sign_in @user, bypass: true
-            redirect_to root_url, notice: 'Your profile was successfully updated.'
+            redirect_to root_url, alert: 'Your profile was successfully updated.'
           else
-            redirect_to users_url, notice: 'User was successfully updated.'
+            redirect_to users_url, alert: 'User was successfully updated.'
           end
         }
       else
@@ -72,7 +71,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      allowed_params = [:email, :name, :password]
+      allowed_params = [:email, :name, :phone, :password]
       allowed_params << :role if can? :manage, User
 
       user_params = params.require(:user).permit(*allowed_params)
