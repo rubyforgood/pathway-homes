@@ -18,8 +18,9 @@ class UsersController < ApplicationController
 
   def create
     authorize! :create, @user, :message => 'Not authorized as an administrator.'
-    
+
     @user = User.new(user_params)
+
 #    pepper = nil
 #    cost = 10
 #    encrypted_password = ::BCrypt::Password.create("#{@user.password}#{pepper}", :cost => cost).to_s
