@@ -22,6 +22,7 @@ gem 'cancan'
 
 gem 'angularjs-rails'
 gem 'underscore-rails'
+gem 'chosen-rails'
 
 gem 'will_paginate'
 

@@ -13,6 +13,7 @@
   <%= javascript_include_tag 'controllers/service_requests' %>
   <%= javascript_include_tag 'controllers/index.js' %>
   <%= javascript_include_tag 'controllers/service_requests.js' %>
+  <%= javascript_include_tag 'controllers/request_types.js' %>
   <%= javascript_include_tag 'controllers/show.js' %>
   <%= javascript_include_tag 'controllers/users.js' %>
 
@@ -35,6 +36,9 @@
         <ul class="nav navbar-nav">
           <li><%= link_to "New Request", new_service_request_path %></li>
           <li><%= link_to "View Requests", service_requests_path %></a></li>
+          <% if user_signed_in? && current_user.admin? %>
+            <li><a href="/pages/admin">Admin</a></li>
+          <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>
@@ -49,6 +53,7 @@
       </div><!--/.nav-collapse -->
     </div>
   </div>
+</div>
 
   <div class="container" ng-controller="MainCtlr">
     <div class="col-sm-8 alert" data-alert="<%= alert %>" ng-class="notice.type" role="alert" ng-show="notice.message">{{notice.message}}</div>
