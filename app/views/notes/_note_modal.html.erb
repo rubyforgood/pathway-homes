@@ -6,29 +6,28 @@
         <h4 class="modal-title">New Note</h4>
       </div>
       <div class="modal-body">
-        <%= form_for(@note, html: {name: "form",
+        <%= form_for(Note.new, html: {name: "form",
                                    class: "form form-horizontal",
-                                   'data-id' => @note.id,
                                    role: "form"}) do |f| %>
           <div class="form-group">
             <label class="col-sm-2 control-label">Note</label>
             <div class="col-sm-10">
-              <%= f.text_field :name,
+              <%= f.text_area :note,
                 class: 'form-control',
                 required: true,
                 'ng-model' => 'note.note' %>
+              <input name="service_request_id" type="hidden" value="<%= @service_request.id %>" />
+
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <%= f.submit 'Submit', class: 'btn btn-default',
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= f.submit 'Add Note', class: 'btn btn-default pull-right',
                 'ng-click' => 'save($event)' %>
             </div>
           </div>
         <% end -%>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
