@@ -49,7 +49,6 @@ class ServiceRequestsController < ApplicationController
     @notes = @service_request.notes
   end
 
-
   def export
     start_date = params[:start_date] || Date.new(2013)
     end_date = params[:end_date] || Date.today.in_time_zone.end_of_day
