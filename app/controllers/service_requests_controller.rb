@@ -10,6 +10,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def edit
+    @service_request = ServiceRequest.find_by_id(params[:id])
   end
 
   def create
@@ -30,12 +31,15 @@ class ServiceRequestsController < ApplicationController
   end
 
   def update
-    @service_request = ServiceRequest.find(params[:id])
+    @service_request = ServiceRequest.find_by_id(params[:id])
+
     respond_to do |format|
       if @service_request.update(service_request_params)
-        format.json { render action: "show" }
+        flash[:alert] = "Request ##{@service_request.id} updated!"
+        format.html { redirect_to @service_request }
       else
-        format.json { render json: @service_request.errors, status: :unprocessable_entity }
+        flash[:alert] = @service_request.errors.full_messages.join('. ')
+        format.html { render action: "edit" }
       end
     end
   end
@@ -65,7 +69,8 @@ class ServiceRequestsController < ApplicationController
     params.require(:service_request).permit(
       :community_name, :apt_number, :work_desc, :special_instructions, :alarm,
       :community_street_address, :community_zip_code, :pet,
-      :authorized_to_enter, :request_type_id, creator_attributes: [:name, :email, :phone]
+      :authorized_to_enter, :request_type_id, :maintenance_provider,
+      creator_attributes: [:name, :email, :phone]
     )
   end
 

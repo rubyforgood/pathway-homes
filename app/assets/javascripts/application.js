@@ -15,3 +15,6 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-route
+//= require underscore
+//= require chosen-jquery
+//= require angular-chosen-localytics

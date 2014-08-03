@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   after_filter :set_csrf_cookie_for_ng
 
+  # If the user isn't authorized to do something, redirect them back to the home page
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to main_app.root_url, :alert => exception.message
+  end
+
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
@@ -28,7 +33,7 @@ class ApplicationController < ActionController::Base
   def check_for_expired_password
     if current_user.password_expired?
       flash[:alert] = "Your password has expired. Please reset it before continuing."
-      redirect_to edit_user_registration_path
+      redirect_to edit_user_path(current_user)
     end
   end
 end
