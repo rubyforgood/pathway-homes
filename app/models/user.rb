@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
-  validates_presence_of :role
-  has_many :assigned_requests, class_name: "ServiceRequest", inverse_of: :assignee
-  has_many :created, class_name: "ServiceRequest", inverse_of: :creator
+  ROLES = %w(admin staff)
+  validates :role,
+    presence: true,
+    inclusion: { in: ROLES }
 
-  scope :admin, -> { where(role: "admin") }
+  has_many :created, class_name: "ServiceRequest", inverse_of: :creator
 
   devise :database_authenticatable, :recoverable, :rememberable, :trackable,
     :validatable
@@ -22,6 +23,14 @@ class User < ActiveRecord::Base
 
   def active_for_authentication?
     super && !disabled
+  end
+
+  def admin?
+    role == "admin"
+  end
+
+  def staff?
+    role == "staff"
   end
 
   private
