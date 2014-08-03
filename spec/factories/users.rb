@@ -9,7 +9,7 @@ FactoryGirl.define do
     role "admin"
   end
 
-  trait :maintenance do
-    role "maintenance"
+  trait :staff do
+    role "staff"
   end
 end

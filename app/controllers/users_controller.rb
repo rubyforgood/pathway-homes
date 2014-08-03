@@ -19,12 +19,14 @@ class UsersController < ApplicationController
 
   def create
     authorize! :create, @user, :message => 'Not authorized as an administrator.'
-    
+
     @user = User.new(user_params)
-    pepper = nil
-    cost = 10
-    encrypted_password = ::BCrypt::Password.create("#{@user.password}#{pepper}", :cost => cost).to_s
-    @user.encrypted_password = encrypted_password
+
+#    pepper = nil
+#    cost = 10
+#    encrypted_password = ::BCrypt::Password.create("#{@user.password}#{pepper}", :cost => cost).to_s
+ #   @user.password = encrypted_password
+    logger.debug @user.password
 
     respond_to do |format|
       if @user.save
@@ -64,7 +66,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :name, :role)
+      params.require(:user).permit(:email, :name, :password, :role)
     end
 end
 

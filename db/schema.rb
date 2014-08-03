@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140802204745) do
+ActiveRecord::Schema.define(version: 20140803011120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 20140802204745) do
     t.boolean  "alarm"
     t.string   "community_street_address"
     t.string   "community_zip_code"
-    t.datetime "assigned_at"
     t.datetime "closed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -56,11 +55,9 @@ ActiveRecord::Schema.define(version: 20140802204745) do
     t.boolean  "authorized_to_enter"
     t.integer  "status",                   default: 0, null: false
     t.integer  "creator_id"
-    t.integer  "assignee_id"
     t.integer  "request_type_id"
   end
 
-  add_index "service_requests", ["assignee_id"], name: "index_service_requests_on_assignee_id", using: :btree
   add_index "service_requests", ["creator_id"], name: "index_service_requests_on_creator_id", using: :btree
   add_index "service_requests", ["request_type_id"], name: "index_service_requests_on_request_type_id", using: :btree
 

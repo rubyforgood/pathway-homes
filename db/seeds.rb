@@ -115,7 +115,8 @@ RequestType.create([{category: 'Appliance Repair', request: 'Misc.'},
 if Rails.env.development?
   user = User.create(name: "administrator", role: "admin", email: "admin@example.com", password: "password", password_confirmation: "password")
   normalUser = User.create(name: "Jane Plain", role: "staff", email: "staff@example.com", password: "password", password_confirmation: "password" )
-  maintenanceUser = User.create(name: "Jessie Handyman", role: "maintenance", email: "jh@example.com", password: "password", password_confirmation: "password")
+
+  begin
 
   if ServiceRequest.count.zero?
     ServiceRequest.create(
@@ -127,7 +128,6 @@ if Rails.env.development?
        alarm:                     true,
        community_street_address:  '112 Monroe St.',
        community_zip_code:        '20850',
-       assigned_at:               '2014-08-01 16:25:37 -0400',
        created_at:                '2014-08-01',
        pet:                       false,
        authorized_to_enter:       true,
@@ -143,7 +143,6 @@ if Rails.env.development?
        alarm:                     true,
        community_street_address:  '112 Monroe St.',
        community_zip_code:        '20850',
-       assigned_at:               '2014-08-01 16:25:37 -0400',
        closed_at:                 '2014-08-01 16:25:37 -0400',
        created_at:                '2014-08-01',
        updated_at:                '2014-08-01 16:25:37 -0400',
@@ -162,16 +161,15 @@ if Rails.env.development?
        alarm:                     false,
        community_street_address:  '112 Washington Ave',
        community_zip_code:        '20850',
-       assigned_at:               '2014-07-01 16:25:37 -0400',
        closed_at:                 '2014-07-01 16:25:37 -0400',
        created_at:                '2014-07-01',
        updated_at:                '2014-07-11 16:25:37 -0400',
        pet:                       true,
        authorized_to_enter:       true,
        creator_id:                normalUser.id,
-       assignee_id:               maintenanceUser.id,
        request_type_id:           RequestType.first.id
     )
+
 
     ServiceRequest.create(
        community_name:            'Monroe Suites',
@@ -181,7 +179,6 @@ if Rails.env.development?
        alarm:                     false,
        community_street_address:  '112 Monroe St.',
        community_zip_code:        '20850',
-       assigned_at:               '2014-08-02 16:25:37 -0400',
        closed_at:                 '2014-08-02 16:25:37 -0400',
        created_at:                '2014-08-02',
        updated_at:                '2014-08-02 16:25:37 -0400',
