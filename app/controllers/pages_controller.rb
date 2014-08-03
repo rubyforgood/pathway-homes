@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   end
 
   def admin
+    authenticate_user!
     authorize! :admin, @user, :message => 'Not authorized as an administrator.'
   end
 end
