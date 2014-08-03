@@ -18,7 +18,7 @@ class ServiceRequest < ActiveRecord::Base
   validates :community_street_address, presence: true
   validates :community_zip_code, presence: true
   validates :pet, inclusion: { in: [true, false] }
-  validates :authorized_to_enter, presence: true
+  validates :authorized_to_enter, inclusion: { in: [true, false] }
   validates :creator, presence: true
   validates :request_type, presence: true
 

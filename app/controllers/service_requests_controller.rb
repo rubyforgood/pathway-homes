@@ -1,8 +1,6 @@
 class ServiceRequestsController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :handle_missing_parms
 
-  before_filter :authenticate_user!
-
   def index
     @service_requests = ServiceRequest.all
   end
@@ -20,11 +18,11 @@ class ServiceRequestsController < ApplicationController
 
     respond_to do |format|
       if @service_request.save
-        flash[:alert] = "Request ##{@service_request.id} was created!"
-        format.html { render action: "index", status: :created }
+        flash[:notice] = "Request ##{@service_request.id} was created!"
+        format.html { redirect_to @service_request }
       else
         flash[:alert] = @service_request.errors.full_messages.join('. ')
-        format.html { render action: "new", status: :unprocessable_entity }
+        format.html { render action: "new" }
       end
     end
   end
@@ -46,7 +44,10 @@ class ServiceRequestsController < ApplicationController
 
 
   def export
-    service_requests = ServiceRequest.includes(:notes, :request_type).all
+    start_date = params[:start_date] || Date.new(2013)
+    end_date = params[:end_date] || Date.today.in_time_zone.end_of_day
+
+    service_requests = ServiceRequest.includes(:notes, :request_type).where(created_at: start_date..end_date)
 
     send_data(service_requests.to_csv, :type => 'text/csv', :filename => 'service_requests.csv')
   end
