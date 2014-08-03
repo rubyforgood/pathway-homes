@@ -1,6 +1,6 @@
 <div ng-controller="ShowController" data-id="<%= @service_request.id %>">
 	<h1>Service Request #{{service_request.id}}</h1>
-	
+
 	<div class="col-sm-4">
 		<div class="panel panel-info">
 			<div class="panel-heading"><h3 class="panel-title">Requestor</h3></div>
@@ -45,11 +45,40 @@
 					<p><strong>Description of Work:</strong> {{service_request.work_desc}}</p>
 					<p><strong>Special Instructions:</strong> {{service_request.special_instructions}}</p>
 				 </section>
+				<p><strong>Service Provider:</strong> {{ service_request.maintenance_provider || 'not set'}}</p>
 			</div>
 		</div>
-	</div>
-	<div class="col-sm-12">
+  </div>
+
+  <% if @notes %>
+	  <div class="col-sm-12">
+      <div class="panel panel-info">
+	      <div class="panel-heading"><h3 class="panel-title">Notes</h3></div>
+        <div class="panel-body">
+          <% @notes.each do |note| %>
+            <div class="row <%= cycle('', 'bg-info') %>">
+              </br>
+              <div class="col-sm-3">
+                <p><strong>Added By:</strong> <%= note.user.name %></p>
+                <p><strong>Date:</strong> <%= note.created_at %></p>
+              </div>
+              <div class="col-sm-9">
+                <p><strong>Note:</strong> <%= note.note %></p>
+              </div>
+            </div>
+          <% end %>
+	      </div>
+      </div>
+    </div>
+  <% end %>
+
+	<div class="col-sm-6">
 		<%= link_to "Edit", edit_service_request_path, class: "btn btn-default" %>
 	</div>
-
+	<div class="col-sm-6">
+    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#note-modal">
+      Add Note
+    </button>
+	</div>
+	<%= render "notes/note_modal" %>
 </div>

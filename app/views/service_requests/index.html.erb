@@ -13,7 +13,7 @@
       <div class="col-md-3">Status</div>
       <div class="col-md-2">Full Details</div>
     </div>  
-    <div ng-repeat="request in requests | filter:yourQuery",  class="row requests-body">
+    <div ng-repeat="request in creator_requests | filter:yourQuery | offset:(creatorPage - 1) * 10 | limitTo:10",  class="row requests-body">
       <div class="col-md-1">{{request.id}}</div>
       <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
       <div class="col-md-3">{{request.creator_name}}</div>
@@ -21,6 +21,13 @@
       <div class="col-md-2"><a href="/service_requests/{{request.id}}">View</a></div>
       <div class="col-md-11 col-md-offset-1 description">{{request.work_desc}}</div>
     </div>
+    <ul class="pagination">
+      <li><a ng-click="setCreatorPage(page - 1)" href="#">&laquo;</a></li>
+      <li ng-class="isCreatorActive($index)" ng-repeat="page in pages(creator_requests, 10)">
+        <a ng-click="setCreatorPage($index + 1)" href='#'>{{$index + 1}}</a>
+      </li>
+      <li><a ng-click="setCreatorPage(page + 1)" href="#">&raquo;</a></li>
+    </ul>
   </div>
 
   <div class="requests-table">  
@@ -36,7 +43,7 @@
         <div class="col-md-3">Status</div>
         <div class="col-md-2">Full Details</div>
       </div>  
-      <div ng-repeat="request in requests | filter:otherQuery",  class="row requests-body">
+      <div ng-repeat="request in requests | filter:otherQuery | offset:(page - 1) * 50 | limitTo: 50",  class="row requests-body">
         <div class="col-md-1">{{request.id}}</div>
         <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
         <div class="col-md-3">{{request.creator_name}}</div>
@@ -45,4 +52,11 @@
         <div class="col-md-11 col-md-offset-1 description">{{request.work_desc}}</div>
       </div>
     </div>  
+    <ul class="pagination">
+      <li><a ng-click="setPage(page - 1)" href="#">&laquo;</a></li>
+      <li ng-class="isActive($index)" ng-repeat="page in pages(requests, 50)">
+        <a ng-click="setPage($index + 1)" href='#'>{{$index + 1}}</a>
+      </li>
+      <li><a ng-click="setPage(page + 1)" href="#">&raquo;</a></li>
+    </ul>
   </div>

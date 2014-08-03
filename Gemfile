@@ -22,6 +22,9 @@ gem 'cancan'
 
 gem 'angularjs-rails'
 gem 'underscore-rails'
+gem 'chosen-rails'
+
+gem 'will_paginate'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'

@@ -2,7 +2,10 @@ class ServiceRequestsController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :handle_missing_parms
 
   def index
-    @service_requests = ServiceRequest.all
+    scope = ServiceRequest.includes(:creator)
+    scope = scope.where(creator_id: params[:user_id]) if params[:user_id]
+    scope = scope.paginate(page: params[:page], per_page: params[:per_page] || 50)
+    @service_requests = scope
   end
 
   def new
@@ -21,7 +24,7 @@ class ServiceRequestsController < ApplicationController
       if @service_request.save
         ServiceRequestMailer.creator_confirmation(@service_request).deliver
 
-        flash[:notice] = "Request ##{@service_request.id} was created!"
+        flash[:alert] = "Request ##{@service_request.id} was created!"
         format.html { redirect_to @service_request }
       else
         flash[:alert] = @service_request.errors.full_messages.join('. ')
@@ -36,18 +39,18 @@ class ServiceRequestsController < ApplicationController
     respond_to do |format|
       if @service_request.update(service_request_params)
         flash[:alert] = "Request ##{@service_request.id} updated!"
-        format.html { render action: "show" }
+        format.html { redirect_to @service_request }
       else
         flash[:alert] = @service_request.errors.full_messages.join('. ')
-        format.html { render action: "edit", status: :unprocessable_entity }
+        format.html { render action: "edit" }
       end
     end
   end
 
   def show
     @service_request = ServiceRequest.includes(:creator).find(params[:id])
+    @notes = @service_request.notes
   end
-
 
   def export
     start_date = params[:start_date] || Date.new(2013)
@@ -69,7 +72,8 @@ class ServiceRequestsController < ApplicationController
     params.require(:service_request).permit(
       :community_name, :apt_number, :work_desc, :special_instructions, :alarm,
       :community_street_address, :community_zip_code, :pet,
-      :authorized_to_enter, :request_type_id, creator_attributes: [:name, :email, :phone]
+      :authorized_to_enter, :request_type_id, :maintenance_provider,
+      :status, :closed_on,
     )
   end
 

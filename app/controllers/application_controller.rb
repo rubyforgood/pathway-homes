@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   def check_for_expired_password
     if current_user.password_expired?
       flash[:alert] = "Your password has expired. Please reset it before continuing."
-      redirect_to edit_user_registration_path
+      redirect_to edit_user_path(current_user)
     end
   end
 end

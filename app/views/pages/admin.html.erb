@@ -1,1 +1,33 @@
-<h1>Admin Page</h1>
+        <div class="container">
+          <div class="well" align="center">
+            <p class="lead">From this page, you can Create and Manage Users and Export Data.</p>
+          </div>
+        </div>
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <%= link_to image_tag("VistalCO/Symbol-Add.png", class: "img-square", width: '140px', height: '140px'),  new_user_path %>
+          <h2>Add User</h2>
+          <p>Create new staff member</p>
+          <p><%= link_to "New User", new_user_path, class: "btn btn-default" %></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <%= link_to image_tag("Users.png", class: "img-square", width: '140px', height: '140px'), users_path %>
+          <h2>Manage Users</h2>
+          <p>Edit user profiles, activate or deactive users, or promote users.</p>
+          <p><%= link_to "Manage Users", users_path, class: "btn btn-default" %></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <%= link_to image_tag("VistalCO/Download.png", class: "img-square", width: '140px', height: '140px'), "http://www.pathwayhomes.org/employee-home" %>
+          <h2>Export Data</h2>
+          <p>Export and download your data in CSV format, so you can import it into Access or other tools.</p>
+          <p><a class="btn btn-default" href="http://www.pathwayhomes.org/employee-home" role="button">Employee Page &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
