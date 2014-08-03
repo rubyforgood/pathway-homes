@@ -3,7 +3,7 @@
   <div>
     <input type="text" id="query" ng-model="query" placeholder="Search" class="search-input"/>
      <p><%= link_to "Create New Request Type", new_request_type_path, class: "btn btn-default" %></p>
-    <ul class="requests-list">
+<!--     <ul class="requests-list">
       <li class="requests-heading">
         <div class="col-md-2">Category</div>
         <div class="col-md-2">Request</div>
@@ -15,6 +15,23 @@
         <div class="col-md-3">{{request_type.request }}</div>
         <div class="col-md-3">Edit</div>
       </li>
-    </ul>
+    </ul> -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Request</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      <tr ng-repeat="request_type in request_types | filter:query" class="list-item" >
+        <td class="col-md-2">{{request_type.category }}</td>
+        <td>{{request_type.request }}</td>
+        <td><a href="/request_type/">Edit</a></td>
+      </tr>
+      <tbody>
+    </table>
   </div>
 </div>
