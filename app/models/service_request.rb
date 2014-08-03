@@ -33,7 +33,7 @@ class ServiceRequest < ActiveRecord::Base
                 request.community_street_address, request.community_zip_code,
                 request.apt_number, request.work_desc, request.special_instructions,
                 request.alarm, request.pet, request.authorized_to_enter,
-                request.created_at, request.closed_on,
+                request.created_at.to_date, request.closed_on,
                 request.closed_on, request.status, request.request_type.full,
                 request.creator.name, request.note_export]
       end
