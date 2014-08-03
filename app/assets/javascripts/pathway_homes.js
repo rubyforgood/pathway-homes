@@ -1,4 +1,4 @@
-var pathwayHomes = angular.module("pathwayHomes", ['ngRoute']);
+var pathwayHomes = angular.module("pathwayHomes", ['ngRoute', "localytics.directives"]);
 
 //pathwayHomes.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
 //  $routeProvider.
