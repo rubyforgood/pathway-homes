@@ -1,22 +1,18 @@
-<div ng-controller="IndexController">
-<h1>Service Requests</h1>
-<input type="text" id="query" ng-model="query"/>
+<div ng-controller="UsersCtlr">
+  <h1>Users</h1>
   <div>
     <ul class="requests-list">
       <li class="requests-heading">
-        <div class="col-md-2">Request ID</div>
-        <div class="col-md-3">Created</div>
-        <div class="col-md-2">Status</div>
-        <div class="col-md-3">Staff Assigned</div>
-        <div class="col-md-2">Full Details</div>
-      </li>  
-      <li ng-repeat="request in requests | filter:query" class="list-item">
-        <div class="col-md-2">{{request.id}}</div>
-        <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
-        <div class="col-md-2">{{request.status}}</div>
-        <div class="col-md-3">{{request.assigned_worker}}</div>
-        <div class="col-md-2"><a href="/service_requests/{{request.id}}">View</a></div>
-        <div class="col-md-12">{{request.work_desc}}</div>
+        <div class="col-md-3">Name</div>
+        <div class="col-md-2">Phone</div>
+        <div class="col-md-2">Role</div>
+
+      </li>
+      <!--li ng-repeat="request in requests | filter:query" class="list-item" -->
+      <li class="list-item">
+        <div class="col-md-3">{{user.name }}</div>
+        <div class="col-md-2">{{user.phone }}</div>
+        <div class="col-md-3">{{user.role }}</div>
       </li>
     </ul>
   </div>
