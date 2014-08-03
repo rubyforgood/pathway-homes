@@ -1,6 +1,7 @@
 <div ng-controller="ServiceRequestsCtlr">
   <h1>Service Request Form</h1>
   <%= form_for(@service_request, html: {name: "form",
+                                        method: @service_request.id ? 'put' : 'post',
                                         class: "form form-horizontal", 
                                         'data-id' => @service_request.id,
                                         role: "form"}) do |f| %>
@@ -69,7 +70,7 @@
         <select name="service_request[request_type_id]" required
           class="form-control" 
           ng-model="request.type" 
-          ng-options="type.id as type.request group by type.category for type in request_types">
+          ng-options="type.request group by type.category for type in request_types track by type.id">
         </select>
       </div>
     </div>
