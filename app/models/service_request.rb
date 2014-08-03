@@ -50,6 +50,10 @@ class ServiceRequest < ActiveRecord::Base
     creator && creator.name
   end
 
+  def creator_email
+    creator && creator.email
+  end
+
   def full_request_type
     request_type && request_type.full
   end

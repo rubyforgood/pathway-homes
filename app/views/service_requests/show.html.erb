@@ -1,16 +1,55 @@
 <div ng-controller="ShowController" data-id="<%= @service_request.id %>">
 	<h1>Service Request #{{service_request.id}}</h1>
-	<h3>Date Submitted: {{service_request.created_at | date : 'mediumDate'}}</h3>
+	
+	<div class="col-sm-4">
+		<div class="panel panel-info">
+			<div class="panel-heading"><h3 class="panel-title">Requestor</h3></div>
+			<div class="panel-body">
+				<p>Created by <strong>{{service_request.creator_name}}</strong> at <strong>{{service_request.created_at | date : 'mediumDate'}}</strong></p>
+				<p><strong>Email:</strong> {{service_request.creator_email}}</strong>
+				<p><strong>Status:</strong> {{service_request.status}}</p>
+			</div>
+		</div>
+	</div>
 
-	<h3>Name/Community Name: {{service_request.community_name}}</h3>
-	<h3>Apt/Building Number: {{service_request.apt_number}}</h3>
+	<div class="col-sm-4">
+		<div class="panel panel-info">
+			<div class="panel-heading"><h3 class="panel-title">Community Information</h3></div>
+			<div class="panel-body">
+				<p><strong>Name: </strong> {{service_request.community_name}}</p>
+				<p><strong>Address: </strong> {{service_request.community_street_address}}</p>
+				<p><strong>Apt/Building Number: </strong> {{service_request.apt_number}}</p>
+				<p><strong>Zip: </strong> {{service_request.community_zip_code}}</p>
+				<p>
+			</div>
+		</div>
+	</div>
 
-	<h3>Status: {{service_request.status}}</h3>
-	<section id="requestDescription">
-		<p>{{service_request.work_desc}}</p>
-		<p>{{service_request.special_instructions}}</p>
-	  </section>
+	<div class="col-sm-4">
+		<div class="panel panel-info">
+			<div class="panel-heading"><h3 class="panel-title">Permissions</h3></div>
+			<div class="panel-body">
+				<p><strong>Authorized to enter?</strong> {{service_request.authorized_to_enter}}</p>
+				<p><strong>Pets?</strong> {{service_request.pet}}</p>
+				<p><strong>Alarm?</strong> {{service_request.alarm}}</p>
+			</div>
+		</div>
+	</div>
 
-	<%= link_to "Edit", edit_service_request_path, class: "btn btn-default" %>
+	<div class="col-sm-12">
+		<div class="panel panel-info">
+			<div class="panel-heading"><h3 class="panel-title">Work Description</h3></div>
+			<div class="panel-body">
+				<p><strong>Request Type:</strong> {{service_request.full_request_type}}</p>
+				<section id="requestDescription">
+					<p><strong>Description of Work:</strong> {{service_request.work_desc}}</p>
+					<p><strong>Special Instructions:</strong> {{service_request.special_instructions}}</p>
+				 </section>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<%= link_to "Edit", edit_service_request_path, class: "btn btn-default" %>
+	</div>
 
 </div>
