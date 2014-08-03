@@ -1,11 +1,6 @@
 #!/bin/sh
 set -e
 
-if ! which psql >/dev/null 2>&1; then
-  echo "PostgreSQL is required. Please use Homebrew or <http://postgresapp.com/>."
-  exit 1
-fi
-
 # Bundler
 bundle install
 
