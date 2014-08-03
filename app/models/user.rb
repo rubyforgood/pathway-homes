@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  validates :role, presence: true
+  validates :role,
+    presence: true,
+    inclusion: { in: ['admin', 'staff'] }
 
   has_many :created, class_name: "ServiceRequest", inverse_of: :creator
 
