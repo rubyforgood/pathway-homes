@@ -60,7 +60,7 @@ class ServiceRequest < ActiveRecord::Base
 
   def set_closed_on
     if status_changed? && closed?
-      self.closed_on = Time.now
+      self.closed_on = Date.current
     elsif status_changed? && !closed?
       self.closed_on = nil
     end
