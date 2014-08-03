@@ -37,7 +37,7 @@ class ServiceRequest < ActiveRecord::Base
                 request.alarm, request.pet, request.authorized_to_enter,
                 request.created_at, request.assigned_at, request.closed_at,
                 request.closed_at, request.status, request.request_type.full,
-                request.creator.name, request.assignee_name, '']
+                request.creator.name, request.assignee_name, request.note_export]
       end
     end
   end
@@ -50,8 +50,16 @@ class ServiceRequest < ActiveRecord::Base
     creator && creator.name
   end
 
+  def creator_email
+    creator && creator.email
+  end
+
   def full_request_type
     request_type && request_type.full
+  end
+
+  def note_export
+    notes.map(&:print).join(" | ")
   end
 
   private
