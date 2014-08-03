@@ -46,6 +46,7 @@ class ServiceRequestsController < ApplicationController
 
   def show
     @service_request = ServiceRequest.includes(:creator).find(params[:id])
+    @notes = @service_request.notes
   end
 
   def export

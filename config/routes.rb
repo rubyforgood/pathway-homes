@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :request_types, only: [:index]
+  resources :notes, only: [:create]
 
   resources :service_requests do
     resources :notes
