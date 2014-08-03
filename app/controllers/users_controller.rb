@@ -34,8 +34,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize! :update, @user
-
+    authorize! :update, @user, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @user.update!(user_params)
         format.html {
@@ -72,7 +71,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      allowed_params = [:email, :name, :password]
+      allowed_params = [:email, :name, :phone, :password]
       allowed_params << :role if can? :manage, User
 
       user_params = params.require(:user).permit(*allowed_params)
