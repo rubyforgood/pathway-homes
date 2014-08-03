@@ -9,4 +9,8 @@ class PagesController < ApplicationController
 
   def contact
   end
+
+  def admin
+    authorize! :admin, @user, :message => 'Not authorized as an administrator.'
+  end
 end
