@@ -1,9 +1,7 @@
 class User < ActiveRecord::Base
-  validates_presence_of :role
-  has_many :assigned_requests, class_name: "ServiceRequest", inverse_of: :assignee
-  has_many :created, class_name: "ServiceRequest", inverse_of: :creator
+  validates :role, presence: true
 
-  scope :admin, -> { where(role: "admin") }
+  has_many :created, class_name: "ServiceRequest", inverse_of: :creator
 
   devise :database_authenticatable, :recoverable, :rememberable, :trackable,
     :validatable

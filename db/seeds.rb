@@ -115,7 +115,6 @@ RequestType.create([{category: 'Appliance Repair', request: 'Misc.'},
 if Rails.env.development?
   user = User.create(name: "administrator", role: "admin", email: "admin@example.com", password: "password", password_confirmation: "password")
   normalUser = User.create(name: "Jane Plain", role: "staff", email: "staff@example.com", password: "password", password_confirmation: "password" )
-  maintenanceUser = User.create(name: "Jessie Handyman", role: "maintenance", email: "jh@example.com", password: "password", password_confirmation: "password")
 
   begin
 
@@ -171,7 +170,6 @@ if Rails.env.development?
        pet:                       true,
        authorized_to_enter:       true,
        creator_id:                normalUser.id,
-       assignee_id:               maintenanceUser.id,
        request_type_id:           RequestType.first.id
     )
 
