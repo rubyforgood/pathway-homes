@@ -6,6 +6,7 @@ class ServiceRequest < ActiveRecord::Base
   before_save :set_closed_at
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
+  enum maintenance_provider: [ :internal, :external ]
 
   validates :community_name, presence: true
   validates :apt_number, presence: true
