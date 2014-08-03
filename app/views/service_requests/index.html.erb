@@ -1,45 +1,48 @@
 <div ng-controller="IndexController">  
 
 <h1>Service Requests</h1>
-<h2>Your Requests</h2>
-<div class="row">
-<input type="text" id="query" ng-model="yourQuery" placeholder="Search" class="search-input"/>
-</div>
-  <div class="row requests-header">
-    <div class="col-md-2">ID #</div>
-    <div class="col-md-3">Created</div>
-    <div class="col-md-3">Creator</div>
-    <div class="col-md-2">Status</div>
-    <div class="col-md-2">Full Details</div>
-  </div>  
-  <div ng-repeat="request in requests | filter:yourQuery",  class="row requests-body">
-    <div class="col-md-2">{{request.id}}</div>
-    <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
-    <div class="col-md-3">{{request.creator_name}}</div>
-    <div class="col-md-2">{{request.status}}</div>
-    <div class="col-md-2"><a href="/service_requests/{{request.id}}">View</a></div>
-    <div class="col-md-12 description"><small>{{request.work_desc}}</small></div>
+  <div class="requests-table">
+    <div class="row">
+      <h3 class="col-md-5">Your Requests</h3>
+      <input type="text" id="query" ng-model="yourQuery" placeholder="Search" class="search-input"/>
+    </div>
+    <div class="row requests-header">
+      <div class="col-md-1">ID #</div>
+      <div class="col-md-3">Created</div>
+      <div class="col-md-3">Creator</div>
+      <div class="col-md-3">Status</div>
+      <div class="col-md-2">Full Details</div>
+    </div>  
+    <div ng-repeat="request in requests | filter:yourQuery",  class="row requests-body">
+      <div class="col-md-1">{{request.id}}</div>
+      <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
+      <div class="col-md-3">{{request.creator_name}}</div>
+      <div class="col-md-3">{{request.status}}</div>
+      <div class="col-md-2"><a href="/service_requests/{{request.id}}">View</a></div>
+      <div class="col-md-11 col-md-offset-1 description">{{request.work_desc}}</div>
+    </div>
   </div>
 
-<h2>Additional Requests</h2>
-<input type="text" id="query" ng-model="otherQuery" placeholder="Search"/>
-  <div class="row requests-header">
-    <div class="col-md-1">ID #</div>
-    <div class="col-md-2">Created</div>
-    <div class="col-md-2">Creator</div>
-    <div class="col-md-2">Status</div>
-    <div class="col-md-1">Full Details</div>
-  </div>  
-  <div ng-repeat="request in requests | filter:otherQuery",  class="row requests-body">
-    <div class="col-md-1">{{request.id}}</div>
-    <div class="col-md-2">{{request.created_at | date : 'mediumDate'}}</div>
-    <div class="col-md-2">{{request.creator_name}}</div>
-    <div class="col-md-2">{{request.status}}</div>
-    <div class="col-md-1"><a href="/service_requests/{{request.id}}">View</a></div>
-    <div class="col-md-12">{{request.work_desc}}</div>
+  <div class="requests-table">  
+    <div class="row">
+      <h3 class="col-md-5">Additional Requests</h3>
+      <input type="text" id="query" ng-model="otherQuery" placeholder="Search" class="search-input"/>
+    </div>
+
+      <div class="row requests-header">
+        <div class="col-md-1">ID #</div>
+        <div class="col-md-3">Created</div>
+        <div class="col-md-3">Creator</div>
+        <div class="col-md-3">Status</div>
+        <div class="col-md-2">Full Details</div>
+      </div>  
+      <div ng-repeat="request in requests | filter:otherQuery",  class="row requests-body">
+        <div class="col-md-1">{{request.id}}</div>
+        <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
+        <div class="col-md-3">{{request.creator_name}}</div>
+        <div class="col-md-3">{{request.status}}</div>
+        <div class="col-md-2"><a href="/service_requests/{{request.id}}">View</a></div>
+        <div class="col-md-11 col-md-offset-1 description">{{request.work_desc}}</div>
+      </div>
+    </div>  
   </div>
-<<<<<<< HEAD
-</div>  
-=======
-</div>
->>>>>>> f83de496a1e0a9cb3451d74c1b7d0accf0d51596
