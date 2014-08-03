@@ -135,9 +135,9 @@
       <div class="col-sm-10">
       	<% stat_types = [['Open', 'open'],['Assigned', 'assigned'],['In Progress', 'in_progress'],['Closed', 'closed']] %>
         <%= f.select :status, stat_types, {},
-          class: 'form-control', 
+          class: 'form-control',
           required: true,
-          'ng-model' => 'service_request.status' %>
+          'ng-model' => 'request.status' %>
       </div>
     </div>
     <% end %>
