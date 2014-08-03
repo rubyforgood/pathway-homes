@@ -10,4 +10,5 @@ pathwayHomes.controller("UsersCtlr", ["$scope", "User", function($scope, User) {
 
   $scope.save = function() {
   };
+
 }]);
