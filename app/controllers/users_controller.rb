@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 
     def user_params
       allowed_params = [:email, :name, :phone, :password]
-      allowed_params << :role if can? :manage, User
+      allowed_params << [:role, :disabled] if can? :manage, User
 
       user_params = params.require(:user).permit(*allowed_params)
       user_params.delete(:password) if user_params[:password].blank?

@@ -48,7 +48,18 @@
           'ng-model' => 'user.role' %>
       </div>
     </div>
-    <%- end %>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Is Disabled?</label>
+      <div class="col-sm-10">
+        <%= f.radio_button :disabled, "false",
+          'ng-model' => 'user.disabled' %>
+        <%= label :disabled, "Active", class: "control-label" %>
+        <%= f.radio_button :disabled, "true",
+          'ng-model' => 'user.disabled' %>
+      <%= label :disabled, "Disabled", class: "control-label" %>
+      </div>
+    </div>
+  <%- end %>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <%= f.submit 'Submit', class: 'btn btn-default',
