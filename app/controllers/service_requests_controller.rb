@@ -22,7 +22,9 @@ class ServiceRequestsController < ApplicationController
 
     respond_to do |format|
       if @service_request.save
-        ServiceRequestMailer.creator_confirmation(@service_request).deliver
+        # Disabloed 8/6/14 by brice84@gmail.com
+        # Reenable when email service is added to the heroku account
+        #ServiceRequestMailer.creator_confirmation(@service_request).deliver
 
         flash[:alert] = "Request ##{@service_request.id} was created!"
         format.html { redirect_to @service_request }
