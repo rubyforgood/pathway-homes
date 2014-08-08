@@ -1,0 +1,35 @@
+<div class="requests-table">
+  <div class="row">
+    <h3 class="col-md-5">{{title}}</h3>
+    <input type="text" id="query" ng-model="query" placeholder="Search" class="search-input"/>
+  </div>
+
+  <div class="row requests-header">
+    <div class="col-md-1">ID #</div>
+    <div class="col-md-3">Created</div>
+    <div class="col-md-3">Creator</div>
+    <div class="col-md-3">Status</div>
+    <div class="col-md-2">Full Details</div>
+  </div>  
+
+  <div ng-repeat="request in requests | 
+                  filter:query | 
+                  offset:(currentPage - 1) * perPage | 
+                  limitTo:perPage"  
+       class="row requests-body">
+    <div class="col-md-1">{{request.id}}</div>
+    <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
+    <div class="col-md-3">{{request.creator_name}}</div>
+    <div class="col-md-3">{{request.status}}</div>
+    <div class="col-md-2"><a href="/service_requests/{{request.id}}">View</a></div>
+    <div class="col-md-11 col-md-offset-1 description">{{request.work_desc}}</div>
+  </div>
+
+  <ul class="pagination">
+    <li><a ng-click="setPage(currentPage - 1)" href="#">&laquo;</a></li>
+    <li ng-class="{active: $index + 1 === currentPage}" ng-repeat="page in pages(requests, perPage)">
+    <a ng-click="setPage($index + 1)" href='#'>{{$index + 1}}</a>
+    </li>
+    <li><a ng-click="setPage(currentPage + 1)" href="#">&raquo;</a></li>
+  </ul>
+</div>

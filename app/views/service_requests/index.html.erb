@@ -1,62 +1,12 @@
 <div ng-controller="IndexController">  
 
-<h1>Service Requests</h1>
-  <div class="requests-table">
-    <div class="row">
-      <h3 class="col-md-5">Your Requests</h3>
-      <input type="text" id="query" ng-model="yourQuery" placeholder="Search" class="search-input"/>
-    </div>
-    <div class="row requests-header">
-      <div class="col-md-1">ID #</div>
-      <div class="col-md-3">Created</div>
-      <div class="col-md-3">Creator</div>
-      <div class="col-md-3">Status</div>
-      <div class="col-md-2">Full Details</div>
-    </div>  
-    <div ng-repeat="request in creator_requests | filter:yourQuery | offset:(creatorPage - 1) * 10 | limitTo:10",  class="row requests-body">
-      <div class="col-md-1">{{request.id}}</div>
-      <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
-      <div class="col-md-3">{{request.creator_name}}</div>
-      <div class="col-md-3">{{request.status}}</div>
-      <div class="col-md-2"><a href="/service_requests/{{request.id}}">View</a></div>
-      <div class="col-md-11 col-md-offset-1 description">{{request.work_desc}}</div>
-    </div>
-    <ul class="pagination">
-      <li><a ng-click="setCreatorPage(creatorPage - 1)" href="#">&laquo;</a></li>
-      <li ng-class="isCreatorActive($index)" ng-repeat="page in pages(creator_requests, 10)">
-        <a ng-click="setCreatorPage($index + 1)" href='#'>{{$index + 1}}</a>
-      </li>
-      <li><a ng-click="setCreatorPage(creatorPage + 1)" href="#">&raquo;</a></li>
-    </ul>
+  <h1>Service Requests</h1>
+  <div ng-controller="UserRequestsCtlr">
+    <%= render partial: 'index' %>
   </div>
 
-  <div class="requests-table">  
-    <div class="row">
-      <h3 class="col-md-5">Additional Requests</h3>
-      <input type="text" id="query" ng-model="otherQuery" placeholder="Search" class="search-input"/>
-    </div>
-
-      <div class="row requests-header">
-        <div class="col-md-1">ID #</div>
-        <div class="col-md-3">Created</div>
-        <div class="col-md-3">Creator</div>
-        <div class="col-md-3">Status</div>
-        <div class="col-md-2">Full Details</div>
-      </div>  
-      <div ng-repeat="request in requests | filter:otherQuery | offset:(page - 1) * 50 | limitTo: 50",  class="row requests-body">
-        <div class="col-md-1">{{request.id}}</div>
-        <div class="col-md-3">{{request.created_at | date : 'mediumDate'}}</div>
-        <div class="col-md-3">{{request.creator_name}}</div>
-        <div class="col-md-3">{{request.status}}</div>
-        <div class="col-md-2"><a href="/service_requests/{{request.id}}">View</a></div>
-        <div class="col-md-11 col-md-offset-1 description">{{request.work_desc}}</div>
-      </div>
-    </div>  
-    <ul class="pagination">
-      <li><a ng-click="setPage(page - 1)" href="#">&laquo;</a></li>
-      <li ng-class="isActive($index)" ng-repeat="page in pages(requests, 50)">
-        <a ng-click="setPage($index + 1)" href='#'>{{$index + 1}}</a>
-      </li>
-      <li><a ng-click="setPage(page + 1)" href="#">&raquo;</a></li>
-    </ul>
+  <div ng-controller="RequestsCtlr">
+    <%= render partial: 'index' %>
   </div>
+
+</div>
