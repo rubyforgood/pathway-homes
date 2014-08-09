@@ -4,6 +4,7 @@ class ServiceRequest < ActiveRecord::Base
   has_many :notes
 
   before_save :set_closed_on
+  after_update :notify_requestor_if_closed
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
   enum maintenance_provider: [ :internal, :external ]
@@ -63,6 +64,13 @@ class ServiceRequest < ActiveRecord::Base
       self.closed_on = Date.current
     elsif status_changed? && !closed?
       self.closed_on = nil
+    end
+  end
+
+  def notify_requestor_if_closed
+    if status_changed? && closed?
+      # Reenable when email service is added to the heroku account
+      ServiceRequestMailer.creator_update_on_completion(self).deliver
     end
   end
 end
