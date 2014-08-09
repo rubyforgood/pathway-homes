@@ -22,7 +22,6 @@ RSpec.describe ServiceRequest, :type => :model do
       service_request.status = "closed"
       service_request.save!
       expect(service_request.status).to eq("closed")
-      expect(service_request.closed_on).to eq(Date.current)
     end
   end
 end
