@@ -59,7 +59,7 @@ class ServiceRequest < ActiveRecord::Base
   private
 
   def remove_closed_on
-    if status_changed? && !closed?
+    unless closed?
       self.closed_on = nil
     end
   end
