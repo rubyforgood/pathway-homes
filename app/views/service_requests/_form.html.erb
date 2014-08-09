@@ -160,8 +160,7 @@
     <div class="form-group" ng-show="request.status == 'closed'" ng-class="{'has-error': !isValid('closed_on'), 'has-success': isValid('closed_on')}">
       <label class="col-sm-2 control-label">Closed Date</label>
       <div class="col-sm-10">
-        <%= f.text_field :closed_on, class: 'form-control',
-          'placeholder' => 'YYYY-MM-DD',
+        <%= f.date_field :closed_on, class: 'form-control', value: @service_request.closed_on.to_date || Date.today.to_date,
           'ng-model' => 'request.closed_on',
           'ng-required' => "request.status == 'closed'" %>
       </div>

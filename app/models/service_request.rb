@@ -3,7 +3,7 @@ class ServiceRequest < ActiveRecord::Base
   belongs_to :request_type
   has_many :notes
 
-  before_save :set_closed_on
+  before_save :remove_closed_on
 
   enum status: [ :open, :assigned, :in_progress, :closed ]
   enum maintenance_provider: [ :internal, :external ]
@@ -58,10 +58,8 @@ class ServiceRequest < ActiveRecord::Base
 
   private
 
-  def set_closed_on
-    if status_changed? && closed?
-      self.closed_on = Date.current
-    elsif status_changed? && !closed?
+  def remove_closed_on
+    if status_changed? && !closed?
       self.closed_on = nil
     end
   end
