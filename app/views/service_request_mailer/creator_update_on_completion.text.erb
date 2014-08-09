@@ -1,0 +1,5 @@
+Hi <%= @creator.name %>,
+
+Service Request #<%= @service_request.id %> for <%= @service_request.community_name %> is closed.
+
+You can view more details on the request at <<%= service_request_url(@service_request) %>>.
