@@ -82,4 +82,14 @@ Rails.application.configure do
 
   # Default url for Devise
   config.action_mailer.default_url_options = { host: 'pathway-homes.herokuapp.com', protocol: 'https' }
+
+  # SMTP
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:    'smtp.sendgrid.net',
+    port:       465, # TLS
+    ssl:        true,
+    user_name:  ENV.fetch('SENDGRID_USERNAME'),
+    password:   ENV.fetch('SENDGRID_PASSWORD'),
+  }
 end
