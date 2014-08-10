@@ -67,8 +67,7 @@ class ServiceRequest < ActiveRecord::Base
 
   def notify_requestor_if_closed
     if status_changed? && closed?
-      # Reenable when email service is added to the heroku account
-      # ServiceRequestMailer.creator_update_on_completion(self).deliver
+      ServiceRequestMailer.creator_update_on_completion(self).deliver
     end
   end
 end
