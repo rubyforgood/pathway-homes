@@ -18,3 +18,8 @@
 //= require underscore
 //= require chosen-jquery
 //= require angular-chosen-localytics
+//= require_self
+
+$(function() {
+  $(".chosen-select").chosen();
+});
