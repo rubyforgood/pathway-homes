@@ -12,7 +12,6 @@
   <%- if current_user && current_user.admin? %>
     <%= f.input :maintenance_provider, label: "Maintenance Provider", collection: %w(internal external), label_method: :humanize %>
     <%= f.input :status, label: "Status", prompt: false, collection: ServiceRequest.statuses.keys, label_method: :humanize %>
-    <%# TODO: Show only when closed is selected %>
     <%= f.input :closed_on, as: :date, label: "Closed On", html5: true %>
   <%- end %>
 

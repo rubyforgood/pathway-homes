@@ -20,6 +20,12 @@
 //= require angular-chosen-localytics
 //= require_self
 
+// TODO: Would really like to be able to use require_tree here, but this isn't
+// yet playing nicely with angular javascript files because of global
+// variables.
+//
+//= require service_requests
+
 $(function() {
   $(".chosen-select").chosen();
 });
