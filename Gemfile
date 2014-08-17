@@ -25,6 +25,7 @@ gem 'angularjs-rails'
 gem 'underscore-rails'
 gem 'chosen-rails'
 
+gem 'simple_form', '3.1.0.rc2'
 gem 'will_paginate'
 
 group :development, :test do
