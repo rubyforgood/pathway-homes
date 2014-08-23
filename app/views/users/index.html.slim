@@ -1,0 +1,18 @@
+table.table.table-hover
+  thead
+    tr
+      th Name
+      th Email
+      th Phone
+      th Role
+      th Actions
+  tbody
+    - @users.each do |user|
+      tr
+        td= user.name
+        td= mail_to(user.email)
+        td= user.phone
+        td= user.role
+        td
+          = link_to "Edit", edit_user_path(user)
+
