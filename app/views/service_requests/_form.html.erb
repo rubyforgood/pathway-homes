@@ -1,177 +1,19 @@
-<div ng-controller="ServiceRequestsCtlr">
-  <h1>Service Request Form</h1>
-  <%= form_for(@service_request, html: {name: "form",
-                                        method: @service_request.id ? 'put' : 'post',
-                                        class: "form form-horizontal",
-                                        'data-id' => @service_request.id,
-                                        role: "form"}) do |f| %>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Name</label>
-      <div class="col-sm-10">
-        <input type="text" disabled class="form-control", ng-model="creator.name"></input>
-      </div>
-    </div>
+<%= simple_form_for @service_request, wrapper: :horizontal_form, html: { class: "form-horizontal" } do |f| %>
+  <%= f.input :community_name, label: "Community Name" %>
+  <%= f.input :community_street_address, label: "Community Street Address" %>
+  <%= f.input :apt_number, label: "Apt Number" %>
+  <%= f.input :community_zip_code, label: "Community ZIP Code" %>
+  <%= f.input :request_type_id, label: "Request Type", collection: RequestType.all.group_by(&:category), as: :grouped_select, group_method: :last, label_method: :request, input_html: { class: "chosen-select" } %>
+  <%= f.input :authorized_to_enter, label: "Authorized to Enter?" %>
+  <%= f.input :pet, label: "Pet?" %>
+  <%= f.input :alarm, label: "Alarm?" %>
+  <%= f.input :work_desc, label: "Work Description" %>
+  <%= f.input :special_instructions, label: "Special Instructions" %>
+  <%- if current_user && current_user.admin? %>
+    <%= f.input :maintenance_provider, label: "Maintenance Provider", collection: %w(internal external), label_method: :humanize %>
+    <%= f.input :status, label: "Status", prompt: false, collection: ServiceRequest.statuses.keys, label_method: :humanize %>
+    <%= f.input :closed_on, as: :date, label: "Closed On", html5: true %>
+  <%- end %>
 
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Email Address</label>
-      <div class="col-sm-10">
-        <input type="text" disabled class="form-control", ng-model="creator.email"></input>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Primary Phone</label>
-      <div class="col-sm-10">
-        <input type="text" disabled class="form-control", ng-model="creator.phone"></input>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': !isValid('community_name'), 'has-success': isValid('community_name')}">
-      <label class="col-sm-2 control-label">Community Name</label>
-      <div class="col-sm-10">
-        <%= f.text_field :community_name,
-          class: 'form-control',
-          required: true,
-          'ng-model' => 'request.community_name' %>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': !isValid('community_street_address'), 'has-success': isValid('community_street_address')}">
-      <label class="col-sm-2 control-label">Street Address</label>
-      <div class="col-sm-10">
-        <%= f.text_field :community_street_address,
-          class: 'form-control',
-          required: true,
-          'ng-model' => 'request.community_street_address' %>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': !isValid('apt_number'), 'has-success': isValid('apt_number')}">
-      <label class="col-sm-2 control-label">Apartment Number</label>
-      <div class="col-sm-10">
-        <%= f.text_field :apt_number, class: 'form-control', required: true,
-          'ng-model' => 'request.apt_number' %>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': !isValid('community_zip_code'), 'has-success': isValid('community_zip_code')}">
-      <label class="col-sm-2 control-label">Zip Code</label>
-      <div class="col-sm-10">
-        <%= f.text_field :community_zip_code,
-          class: 'form-control',
-          required: true,
-          'ng-model' => 'request.community_zip_code' %>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': !isValid('request_type_id'), 'has-success': isValid('request_type_id')}">
-      <label class="col-sm-2 control-label">Request Type</label>
-      <div class="col-sm-10">
-        <select chosen name="service_request[request_type_id]" required
-          class="form-control"
-          ng-model="request.type"
-          ng-options="type.request group by type.category for type in request_types track by type.id">
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': !isValid('authorized_to_enter'), 'has-success': isValid('authorized_to_enter')}">
-      <label class="col-sm-2 control-label">Authorized to enter at any time?</label>
-      <div class="col-sm-10">
-        <label class="radio-inline">
-          <%= f.radio_button('authorized_to_enter', true, required: true,
-                             'ng-model' => 'request.authorized_to_enter') %> Yes
-        </label>
-        <label class="radio-inline">
-          <%= f.radio_button('authorized_to_enter', false, required: true,
-                             'ng-model' => 'request.authorized_to_enter') %> No
-        </label>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': !isValid('pet'), 'has-success': isValid('pet')}">
-      <label class="col-sm-2 control-label">Pet?</label>
-      <div class="col-sm-10">
-        <label class="radio-inline">
-          <%= f.radio_button('pet', true, required: true, 'ng-model' => 'request.pet') %> Yes
-        </label>
-        <label class="radio-inline">
-          <%= f.radio_button('pet', false, required: true, 'ng-model' => 'request.pet') %> No
-        </label>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': !isValid('alarm'), 'has-success': isValid('alarm')}">
-      <label class="col-sm-2 control-label">Alarm?</label>
-      <div class="col-sm-10">
-        <label class="radio-inline">
-          <%= f.radio_button('alarm', true, required: true, 'ng-model' => 'request.alarm') %> Yes
-        </label>
-        <label class="radio-inline">
-          <%= f.radio_button('alarm', false, required: true, 'ng-model' => 'request.alarm') %> No
-        </label>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': !isValid('work_desc'), 'has-success': isValid('work_desc')}">
-      <label class="col-sm-2 control-label">Description of Work</label>
-      <div class="col-sm-10">
-        <%= f.text_area :work_desc, class: 'form-control', required: true,
-          'ng-model' => 'request.work_desc' %>
-      </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': !isValid('special_instructions'), 'has-success': isValid('special_instructions')}">
-      <label class="col-sm-2 control-label">Special Instructions</label>
-      <div class="col-sm-10">
-        <%= f.text_area :special_instructions, class: 'form-control',
-          'ng-model' => 'request.special_instructions' %>
-      </div>
-    </div>
-
-
-    <% if current_user.admin? %>
-      <div class="form-group" ng-class="{'has-error': !isValid('maintenance_provider'), 'has-success': isValid('maintenance_provider')}">
-        <label class="col-sm-2 control-label">Service Provider</label>
-        <div class="col-sm-10">
-          <label class="radio-inline">
-            <%= f.radio_button('maintenance_provider', 'internal', 'ng-model' => 'request.maintenance_provider') %> Internal
-          </label>
-          <label class="radio-inline">
-            <%= f.radio_button('maintenance_provider', 'external', 'ng-model' => 'request.maintenance_provider') %> External
-          </label>
-        </div>
-      </div>
-    <% end %>
-
-    <% if user_signed_in? && current_user.admin? %>
-    <div class="form-group" ng-class="{'has-error': !isValid('status'), 'has-success': isValid('status')}">
-      <label class="col-sm-2 control-label">Status</label>
-      <div class="col-sm-10">
-      	<% stat_types = [['Open', 'open'],['Assigned', 'assigned'],['In Progress', 'in_progress'],['Closed', 'closed']] %>
-        <%= f.select :status, stat_types, {},
-          class: 'form-control',
-          required: true,
-          'ng-model' => 'request.status' %>
-      </div>
-    </div>
-    <% end %>
-
-    <div class="form-group" ng-show="request.status == 'closed'" ng-class="{'has-error': !isValid('closed_on'), 'has-success': isValid('closed_on')}">
-      <label class="col-sm-2 control-label">Closed Date</label>
-      <div class="col-sm-10">
-        <%= f.date_field :closed_on, class: 'form-control',
-          'ng-model' => 'request.closed_on',
-          'ng-required' => "request.status == 'closed'" %>
-      </div>
-    </div>
-
-
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit 'Submit', class: 'btn btn-default',
-          'ng-click' => 'save($event)' %>
-      </div>
-    </div>
-  <% end %>
-</div>
+  <%= f.button :submit, value: "Submit" %>
+<%- end %>

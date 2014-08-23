@@ -18,8 +18,8 @@ class ServiceRequest < ActiveRecord::Base
   validates :community_zip_code, presence: true
   validates :pet, inclusion: { in: [true, false] }
   validates :authorized_to_enter, inclusion: { in: [true, false] }
-  validates :creator, presence: true
-  validates :request_type, presence: true
+  validates :creator_id, presence: true
+  validates :request_type_id, presence: true
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
