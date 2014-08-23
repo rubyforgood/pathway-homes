@@ -1,0 +1,9 @@
+= simple_form_for @user, wrapper: :horizontal_form, html: { class: 'form-horizontal' } do |f|
+  = f.input :name, label: "Name"
+  = f.input :email, label: "Email"
+  = f.input :phone, label: "Phone"
+  = f.input :password, label: "Password", placeholder: "if left empty, password will remain unchanged"
+  = f.input :role, label: "Role", prompt: false, collection: User::ROLES, label_method: :humanize
+  = f.input :disabled, label: "Disabled?"
+
+  = f.button :submit, value: "Submit"

@@ -34,7 +34,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
+    authorize! :update, @user
+
     respond_to do |format|
       if @user.update!(user_params)
         format.html {
@@ -53,15 +54,14 @@ class UsersController < ApplicationController
 
   def destroy
     authorize! :destroy, @user
-    @user.destroy
 
+    @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
       if params[:id] == 'current'
         @user = current_user
