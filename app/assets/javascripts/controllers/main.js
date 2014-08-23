@@ -1,13 +1,7 @@
 pathwayHomes.controller("MainCtlr", ["$scope", "$timeout", "$route", "$routeParams", "$location", "User", function($scope, $timeout, $route, $routeParams, $location, User) {
-  //$scope.$route = $route;
-  //$scope.$location = $location;
-  //$scope.$routeParams = $routeParams;
-  $scope.creator = {};
   $scope.notice = {promise: null, type: "alert-info", message: ""};
 
-  User.get('current').success(function(data) {
-    $scope.creator = data;
-  });
+  $scope.current_user_id = $('body').data('current-user-id');
 
   $scope.alert = function(message, type) {
     $scope.notice.type = "alert-" + type;

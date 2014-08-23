@@ -4,27 +4,12 @@
   <title>PathwayHomes</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag 'pathway_homes' %>
-  <%= javascript_include_tag 'services/service_request' %>
-  <%= javascript_include_tag 'services/user' %>
-  <%= javascript_include_tag 'services/request_type' %>
-  <%= javascript_include_tag 'filters/offset' %>
-  <%= javascript_include_tag 'controllers/main' %>
-  <%= javascript_include_tag 'controllers/service_requests' %>
-  <%= javascript_include_tag 'controllers/index.js' %>
-  <%= javascript_include_tag 'controllers/usersindex.js' %>
-  <%= javascript_include_tag 'controllers/service_requests.js' %>
-  <%= javascript_include_tag 'controllers/request_types.js' %>
-  <%= javascript_include_tag 'controllers/show.js' %>
-  <%= javascript_include_tag 'controllers/users.js' %>
-  <%= javascript_include_tag 'controllers/user_requests.js' %>
-  <%= javascript_include_tag 'controllers/requests.js' %>
 
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 
-<body ng-app="pathwayHomes">
+<body ng-app="pathwayHomes" data-current-user-id="<%= current_user && current_user.id %>">
   <div class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
