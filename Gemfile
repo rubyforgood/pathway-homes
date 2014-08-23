@@ -7,6 +7,7 @@ gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'slim-rails', '~> 2.1.5'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
@@ -27,6 +28,11 @@ gem 'chosen-rails'
 
 gem 'simple_form', '3.1.0.rc2'
 gem 'will_paginate'
+
+group :development do
+  gem 'better_errors', '~> 2.0'
+  gem 'binding_of_caller', '~> 0.7', '>= 0.7.2'
+end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
