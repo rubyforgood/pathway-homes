@@ -1,7 +1,4 @@
 pathwayHomes.controller("RequestTypesCtlr", ["$scope", "$routeParams", "RequestType", function($scope, $routeParams, RequestType) {
-  //$scope.params = $routeParams;
-  // $scope.request = {};
-  // $scope.creator = {};
   $scope.request_type = {};
   $scope.request_type.id = $('form').data('id');
 

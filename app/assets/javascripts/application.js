@@ -18,13 +18,10 @@
 //= require underscore
 //= require chosen-jquery
 //= require angular-chosen-localytics
-//= require_self
-
-// TODO: Would really like to be able to use require_tree here, but this isn't
-// yet playing nicely with angular javascript files because of global
-// variables.
 //
-//= require service_requests
+//= require pathway_homes
+//= require_tree .
+//= require_self
 
 $(function() {
   $(".chosen-select").chosen();

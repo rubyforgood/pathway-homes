@@ -5,9 +5,9 @@ pathwayHomes.controller('UserRequestsCtlr', ['$scope', 'ServiceRequest', functio
   $scope.fetches = 1;
   $scope.perPage = 10;
 
-  $scope.$watch('creator.id', function(newValue) {
+  $scope.$watch('current_user_id', function(newValue) {
     if (newValue) {
-      ServiceRequest.index($scope.creator.id).success(function(data) {
+      ServiceRequest.index($scope.current_user_id).success(function(data) {
         $scope.requests = data;
       });
     }
@@ -17,7 +17,7 @@ pathwayHomes.controller('UserRequestsCtlr', ['$scope', 'ServiceRequest', functio
     $scope.currentPage = newPage;
     if (newPage + 1 >= $scope.pages($scope.requests, $scope.perPage).length) {
       $scope.fetches += 1;
-      ServiceRequest.index($scope.creator.id, 5000, $scope.fetches).success(function(data) {
+      ServiceRequest.index($scope.current_user_id, 5000, $scope.fetches).success(function(data) {
         var requests = _.uniq(_.union($scope.requests, data), false, function(i, j) {
           return i.id;
         });
