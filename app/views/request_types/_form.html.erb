@@ -1,28 +1,23 @@
 <div ng-controller="RequestTypesCtlr">
   <h1>Request Type Form</h1>
-  <%= form_for(@request_type, html: {name: "form",
-                                        method: @request_type.id ? 'put' : 'post',
-                                        class: "form form-horizontal", 
-                                        'data-id' => @request_type.id,
-                                        role: "form"}) do |f| %>
+  <%= simple_form_for @request_type do |f| %>
     <div class="form-group">
       <label class="col-sm-2 control-label">Category</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control", ng-model="request_type.category"></input>
+        <%= f.input :category, label: false  %>
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Request</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control", ng-model="request_type.request"></input>
+        <%= f.input :request, label: false  %>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit 'Submit', class: 'btn btn-default',
-          'ng-click' => 'save($event)' %>
+        <%= f.submit 'Submit', class: 'btn btn-default' %>
       </div>
     </div>
   <% end %>
