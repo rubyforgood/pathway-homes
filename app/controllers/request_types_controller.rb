@@ -25,13 +25,17 @@ class RequestTypesController < ApplicationController
     end
   end
 
+  def edit
+    @request_type = RequestType.find(params[:id])
+  end
+
   def update
     @request_type = RequestType.find(params[:id])
     authorize! :update, @request_type, :message => 'Not authorized as an administrator.'
     respond_to do |format|
 
       if @request_type.update_attributes(request_type_params)
-        format.html { redirect_to @request_type, alert: 'Request Type was successfully updated.' }
+        format.html { redirect_to request_types_path, alert: 'Request Type was successfully updated.' }
       else
         format.html { render action: 'edit' }
       end

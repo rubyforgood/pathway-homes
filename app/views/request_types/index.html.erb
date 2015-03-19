@@ -16,7 +16,7 @@
       <tr ng-repeat="request_type in request_types | filter:query" class="list-item" >
         <td class="col-md-2">{{request_type.category }}</td>
         <td>{{request_type.request }}</td>
-        <td><a href="/request_type/">Edit</a></td>
+        <td><a href="/request_types/{{request_type.id}}/edit">Edit</a></td>
       </tr>
       <tbody>
     </table>
