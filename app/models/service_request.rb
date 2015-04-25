@@ -36,7 +36,7 @@ class ServiceRequest < ActiveRecord::Base
                 request.alarm, request.pet, request.authorized_to_enter,
                 request.created_at.to_date, request.closed_on,
                 request.closed_on, request.status, request.request_type.full,
-                request.creator.name, request.note_export]
+                request.creator.try(:name), request.note_export]
       end
     end
   end
