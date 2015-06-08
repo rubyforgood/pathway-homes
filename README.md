@@ -1,4 +1,4 @@
-# pathway-homes [![Build Status](https://travis-ci.org/alindeman/pathway-homes.svg?branch=master)](https://travis-ci.org/alindeman/pathway-homes)  [![Stories in Ready](https://badge.waffle.io/alindeman/pathway-homes.svg?label=ready&title=Ready)](http://waffle.io/alindeman/pathway-homes)
+# pathway-homes [![Build Status](https://travis-ci.org/rubyforgood/pathway-homes.svg?branch=master)](https://travis-ci.org/rubyforgood/pathway-homes)  [![Stories in Ready](https://badge.waffle.io/rubyforgood/pathway-homes.svg?label=ready&title=Ready)](http://waffle.io/rubyforgood/pathway-homes)
 
 [Pathway Homes](http://www.pathwayhomes.org/) provides housing and other
 services to adults with serious mental illness.
