@@ -218,7 +218,7 @@ DEPENDENCIES
   letter_opener
   pg
   pry (~> 0.10.0)
-  rails (= 4.1.10)
+  rails (~> 4.1.10)
   rails_12factor (~> 0.0.2)
   rake (~> 10.3.2)
   rspec-rails (~> 3.0.0)
@@ -232,3 +232,9 @@ DEPENDENCIES
   underscore-rails
   unicorn (~> 4.8.3)
   will_paginate
+
+RUBY VERSION
+   ruby 2.1.2p95
+
+BUNDLED WITH
+   1.12.5
